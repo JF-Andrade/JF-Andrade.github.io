@@ -1,121 +1,77 @@
-/*
- * Arquivo de Estilo Principal para Portfólio de Machine Learning
- * -------------------------------------------------------------
- * Estilo geral e classes de componentes, com foco em uma estética executiva e limpa.
- */
+// Este script é responsável por carregar e injetar o cabeçalho e o rodapé
+// em todas as páginas, e também por destacar o link da página ativa.
 
-/* 1. Variáveis de Cor para Manutenção Fácil */
-:root {
-    --color-primary: #1e293b; /* Slate 900 - Título, texto principal */
-    --color-secondary: #475569; /* Slate 600 - Texto secundário */
-    --color-accent: #3b82f6; /* Azul brilhante - Destaques, botões */
-    --color-accent-dark: #2563eb; /* Azul escuro - Efeitos de hover */
-    --color-background-light: #f1f5f9; /* Slate 100 - Fundo claro */
-    --color-background-card: #ffffff; /* Branco - Fundo de cartões */
-    --color-border: #cbd5e1; /* Slate 300 - Bordas sutis */
-    --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Função assíncrona para buscar e injetar o HTML do cabeçalho
+    async function loadHeader() {
+        try {
+            // Busca o arquivo do cabeçalho
+            const response = await fetch('assets/js/components/header.html');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const headerHtml = await response.text();
+            
+            // Encontra o elemento 'body' e insere o cabeçalho no início
+            const body = document.body;
+            body.insertAdjacentHTML('afterbegin', headerHtml);
 
-/* 2. Estilos de Tipografia e Reset Básico */
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--color-primary);
-    background-color: var(--color-background-light);
-    line-height: 1.6;
-    @apply antialiased;
-}
+            // Adiciona o menu de navegação dinamicamente
+            loadNavigationMenu();
 
-h1, h2, h3, h4 {
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1.2;
-}
+        } catch (e) {
+            console.error('Erro ao carregar o cabeçalho:', e);
+        }
+    }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.5rem; }
+    // Função assíncrona para buscar e injetar o HTML do rodapé
+    async function loadFooter() {
+        try {
+            // Busca o arquivo do rodapé
+            const response = await fetch('assets/js/components/footer.html');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const footerHtml = await response.text();
 
-/* 3. Estilos de Componentes e Utilidades */
+            // Encontra o elemento 'body' e insere o rodapé no final
+            const body = document.body;
+            body.insertAdjacentHTML('beforeend', footerHtml);
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
+        } catch (e) {
+            console.error('Erro ao carregar o rodapé:', e);
+        }
+    }
 
-/* Transições suaves para todos os elementos */
-* {
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
+    // Função para gerar o menu de navegação e destacar o item da página atual
+    function loadNavigationMenu() {
+        const navLinksData = [
+            { text: 'Projetos', href: 'projects.html' },
+            { text: 'Currículo', href: 'resume.html' },
+            { text: 'Sobre Mim', href: 'about.html' },
+            { text: 'Contato', href: 'contact.html' }
+        ];
 
-/* Estilo para cartões de projeto */
-.project-card {
-    background-color: var(--color-background-card);
-    border-radius: 0.5rem;
-    box-shadow: var(--shadow-md);
-    transform: translateY(0);
-}
+        const navContainer = document.querySelector('nav .flex');
+        const currentPathname = window.location.pathname.split('/').pop();
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
+        navLinksData.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.href;
+            a.textContent = link.text;
+            a.classList.add('hover:text-gray-900', 'transition-colors', 'duration-200');
 
-/* Estilo de botão primário */
-.btn-primary {
-    background-color: var(--color-accent);
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
-}
+            // Destaca o link da página atual com base no nome do arquivo
+            if (link.href === currentPathname || (currentPathname === '' && link.href === 'index.html')) {
+                a.classList.add('text-blue-600', 'font-semibold');
+                a.classList.remove('hover:text-gray-900');
+            }
 
-.btn-primary:hover {
-    background-color: var(--color-accent-dark);
-}
+            navContainer.appendChild(a);
+        });
+    }
 
-/* Estilo de botão secundário */
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-border);
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-background-light);
-}
-
-/* Estilo para links de navegação e rodapé */
-a {
-    color: var(--color-secondary);
-    text-decoration: none;
-}
-
-a:hover {
-    color: var(--color-primary);
-}
-
-/* Estilo para ícones no rodapé */
-.footer-icon {
-    color: var(--color-secondary);
-}
-
-.footer-icon:hover {
-    color: #ffffff;
-}
-
-/* Classes para os "badges" de tecnologia */
-.badge {
-    background-color: #e2e8f0;
-    color: #64748b;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.25rem 0.5rem;
-    border-radius: 9999px;
-}
+    // Executa as funções de carregamento
+    loadHeader();
+    loadFooter();
+});
