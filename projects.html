@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - Portfólio ML</title>
+    <!-- Inclui o Tailwind CSS para um estilo moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link para o arquivo CSS separado -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="antialiased">
+
+    <!-- Seção do Cabeçalho e Navegação (Consistente com a página inicial) -->
+    <header class="bg-white shadow-sm p-4 md:px-8 border-b border-gray-200">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-gray-900">Jordão Fernandes de Andrade</a>
+            <div class="flex space-x-6 md:space-x-8 text-gray-600 font-medium">
+                <a href="projects.html" class="hover:text-gray-900 transition-colors duration-200">Projetos</a>
+                <a href="about.html" class="hover:text-gray-900 transition-colors duration-200">Sobre Mim</a>
+                <!-- Ícone do GitHub para navegação -->
+                <a href="https://github.com/JF-Andrade" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.21c-.53-.18-1-.31-1.4-.49a1 1 0 0 1-.6-.97V11a.8.8 0 0 1-.2-.5c-.38-.45-1.1-1.5-2-2.5a2 2 0 0 0-1-.3c-.23-.03-.5-.05-.8-.05c-.3 0-.57.02-.8.05a2 2 0 0 0-1 .3c-.9 1-1.62 2.05-2 2.5a.8.8 0 0 1-.2.5v1.23c0 .34-.14.67-.4.97-.48.6-1.02 1.3-1.44 2.11a4.81 4.81 0 0 0-1 3.21v4c0 .55.45 1 1 1h16c.55 0 1-.45 1-1Z"/><path d="M9 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/><path d="M17.5 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Seção de Título -->
+        <section class="text-center py-12 md:py-16">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-4">Meus Projetos</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Uma coleção de projetos que demonstram minhas habilidades em machine learning,
+                ciência de dados e desenvolvimento de software.
+            </p>
+        </section>
+
+        <!-- Seção de Lista de Projetos -->
+        <section id="project-list" class="py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cartão de Projeto 1 -->
+                <a href="projects/projeto-de-classificacao.html" class="project-card">
+                    <img src="https://placehold.co/400x250/e5e7eb/d1d5db?text=Classificação" alt="Miniatura do Projeto de Classificação" class="rounded-t-lg w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Classificador de Imagens de Flores</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Python</span>
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Keras</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Cartão de Projeto 2 -->
+                <a href="#" class="project-card">
+                    <img src="https://placehold.co/400x250/e5e7eb/d1d5db?text=Previsão" alt="Miniatura do Projeto de Previsão" class="rounded-t-lg w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Previsão de Vendas com Séries Temporais</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Python</span>
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Pandas</span>
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Scikit-learn</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Cartão de Projeto 3 -->
+                <a href="#" class="project-card">
+                    <img src="https://placehold.co/400x250/e5e7eb/d1d5db?text=NLP" alt="Miniatura do Projeto de NLP" class="rounded-t-lg w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Análise de Sentimento de Reviews</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Python</span>
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">NLTK</span>
+                            <span class="bg-gray-200 px-2 py-1 rounded-full">Spacy</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Adicione mais projetos aqui -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Seção do Rodapé (Consistente com a página inicial) -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Jordão Fernandes de Andrade. Todos os direitos reservados.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/jordaofernandes/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin footer-icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg>
+                </a>
+                <a href="https://github.com/JF-Andrade" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github footer-icon"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.21c-.53-.18-1-.31-1.4-.49a1 1 0 0 1-.6-.97V11a.8.8 0 0 1-.2-.5c-.38-.45-1.1-1.5-2-2.5a2 2 0 0 0-1-.3c-.23-.03-.5-.05-.8-.05c-.3 0-.57.02-.8.05a2 2 0 0 0-1 .3c-.9 1-1.62 2.05-2 2.5a.8.8 0 0 1-.2.5v1.23c0 .34-.14.67-.4.97-.48.6-1.02 1.3-1.44 2.11a4.81 4.81 0 0 0-1 3.21v4c0 .55.45 1 1 1h16c.55 0 1-.45 1-1Z"/><path d="M9 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/><path d="M17.5 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/></svg>
+                </a>
+                <a href="mailto:jordaoandrade@gmail.com" class="hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail footer-icon"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
