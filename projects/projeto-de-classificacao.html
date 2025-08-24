@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto: Classificador de Flores</title>
+    <!-- Inclui o Tailwind CSS para um estilo moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link para o arquivo CSS separado (caminho ajustado para a pasta pai) -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="antialiased">
+
+    <!-- Seção do Cabeçalho e Navegação (Consistente) -->
+    <header class="bg-white shadow-sm p-4 md:px-8 border-b border-gray-200">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-bold text-gray-900">Seu Nome</a>
+            <div class="flex space-x-6 md:space-x-8 text-gray-600 font-medium">
+                <a href="../projects.html" class="hover:text-gray-900 transition-colors duration-200">Projetos</a>
+                <a href="../about.html" class="hover:text-gray-900 transition-colors duration-200">Sobre Mim</a>
+                <!-- Ícone do GitHub para navegação -->
+                <a href="https://github.com/seu-perfil" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.21c-.53-.18-1-.31-1.4-.49a1 1 0 0 1-.6-.97V11a.8.8 0 0 1-.2-.5c-.38-.45-1.1-1.5-2-2.5a2 2 0 0 0-1-.3c-.23-.03-.5-.05-.8-.05c-.3 0-.57.02-.8.05a2 2 0 0 0-1 .3c-.9 1-1.62 2.05-2 2.5a.8.8 0 0 1-.2.5v1.23c0 .34-.14.67-.4.97-.48.6-1.02 1.3-1.44 2.11a4.81 4.81 0 0 0-1 3.21v4c0 .55.45 1 1 1h16c.55 0 1-.45 1-1Z"/><path d="M9 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/><path d="M17.5 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Seção de Título do Projeto -->
+        <section class="py-12 md:py-16 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-4">Classificador de Imagens de Flores</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Um projeto de visão computacional que utiliza uma Rede Neural Convolucional (CNN)
+                para identificar diferentes espécies de flores a partir de suas imagens.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-lg p-6 md:p-10 mb-8 md:mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div>
+                    <img src="https://placehold.co/600x400/e5e7eb/d1d5db?text=Exemplo+de+Imagem" alt="Exemplo de imagem de flor sendo classificada" class="rounded-lg shadow-md w-full mb-6">
+                    <h2 class="text-2xl font-semibold mb-4">O Problema de Negócio</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        O desafio foi construir um modelo que pudesse automatizar a identificação de flores,
+                        uma tarefa manual e demorada. O objetivo era criar uma solução robusta
+                        para ser usada em aplicações de botânica e jardinagem.
+                    </p>
+                    <div class="text-center mt-6">
+                        <a href="https://github.com/seu-perfil/projeto-de-classificacao" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">Metodologia e Abordagem</h2>
+                    <ul class="text-gray-700 leading-relaxed list-disc list-inside space-y-2 mb-6">
+                        <li>**Coleta de Dados:** Utilizei o conjunto de dados "Flower Photos" do TensorFlow.</li>
+                        <li>**Pré-processamento:** As imagens foram redimensionadas e normalizadas.</li>
+                        <li>**Modelagem:** Construí uma CNN com camadas de convolução, pooling e dropout para extrair características das imagens.</li>
+                        <li>**Treinamento:** O modelo foi treinado em 10 épocas, com validação cruzada para evitar overfitting.</li>
+                        <li>**Ajuste Fino:** Realizei o ajuste de hiperparâmetros para otimizar a precisão.</li>
+                    </ul>
+                    <h2 class="text-2xl font-semibold mb-4">Resultados e Conclusão</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        O modelo alcançou uma precisão de 98% no conjunto de dados de teste,
+                        demonstrando sua alta eficácia. A matriz de confusão abaixo (imagem)
+                        ilustra o desempenho. O notebook do projeto detalha os gráficos e
+                        as métricas de avaliação.
+                    </p>
+                    <img src="https://placehold.co/600x300/e5e7eb/d1d5db?text=Gráfico+de+Resultados" alt="Gráfico de resultados do modelo" class="rounded-lg shadow-md w-full mb-6">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Seção do Rodapé (Consistente) -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Seu Nome. Todos os direitos reservados.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="https://linkedin.com/in/seu-perfil" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin footer-icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg>
+                </a>
+                <a href="https://github.com/seu-perfil" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github footer-icon"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.21c-.53-.18-1-.31-1.4-.49a1 1 0 0 1-.6-.97V11a.8.8 0 0 1-.2-.5c-.38-.45-1.1-1.5-2-2.5a2 2 0 0 0-1-.3c-.23-.03-.5-.05-.8-.05c-.3 0-.57.02-.8.05a2 2 0 0 0-1 .3c-.9 1-1.62 2.05-2 2.5a.8.8 0 0 1-.2.5v1.23c0 .34-.14.67-.4.97-.48.6-1.02 1.3-1.44 2.11a4.81 4.81 0 0 0-1 3.21v4c0 .55.45 1 1 1h16c.55 0 1-.45 1-1Z"/><path d="M9 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/><path d="M17.5 18a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1Z"/></svg>
+                </a>
+                <a href="mailto:seu.email@exemplo.com" class="hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
