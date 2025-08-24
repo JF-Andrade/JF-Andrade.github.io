@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Jordão Fernandes de Andrade</title>
+    <!-- Inclui o Tailwind CSS para um estilo moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link para o arquivo CSS separado -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .resume-section {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Seção do Cabeçalho e Navegação -->
+    <header class="bg-white shadow-sm p-4 md:px-8 border-b border-gray-200">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-gray-900">Jordão Fernandes de Andrade</a>
+            <div class="flex space-x-6 md:space-x-8 text-gray-600 font-medium">
+                <a href="projects.html" class="hover:text-gray-900 transition-colors duration-200">Projetos</a>
+                <a href="resume.html" class="hover:text-gray-900 transition-colors duration-200">Currículo</a>
+                <a href="about.html" class="hover:text-gray-900 transition-colors duration-200">Sobre Mim</a>
+                <a href="contact.html" class="hover:text-gray-900 transition-colors duration-200">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="py-12 md:py-16 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-4">Currículo</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+                Confira abaixo um resumo da minha experiência profissional e acadêmica, ou faça o download do arquivo completo.
+            </p>
+            <a href="assets/docs/JordaoFernandes_PT_Resume_DataScience.pdf" download class="btn-primary inline-flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <span>Baixar Currículo (PDF)</span>
+            </a>
+        </section>
+
+        <!-- Seção: RESUMO -->
+        <section class="bg-white rounded-lg shadow-md p-6 md:p-10 mb-8 resume-section">
+            <h2 class="text-3xl font-bold mb-6">RESUMO</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Cientista de dados e Mestre em Economia com mais de quatro anos de experiência liderando projetos estratégicos
+                de machine learning e inteligência de mercado no setor educacional. Combino habilidades técnicas avançadas em
+                machine learning, estatística e econometria com capacidade comprovada em traduzir desafios de negócio em
+                insights acionáveis, contribuindo com o aprimoramento das decisões C-level que resultaram em uma taxa de
+                crescimento anual composto (CAGR) de 20% na captação de alunos por três anos.
+            </p>
+        </section>
+
+        <!-- Seção: COMPETÊNCIAS & QUALIFICAÇÕES -->
+        <section class="bg-white rounded-lg shadow-md p-6 md:p-10 mb-8 resume-section">
+            <h2 class="text-3xl font-bold mb-6">COMPETÊNCIAS & QUALIFICAÇÕES</h2>
+            <ul class="text-lg text-gray-700 leading-relaxed list-disc list-inside space-y-2">
+                <li>**Linguagens:** Python, R, SQL, Stata</li>
+                <li>**Habilidades Técnicas:** Estatística; econometria; séries temporais; dados em painel; modelagem bayesiana; machine learning; inferência causal (DID, RDD, Synthetic Control); regressão; classificação; clusterização; testes A/B</li>
+                <li>**Cloud Computing:** AWS (S3, Redshift, Sagemaker, Athena, Glue, Lambda)</li>
+                <li>**Gestão:** Liderança de equipes multidisciplinares; CRISP-DM</li>
+                <li>**Comunicação:** Comunicação eficaz de conceitos técnicos e resultados complexos para executivos C-level</li>
+            </ul>
+        </section>
+
+        <!-- Seção: EXPERIÊNCIA PROFISSIONAL -->
+        <section class="bg-white rounded-lg shadow-md p-6 md:p-10 mb-8 resume-section">
+            <h2 class="text-3xl font-bold mb-6">EXPERIÊNCIA PROFISSIONAL</h2>
+            <div class="space-y-6">
+                <!-- Cargo 1 -->
+                <div>
+                    <h3 class="text-2xl font-semibold">Gerente de Inteligência de Mercado | Cogna Educação</h3>
+                    <p class="text-gray-500 italic mb-2">São Paulo, SP | Mar 2023 - Presente</p>
+                    <ul class="text-lg text-gray-700 leading-relaxed list-disc list-inside space-y-1">
+                        <li>Lidero uma equipe multidisciplinar de Inteligência de Mercado, Dados e Analytics para desenvolver e entregar insights acionáveis que geram resultados como: redução de 18% na inadimplência; aumento de 15% em CTR; aumento de 10% na conversão de leads.</li>
+                        <li>Supervisão do ciclo de vida completo de modelos de machine learning, da pesquisa e desenvolvimento ao deployment em produção: propensão a conversão; propensão a evasão; previsão de demanda; etc.</li>
+                        <li>Lidero projetos estratégicos em conjunto com Martech, Produto e Comercial, focados em testes de campanhas (teste A/B e segmentação de mercado (clusterização, economia regional).</li>
+                        <li>Comunicação de análises complexas e recomendações estratégicas para executivos C-level, contribuindo significativamente com os processos decisórios e a direção da companhia.</li>
+                    </ul>
+                </div>
+                <!-- Cargo 2 -->
+                <div>
+                    <h3 class="text-2xl font-semibold">Coordenador de Inteligência de Mercado | Cogna Educação</h3>
+                    <p class="text-gray-500 italic mb-2">São Paulo, SP | Dez 2021 - Mar 2023</p>
+                    <ul class="text-lg text-gray-700 leading-relaxed list-disc list-inside space-y-1">
+                        <li>Liderança de projetos de inteligência de mercado e machine learning, entregando insights alinhados às estratégias empresariais e contribuindo para o crescimento acelerado do negócio.</li>
+                        <li>Realizei análises competitivas detalhadas e desenvolvi estratégias de precificação, contribuindo simultaneamente para um aumento sustentável do ticket médio acima da inflação e do market share do negócio.</li>
+                        <li>Facilitei a comunicação eficaz dos resultados analíticos para a alta gestão, assegurando alinhamento com os objetivos e iniciativas de desenvolvimento do negócio.</li>
+                    </ul>
+                </div>
+                <!-- Cargo 3 -->
+                <div>
+                    <h3 class="text-2xl font-semibold">Analista Sênior de Inteligência de Mercado | Cogna Educação</h3>
+                    <p class="text-gray-500 italic mb-2">São Paulo, SP | Jun 2021 - Dez 2021</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: FORMAÇÃO ACADÊMICA -->
+        <section class="bg-white rounded-lg shadow-md p-6 md:p-10 resume-section">
+            <h2 class="text-3xl font-bold mb-6">FORMAÇÃO ACADÊMICA</h2>
+            <div class="space-y-6">
+                <!-- Formação 1 -->
+                <div>
+                    <h3 class="text-2xl font-semibold">Mestrado em Economia (2023) | Universidade Estadual de Campinas</h3>
+                    <p class="text-gray-500 italic mb-2">Dissertação: "Efeitos da Demanda sobre a Taxa de Investimento na América Latina (1993-2017) - uma análise com dados em painel"</p>
+                    <ul class="text-lg text-gray-700 leading-relaxed list-disc list-inside">
+                        <li>Econometria; Modelos de crescimento econômico; Macroeconomia.</li>
+                    </ul>
+                </div>
+                <!-- Formação 2 -->
+                <div>
+                    <h3 class="text-2xl font-semibold">Bacharelado em Economia (2017) | Universidade Federal do Rio de Janeiro</h3>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Seção do Rodapé -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Jordão Fernandes de Andrade. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
