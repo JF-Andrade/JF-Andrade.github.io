@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Executa as funções de carregamento
     loadHeader();
     loadFooter();
+    loadFavicon();
 
     // Carrega os projetos se a página for a de projetos completos ou a página inicial
     if (document.getElementById('projects-container')) {
