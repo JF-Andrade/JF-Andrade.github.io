@@ -151,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Executa as funções de carregamento
-    loadHeadContent();
     loadFavicon();
     loadHeader();
     loadFooter();
