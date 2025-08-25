@@ -148,10 +148,35 @@ a:hover {
 }
 
 
-/* Adiciona transição suave para as imagens das bandeiras */
-.lang-switcher img {
-    transition: opacity 0.2s ease-in-out;
+/* Adicione esta seção ao seu main.css */
+/* Estilo para o seletor de idioma */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background-light);
+    border-radius: 9999px;
+    padding: 0.25rem;
+    gap: 0.25rem;
 }
+
+.lang-switcher .lang-btn {
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.lang-switcher .lang-btn:hover:not(.active) {
+    background-color: var(--color-border);
+}
+
+.lang-switcher .lang-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-background-card);
+    cursor: default;
+}
+
 
 /* Alinha os itens do seletor verticalmente */
 .lang-switcher .flex {
