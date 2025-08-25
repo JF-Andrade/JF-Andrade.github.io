@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio de Machine Learning</title>
-    <!-- Inclui o Tailwind CSS para um estilo moderno e responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Link para o arquivo CSS separado -->
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
-    
 <body class="antialiased">
 
     <main class="container mx-auto p-4 md:p-8">
 
-        <!-- Seção de Apresentação (Hero Section) -->
         <section class="flex flex-col md:flex-row items-center md:justify-between py-16 md:py-24">
             <div class="md:w-3/5 text-center md:text-left mb-8 md:mb-0">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
@@ -35,60 +31,14 @@
                 </a>
             </div>
             <div class="md:w-2/5 flex justify-center md:justify-end">
-                <!-- Imagem de perfil - usar um placeholder por enquanto -->
                 <img src="assets/img/perfil_github.jpg" alt="Sua Foto de Perfil" class="rounded-full shadow-xl w-40 h-40 md:w-60 md:h-60 object-cover">
             </div>
         </section>
 
-        <!-- Seção de Projetos em Destaque -->
         <section id="featured-projects" class="py-12 md:py-16">
             <h2 class="text-3xl font-bold text-center mb-10 text-gray-900">Projetos em Destaque</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cartão de Projeto 1 -->
-                <a href="projects/projeto-de-classificacao.html" class="project-card">
-                    <img src="https://placehold.co/400x250/e5e7eb/d1d5db?text=Classificação" alt="Miniatura do Projeto de Classificação" class="rounded-t-lg w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Classificador de Imagens de Flores</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Python</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">TensorFlow</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Keras</span>
-                        </div>
-                    </div>
-                </a>
-                <!-- Cartão de Projeto 2 -->
-                <a href="projects.html" class="project-card">
-                    <img src="https://placehold.co/400x250/e5e7eb/d1d5db?text=Previsão" alt="Miniatura do Projeto de Previsão" class="rounded-t-lg w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Previsão de Vendas com Séries Temporais</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Python</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Pandas</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Scikit-learn</span>
-                        </div>
-                    </div>
-                </a>
-                <!-- Cartão de Projeto 3 -->
-                <a href="projects.html" class="project-card">
-                    <img src="https://placehold.co/400x250/e5e7eb/d1d5db?text=NLP" alt="Miniatura do Projeto de NLP" class="rounded-t-lg w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Análise de Sentimento de Reviews</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Python</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">NLTK</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded-full">Spacy</span>
-                        </div>
-                    </div>
-                </a>
+            <div id="featured-projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Os cartões de projeto em destaque serão injetados aqui pelo JavaScript -->
             </div>
             <div class="text-center mt-12">
                 <a href="projects.html" class="btn-secondary">
@@ -98,8 +48,6 @@
         </section>
 
     </main>
-
     <script src="assets/js/main.js"></script>
-
 </body>
 </html>
