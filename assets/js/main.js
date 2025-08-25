@@ -66,6 +66,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    
+    // Nova função para carregar e injetar o conteúdo do <head>
+    async function loadHeadContent() {
+        try {
+            const response = await fetch(`${pathPrefix}assets/js/components/head-content.html`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const headContentHtml = await response.text();
+
+            const head = document.head;
+            head.insertAdjacentHTML('afterbegin', headContentHtml);
+
+        } catch (e) {
+            console.error('Erro ao carregar o conteúdo do head:', e);
+        }
+    }
+
     // Função para gerar o menu de navegação e destacar o item da página atual
     function loadNavigationMenu() {
         const navLinksData = [
@@ -151,9 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Executa as funções de carregamento
+    loadHeadContent();
+    loadFavicon();
     loadHeader();
     loadFooter();
-    loadFavicon();
 
     // Carrega os projetos se a página for a de projetos completos ou a página inicial
     if (document.getElementById('projects-container')) {
