@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
     const isSubfolder = pathSegments.length > 1;
     const pathPrefix = isSubfolder ? '../' : '';
+    const currentLang = pathSegments.length > 0 && pathSegments[0] === 'en' ? 'en' : 'pt';
 
     // Função assíncrona para buscar e injetar o HTML do cabeçalho
     async function loadHeader() {
@@ -23,10 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Adiciona o menu de navegação dinamicamente
             loadNavigationMenu();
+            // Adiciona a lógica do seletor de idioma
+            loadLanguageSwitcher();
 
         } catch (e) {
             console.error('Erro ao carregar o cabeçalho:', e);
         }
+    }
+
+    // Função para adicionar a lógica de troca de idioma
+    function loadLanguageSwitcher() {
+        const langSwitcher = document.querySelector('.lang-switcher');
+        if (!langSwitcher) return;
+
+        const ptLink = langSwitcher.querySelector('a[href*="/index.html"]');
+        const enLink = langSwitcher.querySelector('a[href*="/en/index.html"]');
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+        if (currentLang === 'pt') {
+            ptLink.href = currentPath;
+            enLink.href = `en/${currentPath}`;
+            ptLink.classList.add('text-blue-600', 'font-bold');
+            ptLink.classList.remove('hover:text-blue-600');
+        } else {
+            ptLink.href = `../${currentPath}`;
+            enLink.href = `en/${currentPath}`;
+            enLink.classList.add('text-blue-600', 'font-bold');
+            enLink.classList.remove('hover:text-blue-600');
+        }
+
     }
 
     // Função assíncrona para buscar e injetar o HTML do rodapé
