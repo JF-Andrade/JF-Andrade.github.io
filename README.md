@@ -17,7 +17,7 @@ Este site foi construído com foco em **modularidade** e **desempenho**. A arqui
 ## **Estrutura do Repositório**
 
 O projeto segue a seguinte estrutura de pastas e arquivos:
-
+```text
 .  
 ├── assets/  
 │   ├── css/  
@@ -40,6 +40,7 @@ O projeto segue a seguinte estrutura de pastas e arquivos:
 ├── contact.html               \# Página de contato  
 ├── projects.html              \# Página de listagem de projetos  
 └── resume.html                \# Página de currículo
+```
 
 ## **Contato**
 
