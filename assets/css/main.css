@@ -195,3 +195,13 @@ a:hover {
 .lang-switcher .flex {
     align-items: center;
 }
+
+/* Estilo para o botão de Dark Mode */
+#theme-toggle {
+    transition: background-color 0.2s;
+}
+
+[data-theme="dark"] #theme-toggle {
+    background-color: var(--color-background-card);
+    color: var(--color-primary);
+}
