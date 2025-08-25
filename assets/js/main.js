@@ -48,6 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Nova função para carregar e injetar as tags de favicon no <head>
+    async function loadFavicon() {
+        try {
+            const response = await fetch(`${pathPrefix}assets/js/components/favicon.html`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const faviconHtml = await response.text();
+            
+            // Injeta o HTML do favicon na tag <head>
+            const head = document.head;
+            head.insertAdjacentHTML('beforeend', faviconHtml);
+            
+        } catch (e) {
+            console.error('Erro ao carregar o favicon:', e);
+        }
+    }
+
     // Função para gerar o menu de navegação e destacar o item da página atual
     function loadNavigationMenu() {
         const navLinksData = [
