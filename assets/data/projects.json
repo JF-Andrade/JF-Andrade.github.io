@@ -1,0 +1,29 @@
+[
+  {
+    "id": "classificador-de-flores",
+    "title": "Classificador de Imagens de Flores",
+    "description": "Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.",
+    "image": "https://placehold.co/400x250/e5e7eb/d1d5db?text=Classificação",
+    "alt": "Miniatura do Projeto de Classificação",
+    "technologies": ["Python", "TensorFlow", "Keras"],
+    "link": "projects/projeto-de-classificacao.html"
+  },
+  {
+    "id": "previsao-de-vendas",
+    "title": "Previsão de Vendas com Séries Temporais",
+    "description": "Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.",
+    "image": "https://placehold.co/400x250/e5e7eb/d1d5db?text=Previsão",
+    "alt": "Miniatura do Projeto de Previsão",
+    "technologies": ["Python", "Pandas", "Scikit-learn"],
+    "link": "#"
+  },
+  {
+    "id": "analise-de-sentimento",
+    "title": "Análise de Sentimento de Reviews",
+    "description": "Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.",
+    "image": "https://placehold.co/400x250/e5e7eb/d1d5db?text=NLP",
+    "alt": "Miniatura do Projeto de NLP",
+    "technologies": ["Python", "NLTK", "Spacy"],
+    "link": "#"
+  }
+]
