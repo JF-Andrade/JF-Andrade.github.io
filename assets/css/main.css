@@ -146,3 +146,14 @@ a:hover {
     border-color: var(--color-accent);
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
+
+
+/* Adiciona transição suave para as imagens das bandeiras */
+.lang-switcher img {
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Alinha os itens do seletor verticalmente */
+.lang-switcher .flex {
+    align-items: center;
+}
