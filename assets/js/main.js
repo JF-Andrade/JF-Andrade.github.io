@@ -4,28 +4,30 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Implementação do Dark Mode
     const themeToggle = document.getElementById('theme-toggle');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     
     // 1. Carrega a preferência do usuário do localStorage
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);
-    } else if (prefersDarkScheme.matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        // Se não houver preferência salva, o tema padrão será sempre o "light"
+        document.documentElement.setAttribute('data-theme', 'light');
     }
 
     // 2. Adiciona o evento de clique ao botão
-    themeToggle.addEventListener('click', () => {
-        let theme = document.documentElement.getAttribute('data-theme');
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+    
     // Determina o caminho base com base na localização do arquivo.
     const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
     const isSubfolder = pathSegments.length > 1;
@@ -94,6 +96,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (e) {
             console.error('Erro ao carregar o rodapé:', e);
+        }
+    }
+
+    // Nova função para carregar e injetar as tags de favicon no <head>
+    async function loadFavicon() {
+        try {
+            const response = await fetch(`${pathPrefix}assets/js/components/favicon.html`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const faviconHtml = await response.text();
+            
+            // Injeta o HTML do favicon na tag <head>
+            const head = document.head;
+            head.insertAdjacentHTML('beforeend', faviconHtml);
+            
+        } catch (e) {
+            console.error('Erro ao carregar o favicon:', e);
         }
     }
     
@@ -182,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Executa as funções de carregamento
+    loadFavicon();
     loadHeader();
     loadFooter();
 
