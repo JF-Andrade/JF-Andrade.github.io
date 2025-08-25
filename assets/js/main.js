@@ -2,31 +2,6 @@
 // em todas as páginas, e também por destacar o link da página ativa.
 
 document.addEventListener('DOMContentLoaded', () => {
-    // O código de detecção de tema é executado no carregamento da página.
-    // O listener do botão será adicionado após o cabeçalho ser injetado.
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
-
-    // 2. Adiciona o evento de clique ao botão
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            let theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    }
-    
     // Determina o caminho base com base na localização do arquivo.
     const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
     const isSubfolder = pathSegments.length > 1;
@@ -46,21 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Encontra o elemento 'body' e insere o cabeçalho no início
             const body = document.body;
             body.insertAdjacentHTML('afterbegin', headerHtml);
-
-            // Adiciona o evento de clique ao botão do Dark Mode APÓS a injeção do cabeçalho
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    let theme = document.documentElement.getAttribute('data-theme');
-                    if (theme === 'dark') {
-                        document.documentElement.setAttribute('data-theme', 'light');
-                        localStorage.setItem('theme', 'light');
-                    } else {
-                        document.documentElement.setAttribute('data-theme', 'dark');
-                        localStorage.setItem('theme', 'dark');
-                    }
-                });
-            }
 
             // Adiciona o menu de navegação dinamicamente
             loadNavigationMenu();
