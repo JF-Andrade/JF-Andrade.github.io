@@ -120,3 +120,29 @@ a:hover {
     padding: 0.25rem 0.5rem;
     border-radius: 9999px;
 }
+
+/* Estilos para o formulário de contato */
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background-card);
+    color: var(--color-primary);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background-card);
+    color: var(--color-primary);
+    resize: vertical;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
