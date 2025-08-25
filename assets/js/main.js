@@ -36,21 +36,38 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadLanguageSwitcher() {
         const langSwitcher = document.querySelector('.lang-switcher');
         if (!langSwitcher) return;
-
-        const ptLink = langSwitcher.querySelector('a[href*="/index.html"]');
-        const enLink = langSwitcher.querySelector('a[href*="/en/index.html"]');
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
-        if (currentLang === 'pt') {
-            ptLink.href = currentPath;
-            enLink.href = `en/${currentPath}`;
-            ptLink.classList.add('text-blue-600', 'font-bold');
-            ptLink.classList.remove('hover:text-blue-600');
-        } else {
-            ptLink.href = `../${currentPath}`;
-            enLink.href = `en/${currentPath}`;
+    
+        // Obtém a URL base do site (sem a parte do idioma)
+        const baseDomain = window.location.origin;
+    
+        // Seleciona os links e as imagens das bandeiras
+        const ptLink = langSwitcher.querySelector('a[href*="index.html"]:not([href*="en/"])');
+        const enLink = langSwitcher.querySelector('a[href*="en/index.html"]');
+    
+        const ptFlag = ptLink.querySelector('img');
+        const enFlag = enLink.querySelector('img');
+    
+        // Remove as classes de destaque para começar
+        ptLink.classList.remove('text-blue-600', 'font-bold');
+        enLink.classList.remove('text-blue-600', 'font-bold');
+        
+        // Corrige os caminhos absolutos das bandeiras para evitar problemas
+        const pathPrefix = window.location.pathname.startsWith('/en/') ? '../' : '';
+        ptFlag.src = `${pathPrefix}assets/img/brazil.svg`;
+        enFlag.src = `${pathPrefix}assets/img/united-states.svg`;
+    
+        const currentPathname = window.location.pathname;
+        
+        if (currentPathname.startsWith('/en/')) {
+            // Se a página atual for a versão em inglês
             enLink.classList.add('text-blue-600', 'font-bold');
-            enLink.classList.remove('hover:text-blue-600');
+            enFlag.classList.remove('opacity-50');
+            ptFlag.classList.add('opacity-50');
+        } else {
+            // Se a página atual for a versão em português
+            ptLink.classList.add('text-blue-600', 'font-bold');
+            ptFlag.classList.remove('opacity-50');
+            enFlag.classList.add('opacity-50');
         }
     }
 
