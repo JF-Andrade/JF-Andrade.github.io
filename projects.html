@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos - Portfólio ML</title>
-    <!-- Inclui o Tailwind CSS para um estilo moderno e responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Link para o arquivo CSS separado -->
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body class="antialiased">
 
     <main class="container mx-auto p-4 md:p-8">
 
-        <!-- Seção de Título -->
         <section class="text-center py-12 md:py-16">
             <h1 class="text-4xl sm:text-5xl font-bold mb-4">Meus Projetos</h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -25,7 +22,6 @@
             </p>
         </section>
 
-        <!-- Container onde os projetos serão inseridos dinamicamente -->
         <section id="project-list" class="py-12 md:py-16">
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Os cartões de projeto serão gerados aqui pelo JavaScript -->
@@ -33,79 +29,6 @@
         </section>
 
     </main>
-
-    <script>
-        // Este script gerencia a geração dinâmica de cartões de projeto.
-        // Ele é projetado para ser robusto e fácil de expandir.
-
-        // Dados dos projetos em um array de objetos.
-        // Adicione ou remova objetos aqui para atualizar a lista de projetos.
-        const projectsData = [
-            {
-                title: 'Classificador de Imagens de Flores',
-                description: 'Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.',
-                image: 'https://placehold.co/400x250/e5e7eb/d1d5db?text=Classificação',
-                alt: 'Miniatura do Projeto de Classificação',
-                technologies: ['Python', 'TensorFlow', 'Keras'],
-                link: 'projects/projeto-de-classificacao.html'
-            },
-            {
-                title: 'Previsão de Vendas com Séries Temporais',
-                description: 'Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.',
-                image: 'https://placehold.co/400x250/e5e7eb/d1d5db?text=Previsão',
-                alt: 'Miniatura do Projeto de Previsão',
-                technologies: ['Python', 'Pandas', 'Scikit-learn'],
-                link: '#'
-            },
-            {
-                title: 'Análise de Sentimento de Reviews',
-                description: 'Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.',
-                image: 'https://placehold.co/400x250/e5e7eb/d1d5db?text=NLP',
-                alt: 'Miniatura do Projeto de NLP',
-                technologies: ['Python', 'NLTK', 'Spacy'],
-                link: '#'
-            }
-        ];
-
-        // Função para gerar o HTML de um "badge" de tecnologia.
-        function createTechBadge(tech) {
-            return `<span class="badge">${tech}</span>`;
-        }
-
-        // Função para gerar o HTML de um cartão de projeto a partir de um objeto.
-        function createProjectCard(project) {
-            const techBadges = project.technologies.map(createTechBadge).join('');
-
-            return `
-                <a href="${project.link}" class="project-card">
-                    <img src="${project.image}" alt="${project.alt}" class="rounded-t-lg w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            ${project.description}
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
-                            ${techBadges}
-                        </div>
-                    </div>
-                </a>
-            `;
-        }
-
-        // Função principal para carregar os projetos no DOM.
-        function loadProjects() {
-            const projectsContainer = document.getElementById('projects-container');
-            if (projectsContainer) {
-                // Gera o HTML para todos os projetos e insere no contêiner.
-                projectsContainer.innerHTML = projectsData.map(createProjectCard).join('');
-            }
-        }
-
-        // Executa a função loadProjects apenas quando o DOM estiver completamente carregado.
-        document.addEventListener('DOMContentLoaded', loadProjects);
-    </script>
-
     <script src="assets/js/main.js"></script>
-    
 </body>
 </html>
