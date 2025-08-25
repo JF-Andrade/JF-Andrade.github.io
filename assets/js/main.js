@@ -82,7 +82,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Função para gerar o HTML de um "badge" de tecnologia.
+    function createTechBadge(tech) {
+        return `<span class="badge">${tech}</span>`;
+    }
+
+    // Função para gerar o HTML de um cartão de projeto a partir de um objeto.
+    function createProjectCard(project) {
+        const techBadges = project.technologies.map(createTechBadge).join('');
+
+        // Ajusta o link do projeto para funcionar em subpastas
+        const projectLink = isSubfolder ? project.link.replace('projects/', '') : project.link;
+
+        return `
+            <a href="${pathPrefix + projectLink}" class="project-card">
+                <img src="${pathPrefix + project.image}" alt="${project.alt}" class="rounded-t-lg w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        ${project.description}
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
+                        ${techBadges}
+                    </div>
+                </div>
+            </a>
+        `;
+    }
+
+    // Função principal para carregar os projetos no DOM.
+    async function loadProjects(isFeatured = false) {
+        const projectsContainer = document.getElementById(isFeatured ? 'featured-projects-container' : 'projects-container');
+        if (!projectsContainer) return;
+
+        try {
+            const response = await fetch(`${pathPrefix}assets/data/projects.json`);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const projectsData = await response.json();
+
+            // Filtra os 3 primeiros projetos se for a seção de destaque
+            const projectsToRender = isFeatured ? projectsData.slice(0, 3) : projectsData;
+
+            // Gera o HTML para os projetos e insere no contêiner.
+            projectsContainer.innerHTML = projectsToRender.map(createProjectCard).join('');
+
+        } catch (e) {
+            console.error('Erro ao carregar os projetos:', e);
+            projectsContainer.innerHTML = '<p class="text-center text-red-500">Erro ao carregar projetos. Tente novamente mais tarde.</p>';
+        }
+    }
+
     // Executa as funções de carregamento
     loadHeader();
     loadFooter();
+
+    // Carrega os projetos se a página for a de projetos completos ou a página inicial
+    if (document.getElementById('projects-container')) {
+        loadProjects();
+    }
+    if (document.getElementById('featured-projects-container')) {
+        loadProjects(true);
+    }
 });
