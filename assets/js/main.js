@@ -74,6 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             navContainer.appendChild(a);
         });
+
+        // Corrige o link para a página inicial
+        const logoLink = document.querySelector('header nav > a');
+        if (logoLink) {
+            logoLink.href = pathPrefix + 'index.html';
+        }
     }
 
     // Executa as funções de carregamento
