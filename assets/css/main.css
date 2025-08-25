@@ -146,10 +146,3 @@ a:hover {
     border-color: var(--color-accent);
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
-
-/* Estilos para a página de Currículo */
-.resume-section {
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-}
