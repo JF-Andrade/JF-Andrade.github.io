@@ -17,6 +17,19 @@
     --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.1), 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
+/* 1.1. Variáveis de Cor para o Tema Escuro */
+[data-theme="dark"] {
+    --color-primary: #e2e8f0;
+    --color-secondary: #94a3b8;
+    --color-accent: #60a5fa;
+    --color-accent-dark: #3b82f6;
+    --color-background-light: #0f172a;
+    --color-background-card: #1e293b;
+    --color-border: #334155;
+    --shadow-subtle: 0 1px 3px 0 rgb(255 255 255 / 0.05), 0 1px 2px -1px rgb(255 255 255 / 0.05);
+    --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+}
+
 /* 2. Estilos de Tipografia e Reset Básico */
 body {
     font-family: 'Inter', sans-serif;
