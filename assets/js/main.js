@@ -2,11 +2,16 @@
 // em todas as páginas, e também por destacar o link da página ativa.
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Determina o caminho base com base na localização do arquivo.
+    const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
+    const isSubfolder = pathSegments.length > 1;
+    const pathPrefix = isSubfolder ? '../' : '';
+
     // Função assíncrona para buscar e injetar o HTML do cabeçalho
     async function loadHeader() {
         try {
-            // Busca o arquivo do cabeçalho
-            const response = await fetch('assets/js/components/header.html');
+            // Usa o prefixo para carregar o arquivo do cabeçalho
+            const response = await fetch(`${pathPrefix}assets/js/components/header.html`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -27,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função assíncrona para buscar e injetar o HTML do rodapé
     async function loadFooter() {
         try {
-            // Busca o arquivo do rodapé
-            const response = await fetch('assets/js/components/footer.html');
+            // Usa o prefixo para carregar o arquivo do rodapé
+            const response = await fetch(`${pathPrefix}assets/js/components/footer.html`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -57,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinksData.forEach(link => {
             const a = document.createElement('a');
-            a.href = link.href;
+            a.href = pathPrefix + link.href;
             a.textContent = link.text;
             a.classList.add('hover:text-gray-900', 'transition-colors', 'duration-200');
 
