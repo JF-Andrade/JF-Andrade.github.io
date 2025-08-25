@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
             enLink.classList.add('text-blue-600', 'font-bold');
             enLink.classList.remove('hover:text-blue-600');
         }
-
     }
 
     // Função assíncrona para buscar e injetar o HTML do rodapé
