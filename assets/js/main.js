@@ -36,38 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadLanguageSwitcher() {
         const langSwitcher = document.querySelector('.lang-switcher');
         if (!langSwitcher) return;
-    
-        // Obtém a URL base do site (sem a parte do idioma)
-        const baseDomain = window.location.origin;
-    
-        // Seleciona os links e as imagens das bandeiras
+
         const ptLink = langSwitcher.querySelector('a[href*="index.html"]:not([href*="en/"])');
         const enLink = langSwitcher.querySelector('a[href*="en/index.html"]');
-    
-        const ptFlag = ptLink.querySelector('img');
-        const enFlag = enLink.querySelector('img');
-    
-        // Remove as classes de destaque para começar
-        ptLink.classList.remove('text-blue-600', 'font-bold');
-        enLink.classList.remove('text-blue-600', 'font-bold');
-        
-        // Corrige os caminhos absolutos das bandeiras para evitar problemas
-        const pathPrefix = window.location.pathname.startsWith('/en/') ? '../' : '';
-        ptFlag.src = `${pathPrefix}assets/img/brazil.svg`;
-        enFlag.src = `${pathPrefix}assets/img/united-states.svg`;
-    
+
         const currentPathname = window.location.pathname;
-        
-        if (currentPathname.startsWith('/en/')) {
-            // Se a página atual for a versão em inglês
-            enLink.classList.add('text-blue-600', 'font-bold');
-            enFlag.classList.remove('opacity-50');
-            ptFlag.classList.add('opacity-50');
+        const isProjectPage = currentPathname.includes('/projects/');
+
+        if (currentLang === 'pt') {
+            ptLink.classList.add('active');
+            ptLink.href = `${window.location.origin}/`; // Link absoluto para a página inicial PT
+            enLink.href = `${window.location.origin}/en/${isProjectPage ? 'projects/' : ''}${currentPathname.split('/').pop() || 'index.html'}`;
         } else {
-            // Se a página atual for a versão em português
-            ptLink.classList.add('text-blue-600', 'font-bold');
-            ptFlag.classList.remove('opacity-50');
-            enFlag.classList.add('opacity-50');
+            enLink.classList.add('active');
+            enLink.href = `${window.location.origin}/en/`; // Link absoluto para a página inicial EN
+            ptLink.href = `${window.location.origin}/${isProjectPage ? 'projects/' : ''}${currentPathname.split('/').pop() || 'index.html'}`;
         }
     }
 
