@@ -65,25 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro ao carregar o favicon:', e);
         }
     }
-
     
-    // Nova função para carregar e injetar o conteúdo do <head>
-    async function loadHeadContent() {
-        try {
-            const response = await fetch(`${pathPrefix}assets/js/components/head-content.html`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const headContentHtml = await response.text();
-
-            const head = document.head;
-            head.insertAdjacentHTML('afterbegin', headContentHtml);
-
-        } catch (e) {
-            console.error('Erro ao carregar o conteúdo do head:', e);
-        }
-    }
-
     // Função para gerar o menu de navegação e destacar o item da página atual
     function loadNavigationMenu() {
         const navLinksData = [
