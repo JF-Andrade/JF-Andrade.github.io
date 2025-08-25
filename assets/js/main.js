@@ -1,4 +1,4 @@
-// Este script é responsável por carregar e injetar o cabeçalho e o rodapé
+// Este script é responsável por carregar e injetar o cabeçalho, o rodapé
 // em todas as páginas, e também por destacar o link da página ativa.
 
 document.addEventListener('DOMContentLoaded', () => {
