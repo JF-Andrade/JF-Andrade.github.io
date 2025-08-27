@@ -25,7 +25,7 @@ Este portfólio foi desenvolvido com foco em **modularidade**, **desempenho** e 
 
 ## Estrutura do Repositório
 
-O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a navegação e o desenvolvimento. As versões em Português e Inglês do site são mantidas em diretórios separados (`pt/` e `en/`), enquanto os arquivos HTML na raiz do projeto (`index.html`, `about.html`, etc.) servem como redirecionamentos para a versão em Português.
+O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a navegação e o desenvolvimento. A versão em Inglês do site está localizada na raiz do projeto, enquanto a versão em Português é mantida no diretório `pt/`.
 
 ```text
 .  
@@ -46,14 +46,6 @@ O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a n
 │           ├── header.html    # Componente do cabeçalho
 │           ├── footer.html    # Componente do rodapé
 │           └── favicon.html   # Componente do favicon
-├── en/ # Versão em Inglês do site
-│   ├── about.html
-│   ├── contact.html
-│   ├── index.html
-│   ├── projects.html
-│   ├── resume.html
-│   └── projects/  
-│       └── projeto-de-classificacao.html # Exemplo de página de projeto em Inglês
 ├── pt/ # Versão em Português do site
 │   ├── about.html
 │   ├── contact.html
@@ -62,11 +54,11 @@ O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a n
 │   ├── resume.html
 │   └── projects/  
 │       └── projeto-de-classificacao.html # Exemplo de página de projeto em Português
-├── index.html                 # Página inicial (redireciona para pt/index.html)
-├── about.html                 # Página "Sobre Mim" (redireciona para pt/about.html)
-├── contact.html               # Página de contato (redireciona para pt/contact.html)
-├── projects.html              # Página de listagem de projetos (redireciona para pt/projects.html)
-├── resume.html                # Página de currículo (redireciona para pt/resume.html)
+├── index.html                 # Página inicial (versão em Inglês)
+├── about.html                 # Página "Sobre Mim" (versão em Inglês)
+├── contact.html               # Página de contato (versão em Inglês)
+├── projects.html              # Página de listagem de projetos (versão em Inglês)
+├── resume.html                # Página de currículo (versão em Inglês)
 └── README.md                  # Este arquivo
 ```
 
