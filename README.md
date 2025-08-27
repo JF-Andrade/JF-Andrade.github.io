@@ -25,7 +25,7 @@ Este portfólio foi desenvolvido com foco em **modularidade**, **desempenho** e 
 
 ## Estrutura do Repositório
 
-O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a navegação e o desenvolvimento:
+O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a navegação e o desenvolvimento. As versões em Português e Inglês do site são mantidas em diretórios separados (`pt/` e `en/`), enquanto os arquivos HTML na raiz do projeto (`index.html`, `about.html`, etc.) servem como redirecionamentos para a versão em Português.
 
 ```text
 .  
@@ -84,6 +84,14 @@ Este projeto é um site estático e pode ser facilmente visualizado em seu ambie
     ```
 3.  **Abra o `index.html`:**
     Simplesmente abra o arquivo `index.html` em seu navegador web preferido (por exemplo, Chrome, Firefox, Edge). Você pode fazer isso clicando duas vezes no arquivo ou arrastando-o para a janela do navegador.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## Como Contribuir
+
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request. Por favor, siga as diretrizes de código existentes e mantenha o padrão de qualidade.
 
 ## Contato
 
