@@ -2,30 +2,78 @@
 // em todas as páginas, e também por destacar o link da página ativa.
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Determina o caminho base com base na localização do arquivo.
-    const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
-    const isSubfolder = pathSegments.length > 1;
-    const pathPrefix = isSubfolder ? '../' : '';
-    const currentLang = pathSegments.length > 0 && pathSegments[0] === 'en' ? 'en' : 'pt';
+    // Calcula o caminho relativo para a raiz do projeto a partir da página atual.
+    const getPathToRoot = () => {
+        const path = window.location.pathname;
+        const segments = path.split('/').filter(s => s.length > 0);
+        // Se o último segmento for um arquivo HTML, remove-o para obter o caminho do diretório.
+        const currentDirSegments = segments.filter(s => !s.includes('.html'));
+        let pathToRoot = '';
+        for (let i = 0; i < currentDirSegments.length; i++) {
+            pathToRoot += '../';
+        }
+        return pathToRoot;
+    };
+
+    const pathToRoot = getPathToRoot();
+
+    // Determina o idioma atual com base na URL.
+    const currentLang = window.location.pathname.startsWith('/pt/') ? 'pt' : 'en';
+
+    // Função para gerar o HTML do menu de navegação
+    function getNavigationLinksHtml() {
+        const navLinksData = {
+            pt: [
+                { text: 'Projetos', href: 'projects.html' },
+                { text: 'Currículo', href: 'resume.html' },
+                { text: 'Sobre Mim', href: 'about.html' },
+                { text: 'Contato', href: 'contact.html' }
+            ],
+            en: [
+                { text: 'Projects', href: 'projects.html' },
+                { text: 'Resume', href: 'resume.html' },
+                { text: 'About', href: 'about.html' },
+                { text: 'Contact', href: 'contact.html' }
+            ]
+        };
+
+        const linksToUse = navLinksData[currentLang] || navLinksData.en;
+        const currentFilename = window.location.pathname.split('/').pop();
+        
+        return linksToUse.map(link => {
+            const isActive = (link.href === currentFilename) || (currentFilename === '' && link.href === 'index.html');
+            const activeClasses = 'text-blue-600 font-semibold';
+            const baseClasses = 'hover:text-blue-600 transition-colors duration-200';
+            const finalClasses = isActive ? activeClasses : baseClasses;
+            
+            // Todos os links de navegação são relativos à raiz do projeto
+            return `<a href="${pathToRoot}${currentLang === 'pt' && link.href !== 'index.html' ? 'pt/' : ''}${link.href}" class="${finalClasses}">${link.text}</a>`;
+        }).join('');
+    }
 
     // Função assíncrona para buscar e injetar o HTML do cabeçalho
     async function loadHeader() {
         try {
-            // Usa o prefixo para carregar o arquivo do cabeçalho
-            const response = await fetch(`${pathPrefix}assets/js/components/header.html`);
+            const response = await fetch(`${pathToRoot}assets/js/components/header.html`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const headerHtml = await response.text();
-            
-            // Encontra o elemento 'body' e insere o cabeçalho no início
+            let headerHtml = await response.text();
+
+            const navLinksHtml = getNavigationLinksHtml();
+            headerHtml = headerHtml.replace('<!-- Os links de navegação serão injetados aqui pelo JavaScript -->', navLinksHtml);
+
             const body = document.body;
             body.insertAdjacentHTML('afterbegin', headerHtml);
 
-            // Adiciona o menu de navegação dinamicamente
-            loadNavigationMenu();
-            // Adiciona a lógica do seletor de idioma
             loadLanguageSwitcher();
+            loadThemeSwitcher();
+
+            // Corrige o link do logo para páginas aninhadas
+            const logoLink = document.querySelector('header nav > a');
+            if (logoLink) {
+                logoLink.href = `${pathToRoot}${currentLang === 'pt' ? 'pt/' : ''}index.html`;
+            }
 
         } catch (e) {
             console.error('Erro ao carregar o cabeçalho:', e);
@@ -37,34 +85,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const langSwitcher = document.querySelector('.lang-switcher');
         if (!langSwitcher) return;
 
-        const ptLink = langSwitcher.querySelector('a[href*="index.html"]:not([href*="en/"])');
-        const enLink = langSwitcher.querySelector('a[href*="en/index.html"]');
-
+        const enLink = langSwitcher.querySelector('a:first-child');
+        const ptLink = langSwitcher.querySelector('a:last-child');
+        
         const currentPathname = window.location.pathname;
-        const isProjectPage = currentPathname.includes('/projects/');
+        const currentFile = currentPathname.split('/').pop();
+        const currentDir = currentPathname.substring(0, currentPathname.lastIndexOf('/') + 1);
 
-        if (currentLang === 'pt') {
-            ptLink.classList.add('active');
-            ptLink.href = `${window.location.origin}/`; // Link absoluto para a página inicial PT
-            enLink.href = `${window.location.origin}/en/${isProjectPage ? 'projects/' : ''}${currentPathname.split('/').pop() || 'index.html'}`;
-        } else {
+        // Determine the base path for language switching
+        let basePath = currentDir;
+        if (basePath.endsWith('/')) {
+            basePath = basePath.slice(0, -1); // Remove trailing slash
+        }
+        
+        // Adjust basePath if it's a language subfolder
+        if (basePath.endsWith('/pt')) {
+            basePath = basePath.slice(0, -3); // Remove /pt
+        } else if (basePath.endsWith('/en')) { // Assuming /en/ is not used, but for robustness
+            basePath = basePath.slice(0, -3);
+        }
+
+        // Ensure basePath starts with a slash
+        if (!basePath.startsWith('/')) {
+            basePath = '/' + basePath;
+        }
+        if (basePath === '/') {
+            basePath = ''; // For root, no prefix
+        }
+
+
+        if (currentLang === 'en') {
             enLink.classList.add('active');
-            enLink.href = `${window.location.origin}/en/`; // Link absoluto para a página inicial EN
-            ptLink.href = `${window.location.origin}/${isProjectPage ? 'projects/' : ''}${currentPathname.split('/').pop() || 'index.html'}`;
+            enLink.href = '#';
+            ptLink.href = `${basePath}/pt/${currentFile}`;
+            if (currentFile === '') { // If on root index.html
+                ptLink.href = `${basePath}/pt/`;
+            }
+        } else { // currentLang is 'pt'
+            ptLink.classList.add('active');
+            ptLink.href = '#';
+            enLink.href = `${basePath}/${currentFile}`;
+            if (currentFile === '') { // If on /pt/index.html
+                enLink.href = `${basePath}/`;
+            }
         }
     }
 
     // Função assíncrona para buscar e injetar o HTML do rodapé
     async function loadFooter() {
         try {
-            // Usa o prefixo para carregar o arquivo do rodapé
-            const response = await fetch(`${pathPrefix}assets/js/components/footer.html`);
+            const response = await fetch(`${pathToRoot}assets/js/components/footer.html`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const footerHtml = await response.text();
 
-            // Encontra o elemento 'body' e insere o rodapé no final
             const body = document.body;
             body.insertAdjacentHTML('beforeend', footerHtml);
 
@@ -76,52 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Nova função para carregar e injetar as tags de favicon no <head>
     async function loadFavicon() {
         try {
-            const response = await fetch(`${pathPrefix}assets/js/components/favicon.html`);
+            const response = await fetch(`${pathToRoot}assets/js/components/favicon.html`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const faviconHtml = await response.text();
             
-            // Injeta o HTML do favicon na tag <head>
             const head = document.head;
             head.insertAdjacentHTML('beforeend', faviconHtml);
             
         } catch (e) {
             console.error('Erro ao carregar o favicon:', e);
-        }
-    }
-    
-    // Função para gerar o menu de navegação e destacar o item da página atual
-    function loadNavigationMenu() {
-        const navLinksData = [
-            { text: 'Projetos', href: 'projects.html' },
-            { text: 'Currículo', href: 'resume.html' },
-            { text: 'Sobre Mim', href: 'about.html' },
-            { text: 'Contato', href: 'contact.html' }
-        ];
-
-        const navContainer = document.querySelector('nav .flex');
-        const currentPathname = window.location.pathname.split('/').pop();
-
-        navLinksData.forEach(link => {
-            const a = document.createElement('a');
-            a.href = pathPrefix + link.href;
-            a.textContent = link.text;
-            a.classList.add('hover:text-gray-900', 'transition-colors', 'duration-200');
-
-            // Destaca o link da página atual com base no nome do arquivo
-            if (link.href === currentPathname || (currentPathname === '' && link.href === 'index.html')) {
-                a.classList.add('text-blue-600', 'font-semibold');
-                a.classList.remove('hover:text-gray-900');
-            }
-
-            navContainer.appendChild(a);
-        });
-
-        // Corrige o link para a página inicial
-        const logoLink = document.querySelector('header nav > a');
-        if (logoLink) {
-            logoLink.href = pathPrefix + 'index.html';
         }
     }
 
@@ -132,25 +172,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para gerar o HTML de um cartão de projeto a partir de um objeto.
     function createProjectCard(project) {
-        const techBadges = project.technologies.map(createTechBadge).join('');
+        const cardLink = document.createElement('a');
+        const cardImage = document.createElement('img');
+        const cardTitle = document.createElement('h4');
+        const cardDescription = document.createElement('p');
+        const cardTechsContainer = document.createElement('div');
 
-        // Ajusta o link do projeto para funcionar em subpastas
-        const projectLink = isSubfolder ? project.link.replace('projects/', '') : project.link;
+        cardLink.className = 'project-card block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden';
+        
+        // Determine the correct href for the project link
+        if (project.link.startsWith('http://') || project.link.startsWith('https://')) {
+            cardLink.href = project.link;
+        } else {
+            // For internal links, use pathToRoot and adjust for language subfolder
+            let projectLinkPath = project.link;
+            if (currentLang === 'pt' && !projectLinkPath.startsWith('pt/')) {
+                // If current language is PT and the link is not already in PT subfolder, add it
+                projectLinkPath = `pt/${projectLinkPath}`;
+            }
+            cardLink.href = pathToRoot + projectLinkPath;
+        }
 
-        return `
-            <a href="${pathPrefix + projectLink}" class="project-card">
-                <img src="${pathPrefix + project.image}" alt="${project.alt}" class="rounded-t-lg w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        ${project.description}
-                    </p>
-                    <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500">
-                        ${techBadges}
-                    </div>
-                </div>
-            </a>
-        `;
+        cardImage.className = 'project-image w-full h-48 object-cover';
+        cardImage.loading = 'lazy';
+        if (project.image.startsWith('http://') || project.image.startsWith('https://')) {
+            cardImage.src = project.image;
+        }
+        else {
+            cardImage.src = pathToRoot + project.image;
+        }
+        cardImage.alt = project.alt[currentLang];
+
+        const cardContent = document.createElement('div');
+        cardContent.className = 'p-6';
+
+        cardTitle.className = 'project-title text-xl font-bold mb-2 text-gray-900';
+        cardTitle.textContent = project.title[currentLang];
+
+        cardDescription.className = 'project-description text-gray-700 mb-4';
+        cardDescription.textContent = project.description[currentLang];
+
+        cardTechsContainer.className = 'project-technologies flex flex-wrap gap-2';
+        project.technologies.forEach(tech => {
+            const badge = createTechBadge(tech);
+            cardTechsContainer.innerHTML += badge;
+        });
+
+        cardContent.appendChild(cardTitle);
+        cardContent.appendChild(cardDescription);
+        cardContent.appendChild(cardTechsContainer);
+        
+        cardLink.appendChild(cardImage);
+        cardLink.appendChild(cardContent);
+
+        return cardLink;
     }
 
     // Função principal para carregar os projetos no DOM.
@@ -159,15 +234,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!projectsContainer) return;
 
         try {
-            const response = await fetch(`${pathPrefix}assets/data/projects.json`);
+            const response = await fetch(`${pathToRoot}assets/data/projects.json`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const projectsData = await response.json();
 
-            // Filtra os 3 primeiros projetos se for a seção de destaque
             const projectsToRender = isFeatured ? projectsData.slice(0, 3) : projectsData;
 
-            // Gera o HTML para os projetos e insere no contêiner.
-            projectsContainer.innerHTML = projectsToRender.map(createProjectCard).join('');
+            projectsContainer.innerHTML = ''; 
+
+            projectsToRender.forEach(project => {
+                const projectCard = createProjectCard(project);
+                if (projectCard) {
+                    projectsContainer.appendChild(projectCard);
+                }
+            });
 
         } catch (e) {
             console.error('Erro ao carregar os projetos:', e);
@@ -186,5 +266,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (document.getElementById('featured-projects-container')) {
         loadProjects(true);
+    }
+
+    // Função para adicionar a lógica de troca de tema
+    function loadThemeSwitcher() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const lightIcon = document.getElementById('theme-icon-light');
+        const darkIcon = document.getElementById('theme-icon-dark');
+
+        if (themeToggle && lightIcon && darkIcon) {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            } else {
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const theme = document.documentElement.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.removeItem('theme');
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                }
+            });
+        }
     }
 });

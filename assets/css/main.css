@@ -30,6 +30,37 @@
     --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
 }
 
+/* 1.2. Ajustes de Estilo para o Tema Escuro */
+[data-theme="dark"] header {
+    background-color: var(--color-background-card);
+    border-bottom-color: var(--color-border);
+}
+
+[data-theme="dark"] .text-gray-600 {
+    color: var(--color-secondary);
+}
+
+[data-theme="dark"] .text-gray-700 {
+    color: var(--color-secondary);
+}
+
+[data-theme="dark"] .text-gray-900 {
+    color: var(--color-primary);
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: var(--color-background-card);
+}
+
+footer {
+    border-top: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] footer {
+    background-color: var(--color-background-card);
+    border-top: 1px solid var(--color-border);
+}
+
 /* 2. Estilos de Tipografia e Reset Básico */
 body {
     font-family: 'Inter', sans-serif;
@@ -46,10 +77,6 @@ h1, h2, h3, h4 {
     line-height: 1.2;
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.5rem; }
-
 /* 3. Estilos de Componentes e Utilidades */
 
 .container {
@@ -58,8 +85,8 @@ h3 { font-size: 1.5rem; }
     padding: 0 1.5rem;
 }
 
-/* Transições suaves para todos os elementos */
-* {
+/* Transições suaves para elementos interativos */
+a, button, .project-card, .form-input, .form-textarea {
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -95,7 +122,7 @@ h3 { font-size: 1.5rem; }
 .btn-secondary {
     background-color: transparent;
     color: var(--color-primary);
-    border: 2px solid var(--color-border);
+    border: 2px solid var(--color-border);;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
     font-weight: 600;
@@ -121,7 +148,8 @@ a:hover {
 }
 
 .footer-icon:hover {
-    color: #ffffff;
+    color: var(--color-accent);
+    transform: scale(1.15);
 }
 
 /* Classes para os "badges" de tecnologia */
@@ -132,6 +160,11 @@ a:hover {
     font-weight: 500;
     padding: 0.25rem 0.5rem;
     border-radius: 9999px;
+}
+
+[data-theme="dark"] .badge {
+    background-color: var(--color-border);
+    color: var(--color-primary);
 }
 
 /* Estilos para o formulário de contato */
@@ -156,7 +189,7 @@ a:hover {
 
 .form-input:focus, .form-textarea:focus {
     outline: none;
-    border-color: var(--color-accent);
+    border-color: var(--color-accent);;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 

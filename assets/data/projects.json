@@ -1,29 +1,56 @@
 [
   {
     "id": "classificador-de-flores",
-    "title": "Classificador de Imagens de Flores",
-    "description": "Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.",
-    "image": "https://placehold.co/400x250/e5e7eb/d1d5db?text=Classificação",
-    "alt": "Miniatura do Projeto de Classificação",
+    "title": {
+      "pt": "Classificador de Imagens de Flores",
+      "en": "Flower Image Classifier"
+    },
+    "description": {
+      "pt": "Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.",
+      "en": "Development of a Deep Learning (CNN) model to classify flower images with high accuracy."
+    },
+    "image": "https://picsum.photos/seed/classificador/400/250.webp",
+    "alt": {
+      "pt": "Miniatura do Projeto de Classificação de Flores",
+      "en": "Thumbnail of Flower Image Classifier Project"
+    },
     "technologies": ["Python", "TensorFlow", "Keras"],
     "link": "projects/projeto-de-classificacao.html"
   },
   {
     "id": "previsao-de-vendas",
-    "title": "Previsão de Vendas com Séries Temporais",
-    "description": "Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.",
-    "image": "https://placehold.co/400x250/e5e7eb/d1d5db?text=Previsão",
-    "alt": "Miniatura do Projeto de Previsão",
+    "title": {
+      "pt": "Previsão de Vendas com Séries Temporais",
+      "en": "Sales Forecasting with Time Series"
+    },
+    "description": {
+      "pt": "Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.",
+      "en": "Application of time series models (ARIMA and Prophet) to forecast future sales and optimize inventory."
+    },
+    "image": "https://picsum.photos/seed/previsao/400/250.webp",
+    "alt": {
+      "pt": "Miniatura do Projeto de Previsão de Vendas",
+      "en": "Thumbnail of Sales Forecasting Project"
+    },
     "technologies": ["Python", "Pandas", "Scikit-learn"],
-    "link": "#"
+    "link": "projects.html"
   },
   {
     "id": "analise-de-sentimento",
-    "title": "Análise de Sentimento de Reviews",
-    "description": "Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.",
-    "image": "https://placehold.co/400x250/e5e7eb/d1d5db?text=NLP",
-    "alt": "Miniatura do Projeto de NLP",
+    "title": {
+      "pt": "Análise de Sentimento de Reviews",
+      "en": "Sentiment Analysis of Reviews"
+    },
+    "description": {
+      "pt": "Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.",
+      "en": "Natural Language Processing (NLP) to classify customer review sentiment and generate insights."
+    },
+    "image": "https://picsum.photos/seed/sentimento/400/250.webp",
+    "alt": {
+      "pt": "Miniatura do Projeto de Análise de Sentimento",
+      "en": "Thumbnail of Sentiment Analysis Project"
+    },
     "technologies": ["Python", "NLTK", "Spacy"],
-    "link": "#"
+    "link": "projects.html"
   }
 ]
