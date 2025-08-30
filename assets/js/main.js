@@ -24,12 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function getNavigationLinksHtml() {
         const navLinksData = {
             pt: [
+                { text: 'Início', href: 'index.html' },
                 { text: 'Projetos', href: 'projects.html' },
                 { text: 'Currículo', href: 'resume.html' },
                 { text: 'Sobre Mim', href: 'about.html' },
                 { text: 'Contato', href: 'contact.html' }
             ],
             en: [
+                { text: 'Home', href: 'index.html' },
                 { text: 'Projects', href: 'projects.html' },
                 { text: 'Resume', href: 'resume.html' },
                 { text: 'About', href: 'about.html' },
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const finalClasses = isActive ? activeClasses : baseClasses;
             
             // Todos os links de navegação são relativos à raiz do projeto
-            return `<a href="${pathToRoot}${currentLang === 'pt' && link.href !== 'index.html' ? 'pt/' : ''}${link.href}" class="${finalClasses}">${link.text}</a>`;
+            return `<a href="${pathToRoot}${currentLang === 'pt' ? 'pt/' : ''}${link.href}" class="${finalClasses}">${link.text}</a>`;
         }).join('');
     }
 
@@ -255,8 +257,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Função para carregar e injetar a tag do GA4 no <head>
+    async function loadGa4() {
+        try {
+            const response = await fetch(`${pathToRoot}assets/js/components/ga4.html`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const ga4Html = await response.text();
+            
+            const head = document.head;
+            head.insertAdjacentHTML('beforeend', ga4Html);
+            
+        } catch (e) {
+            console.error('Erro ao carregar a tag do GA4:', e);
+        }
+    }
+
     // Executa as funções de carregamento
     loadFavicon();
+    loadGa4();
     loadHeader();
     loadFooter();
 
