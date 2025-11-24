@@ -20,8 +20,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Determina o idioma atual com base na URL.
     const currentLang = window.location.pathname.startsWith('/pt/') ? 'pt' : 'en';
 
-    // Função para gerar o HTML do menu de navegação
-    function getNavigationLinksHtml() {
+
+
+    // Função assíncrona para buscar e injetar o HTML do cabeçalho
+    async function loadHeader() {
+        try {
+            const response = await fetch(`${pathToRoot}assets/js/components/header.html`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const headerHtml = await response.text();
+
+            const body = document.body;
+            body.insertAdjacentHTML('afterbegin', headerHtml);
+
+            // Injeta os links de navegação
+            injectNavLinks();
+
+            loadLanguageSwitcher();
+            loadThemeSwitcher();
+
+            // Adiciona efeito de scroll no header
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow-sm');
+                } else {
+                    header.classList.remove('shadow-sm');
+                }
+            });
+
+        } catch (e) {
+            console.error('Erro ao carregar o cabeçalho:', e);
+        }
+    }
+
+    // Função para injetar e destacar os links de navegação
+    function injectNavLinks() {
+        const navContainer = document.getElementById('nav-links-container');
+        if (!navContainer) return;
+
         const navLinksData = {
             pt: [
                 { text: 'Início', href: 'index.html' },
@@ -41,96 +79,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const linksToUse = navLinksData[currentLang] || navLinksData.en;
         const currentFilename = window.location.pathname.split('/').pop();
-        
-        return linksToUse.map(link => {
+
+        const linksHtml = linksToUse.map(link => {
+            // Lógica de Active Link
             const isActive = (link.href === currentFilename) || (currentFilename === '' && link.href === 'index.html');
-            const activeClasses = 'text-blue-600 font-semibold';
-            const baseClasses = 'hover:text-blue-600 transition-colors duration-200';
-            const finalClasses = isActive ? activeClasses : baseClasses;
-            
-            // Todos os links de navegação são relativos à raiz do projeto
+
+            // Estilos Executive Minimalist
+            const baseClasses = 'text-sm font-medium transition-colors duration-200';
+            const inactiveClasses = 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100';
+            const activeClasses = 'text-slate-900 dark:text-slate-100 font-semibold';
+
+            const finalClasses = `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
+
             return `<a href="${pathToRoot}${currentLang === 'pt' ? 'pt/' : ''}${link.href}" class="${finalClasses}">${link.text}</a>`;
         }).join('');
+
+        navContainer.innerHTML = linksHtml;
     }
 
-    // Função assíncrona para buscar e injetar o HTML do cabeçalho
-    async function loadHeader() {
-        try {
-            const response = await fetch(`${pathToRoot}assets/js/components/header.html`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            let headerHtml = await response.text();
-
-            const navLinksHtml = getNavigationLinksHtml();
-            headerHtml = headerHtml.replace('<!-- Os links de navegação serão injetados aqui pelo JavaScript -->', navLinksHtml);
-
-            const body = document.body;
-            body.insertAdjacentHTML('afterbegin', headerHtml);
-
-            loadLanguageSwitcher();
-            loadThemeSwitcher();
-
-            // Corrige o link do logo para páginas aninhadas
-            const logoLink = document.querySelector('header nav > a');
-            if (logoLink) {
-                logoLink.href = `${pathToRoot}${currentLang === 'pt' ? 'pt/' : ''}index.html`;
-            }
-
-        } catch (e) {
-            console.error('Erro ao carregar o cabeçalho:', e);
-        }
-    }
-
-    // Função para adicionar a lógica de troca de idioma
+    // Função para adicionar a lógica de troca de idioma (Rounded Toggle)
     function loadLanguageSwitcher() {
-        const langSwitcher = document.querySelector('.lang-switcher');
-        if (!langSwitcher) return;
+        const btnEn = document.getElementById('lang-en');
+        const btnPt = document.getElementById('lang-pt');
 
-        const enLink = langSwitcher.querySelector('a:first-child');
-        const ptLink = langSwitcher.querySelector('a:last-child');
-        
+        if (!btnEn || !btnPt) return;
+
+        // Estilos de estado
+        const activeClass = ['bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-slate-900', 'dark:text-slate-100'];
+        const inactiveClass = ['text-slate-600', 'dark:text-slate-300', 'hover:text-slate-900', 'dark:hover:text-slate-100'];
+
+        // Aplica estilos iniciais
+        if (currentLang === 'en') {
+            btnEn.classList.add(...activeClass);
+            btnEn.classList.remove(...inactiveClass); // Garante que não tenha classes inativas
+
+            btnPt.classList.add(...inactiveClass);
+            btnPt.classList.remove(...activeClass);
+        } else {
+            btnPt.classList.add(...activeClass);
+            btnPt.classList.remove(...inactiveClass);
+
+            btnEn.classList.add(...inactiveClass);
+            btnEn.classList.remove(...activeClass);
+        }
+
+        // Lógica de redirecionamento (Mantida igual)
         const currentPathname = window.location.pathname;
         const currentFile = currentPathname.split('/').pop();
         const currentDir = currentPathname.substring(0, currentPathname.lastIndexOf('/') + 1);
 
-        // Determine the base path for language switching
         let basePath = currentDir;
-        if (basePath.endsWith('/')) {
-            basePath = basePath.slice(0, -1); // Remove trailing slash
-        }
-        
-        // Adjust basePath if it's a language subfolder
-        if (basePath.endsWith('/pt')) {
-            basePath = basePath.slice(0, -3); // Remove /pt
-        } else if (basePath.endsWith('/en')) { // Assuming /en/ is not used, but for robustness
-            basePath = basePath.slice(0, -3);
-        }
+        if (basePath.endsWith('/')) basePath = basePath.slice(0, -1);
+        if (basePath.endsWith('/pt')) basePath = basePath.slice(0, -3);
+        else if (basePath.endsWith('/en')) basePath = basePath.slice(0, -3);
 
-        // Ensure basePath starts with a slash
-        if (!basePath.startsWith('/')) {
-            basePath = '/' + basePath;
-        }
-        if (basePath === '/') {
-            basePath = ''; // For root, no prefix
-        }
+        if (!basePath.startsWith('/')) basePath = '/' + basePath;
+        if (basePath === '/') basePath = '';
 
+        btnEn.addEventListener('click', () => {
+            if (currentLang === 'en') return;
+            let targetUrl = `${basePath}/${currentFile}`;
+            if (currentFile === '') targetUrl = `${basePath}/`;
+            window.location.href = targetUrl;
+        });
 
-        if (currentLang === 'en') {
-            enLink.classList.add('active');
-            enLink.href = '#';
-            ptLink.href = `${basePath}/pt/${currentFile}`;
-            if (currentFile === '') { // If on root index.html
-                ptLink.href = `${basePath}/pt/`;
-            }
-        } else { // currentLang is 'pt'
-            ptLink.classList.add('active');
-            ptLink.href = '#';
-            enLink.href = `${basePath}/${currentFile}`;
-            if (currentFile === '') { // If on /pt/index.html
-                enLink.href = `${basePath}/`;
-            }
-        }
+        btnPt.addEventListener('click', () => {
+            if (currentLang === 'pt') return;
+            let targetUrl = `${basePath}/pt/${currentFile}`;
+            if (currentFile === '') targetUrl = `${basePath}/pt/`;
+            window.location.href = targetUrl;
+        });
     }
 
     // Função assíncrona para buscar e injetar o HTML do rodapé
@@ -145,6 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             body.insertAdjacentHTML('beforeend', footerHtml);
 
+            // Atualiza o ano automaticamente
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
         } catch (e) {
             console.error('Erro ao carregar o rodapé:', e);
         }
@@ -158,10 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const faviconHtml = await response.text();
-            
+
             const head = document.head;
             head.insertAdjacentHTML('beforeend', faviconHtml);
-            
+
         } catch (e) {
             console.error('Erro ao carregar o favicon:', e);
         }
@@ -181,15 +205,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardTechsContainer = document.createElement('div');
 
         cardLink.className = 'project-card block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden';
-        
-        // Determine the correct href for the project link
+
         if (project.link.startsWith('http://') || project.link.startsWith('https://')) {
             cardLink.href = project.link;
         } else {
-            // For internal links, use pathToRoot and adjust for language subfolder
             let projectLinkPath = project.link;
             if (currentLang === 'pt' && !projectLinkPath.startsWith('pt/')) {
-                // If current language is PT and the link is not already in PT subfolder, add it
                 projectLinkPath = `pt/${projectLinkPath}`;
             }
             cardLink.href = pathToRoot + projectLinkPath;
@@ -223,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardContent.appendChild(cardTitle);
         cardContent.appendChild(cardDescription);
         cardContent.appendChild(cardTechsContainer);
-        
+
         cardLink.appendChild(cardImage);
         cardLink.appendChild(cardContent);
 
@@ -242,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const projectsToRender = isFeatured ? projectsData.slice(0, 3) : projectsData;
 
-            projectsContainer.innerHTML = ''; 
+            projectsContainer.innerHTML = '';
 
             projectsToRender.forEach(project => {
                 const projectCard = createProjectCard(project);
@@ -265,22 +286,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const ga4Html = await response.text();
-            
+
             const head = document.head;
             head.insertAdjacentHTML('beforeend', ga4Html);
-            
+
         } catch (e) {
             console.error('Erro ao carregar a tag do GA4:', e);
         }
     }
 
-    // Executa as funções de carregamento
     loadFavicon();
     loadGa4();
     loadHeader();
     loadFooter();
 
-    // Carrega os projetos se a página for a de projetos completos ou a página inicial
     if (document.getElementById('projects-container')) {
         loadProjects();
     }
@@ -296,27 +315,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (themeToggle && lightIcon && darkIcon) {
             const currentTheme = localStorage.getItem('theme');
+
+            const updateIcons = (theme) => {
+                if (theme === 'dark') {
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                } else {
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                }
+            };
+
             if (currentTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
+                updateIcons('dark');
             } else {
-                lightIcon.classList.remove('hidden');
-                darkIcon.classList.add('hidden');
+                document.documentElement.classList.remove('dark');
+                updateIcons('light');
             }
 
             themeToggle.addEventListener('click', () => {
                 const theme = document.documentElement.getAttribute('data-theme');
                 if (theme === 'dark') {
                     document.documentElement.removeAttribute('data-theme');
+                    document.documentElement.classList.remove('dark');
                     localStorage.removeItem('theme');
-                    lightIcon.classList.remove('hidden');
-                    darkIcon.classList.add('hidden');
+                    updateIcons('light');
                 } else {
                     document.documentElement.setAttribute('data-theme', 'dark');
+                    document.documentElement.classList.add('dark');
                     localStorage.setItem('theme', 'dark');
-                    lightIcon.classList.add('hidden');
-                    darkIcon.classList.remove('hidden');
+                    updateIcons('dark');
                 }
             });
         }

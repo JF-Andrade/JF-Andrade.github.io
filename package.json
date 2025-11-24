@@ -1,0 +1,25 @@
+{
+  "name": "jf-andrade_github_io-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css",
+    "watch:css": "npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JF-Andrade/JF-Andrade.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JF-Andrade/JF-Andrade.github.io/issues"
+  },
+  "homepage": "https://github.com/JF-Andrade/JF-Andrade.github.io#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.18"
+  }
+}

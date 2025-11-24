@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Study: Image Classifier</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
+
 <body class="antialiased">
 
     <main class="container mx-auto p-4 md:p-8">
@@ -18,7 +20,8 @@
         <section class="py-12 md:py-16 text-center">
             <h1 class="text-4xl sm:text-5xl font-bold mb-4">Case Study: Image Classifier</h1>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                A computer vision project to classify flower species, demonstrating an end-to-end machine learning workflow.
+                A computer vision project to classify flower species, demonstrating an end-to-end machine learning
+                workflow.
             </p>
         </section>
 
@@ -38,7 +41,8 @@
             </div>
         </section>
 
-        <img src="https://picsum.photos/seed/classifier/1200/600" alt="Main image of the flower classification project" class="rounded-lg shadow-xl w-full mb-12">
+        <img src="https://picsum.photos/seed/classifier/1200/600" alt="Main image of the flower classification project"
+            class="rounded-lg shadow-xl w-full mb-12">
 
         <!-- Case Study Body -->
         <div class="max-w-3xl mx-auto">
@@ -46,7 +50,9 @@
             <div class="mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">The Challenge</h2>
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    Manual identification of plant species is a slow and error-prone process, creating bottlenecks for researchers and gardening businesses. The goal of this project was to automate the classification of flower images with high accuracy, creating a scalable and efficient solution.
+                    Manual identification of plant species is a slow and error-prone process, creating bottlenecks for
+                    researchers and gardening businesses. The goal of this project was to automate the classification of
+                    flower images with high accuracy, creating a scalable and efficient solution.
                 </p>
             </div>
 
@@ -54,13 +60,19 @@
             <div class="mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">The Proposed Solution</h2>
                 <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                    To solve the problem, a Deep Learning model was developed. The workflow included the following steps:
+                    To solve the problem, a Deep Learning model was developed. The workflow included the following
+                    steps:
                 </p>
                 <ul class="text-lg text-gray-700 leading-relaxed list-disc list-inside space-y-3">
-                    <li><strong>Data Collection and Analysis:</strong> A public dataset with thousands of images of various species was used, with an exploratory analysis to understand class distribution.</li>
-                    <li><strong>Preprocessing:</strong> Images were resized and normalized. Data augmentation was applied to increase dataset variability and prevent overfitting.</li>
-                    <li><strong>Modeling and Training:</strong> A Convolutional Neural Network (CNN) was developed with TensorFlow and Keras, composed of multiple convolutional blocks. The model was trained for several epochs to ensure convergence.</li>
-                    <li><strong>Evaluation:</strong> Performance was evaluated on a separate test set, using accuracy and other relevant metrics to validate the model's effectiveness.</li>
+                    <li><strong>Data Collection and Analysis:</strong> A public dataset with thousands of images of
+                        various species was used, with an exploratory analysis to understand class distribution.</li>
+                    <li><strong>Preprocessing:</strong> Images were resized and normalized. Data augmentation was
+                        applied to increase dataset variability and prevent overfitting.</li>
+                    <li><strong>Modeling and Training:</strong> A Convolutional Neural Network (CNN) was developed with
+                        TensorFlow and Keras, composed of multiple convolutional blocks. The model was trained for
+                        several epochs to ensure convergence.</li>
+                    <li><strong>Evaluation:</strong> Performance was evaluated on a separate test set, using accuracy
+                        and other relevant metrics to validate the model's effectiveness.</li>
                 </ul>
             </div>
 
@@ -68,9 +80,13 @@
             <div class="mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Results and Impact</h2>
                 <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                    The final model achieved 98% accuracy on the test set, validating the effectiveness of the approach. This solution has the potential to accelerate the work of botanists and can be integrated into applications for gardening enthusiasts, adding value to both the scientific community and the general public.
+                    The final model achieved 98% accuracy on the test set, validating the effectiveness of the approach.
+                    This solution has the potential to accelerate the work of botanists and can be integrated into
+                    applications for gardening enthusiasts, adding value to both the scientific community and the
+                    general public.
                 </p>
-                <img src="https://picsum.photos/seed/confusionmatrix/1200/600.webp" alt="Model accuracy chart" class="rounded-lg shadow-lg w-full">
+                <img src="https://picsum.photos/seed/confusionmatrix/1200/600.webp" alt="Model accuracy chart"
+                    class="rounded-lg shadow-lg w-full">
             </div>
 
             <!-- Technologies Used -->
@@ -91,8 +107,9 @@
             </div>
         </div>
     </main>
-    
+
     <script src="../assets/js/main.js"></script>
-    
+
 </body>
+
 </html>

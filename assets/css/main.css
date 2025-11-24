@@ -6,13 +6,13 @@
 
 /* 1. Variáveis de Cor para Manutenção Fácil */
 :root {
-    --color-primary: #1e293b; /* Slate 900 - Título, texto principal */
-    --color-secondary: #475569; /* Slate 600 - Texto secundário */
-    --color-accent: #3b82f6; /* Azul brilhante - Destaques, botões */
-    --color-accent-dark: #2563eb; /* Azul escuro - Efeitos de hover */
-    --color-background-light: #f1f5f9; /* Slate 100 - Fundo claro */
-    --color-background-card: #ffffff; /* Branco - Fundo de cartões */
-    --color-border: #cbd5e1; /* Slate 300 - Bordas sutis */
+    --color-primary: #1e293b;
+    --color-secondary: #475569;
+    --color-accent: #3b82f6;
+    --color-accent-dark: #2563eb;
+    --color-background-light: #f1f5f9;
+    --color-background-card: #ffffff;
+    --color-border: #cbd5e1;
     --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.1), 2px 4px -2px rgb(0 0 0 / 0.1);
 }
@@ -69,9 +69,13 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-top: 5rem;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
     color: var(--color-primary);
     line-height: 1.2;
@@ -86,7 +90,11 @@ h1, h2, h3, h4 {
 }
 
 /* Transições suaves para elementos interativos */
-a, button, .project-card, .form-input, .form-textarea {
+a,
+button,
+.project-card,
+.form-input,
+.form-textarea {
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -122,7 +130,7 @@ a, button, .project-card, .form-input, .form-textarea {
 .btn-secondary {
     background-color: transparent;
     color: var(--color-primary);
-    border: 2px solid var(--color-border);;
+    border: 2px solid var(--color-border);
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
     font-weight: 600;
@@ -187,46 +195,11 @@ a:hover {
     resize: vertical;
 }
 
-.form-input:focus, .form-textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
     outline: none;
-    border-color: var(--color-accent);;
+    border-color: var(--color-accent);
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
-}
-
-
-/* Adicione esta seção ao seu main.css */
-/* Estilo para o seletor de idioma */
-.lang-switcher {
-    display: flex;
-    align-items: center;
-    background-color: var(--color-background-light);
-    border-radius: 9999px;
-    padding: 0.25rem;
-    gap: 0.25rem;
-}
-
-.lang-switcher .lang-btn {
-    padding: 0.5rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.lang-switcher .lang-btn:hover:not(.active) {
-    background-color: var(--color-border);
-}
-
-.lang-switcher .lang-btn.active {
-    background-color: var(--color-primary);
-    color: var(--color-background-card);
-    cursor: default;
-}
-
-
-/* Alinha os itens do seletor verticalmente */
-.lang-switcher .flex {
-    align-items: center;
 }
 
 /* Estilo para o botão de Dark Mode */

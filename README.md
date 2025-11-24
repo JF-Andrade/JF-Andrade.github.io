@@ -1,93 +1,201 @@
-# Portfólio de Machine Learning e Ciência de Dados - Jordão Fernandes de Andrade
+# Jordão Fernandes de Andrade - Portfolio
 
-Bem-vindo ao meu portfólio pessoal, um espaço dedicado a apresentar meus projetos e habilidades em Machine Learning, Ciência de Dados e Inteligência de Mercado. Este repositório serve como uma vitrine interativa das minhas capacidades técnicas e da minha paixão por transformar dados em soluções acionáveis.
+[![GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-blue)](https://jf-andrade.github.io/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-## Sobre o Projeto
+Personal portfolio website showcasing my work as a Data Scientist and Machine Learning Engineer.
 
-Este portfólio foi desenvolvido com foco em **modularidade**, **desempenho** e **experiência do usuário**, incluindo suporte a múltiplos idiomas (Português e Inglês). A arquitetura foi cuidadosamente planejada para ser escalável, de fácil manutenção e para garantir uma navegação fluida e responsiva em diversos dispositivos.
+## Live Site
 
-### Funcionalidades Principais
+**English:** [https://jf-andrade.github.io/](https://jf-andrade.github.io/)  
+**Português:** [https://jf-andrade.github.io/pt/](https://jf-andrade.github.io/pt/)
 
-*   **Design Responsivo:** Adapta-se perfeitamente a desktops, tablets e smartphones.
-*   **Conteúdo Dinâmico:** Projetos carregados dinamicamente a partir de um arquivo JSON, facilitando a atualização e expansão do portfólio.
-*   **Suporte a Múltiplos Idiomas:** Conteúdo disponível em Português e Inglês, com alternância intuitiva.
-*   **Modo Escuro:** Opção de tema claro/escuro para uma melhor experiência visual.
-*   **Componentes Reutilizáveis:** Cabeçalho, rodapé e favicon injetados via JavaScript para consistência e manutenção simplificada.
+## Features
 
-### Tecnologias Utilizadas
+- **Bilingual Support**: Full content in English and Portuguese with seamless language switching
+- **Executive Minimalist Design**: Clean, professional aesthetic with optimized spacing and typography
+- **Enhanced Dark Mode**: WCAG AAA compliant contrast ratios for excellent readability
+- **Glassmorphism UI**: Modern backdrop-blur effects on header for depth and sophistication
+- **SEO Optimized**: Open Graph and Twitter Cards meta tags for rich social media previews
+- **Accessibility**: Semantic HTML, proper ARIA labels, and keyboard navigation support
+- **Performance**: Optimized Tailwind CSS build (~100 KB vs 3+ MB CDN)
+- **Responsive**: Desktop-first design with smooth transitions
 
-*   **HTML5:** Estrutura semântica e acessível das páginas.
-*   **CSS3:** Estilização moderna, com uso de variáveis CSS para fácil personalização.
-*   **Tailwind CSS:** Framework CSS utilitário para um desenvolvimento rápido e um design responsivo e consistente.
-*   **JavaScript (ES6+):** Lógica dinâmica para carregamento de componentes, manipulação do DOM, alternância de idioma e tema, e carregamento de dados de projetos.
-*   **JSON:** Armazenamento estruturado dos dados dos projetos para carregamento dinâmico.
-*   **GitHub Pages:** Plataforma de hospedagem para o site, garantindo fácil deploy e acesso global.
+## Tech Stack
 
-## Estrutura do Repositório
+- **HTML5** - Semantic markup
+- **Tailwind CSS v3** - Utility-first CSS framework (local build)
+- **Vanilla JavaScript** - Dynamic content loading and theme switching
+- **Formspree** - Contact form backend
+- **Google Fonts** - Inter font family
 
-O projeto segue uma estrutura de pastas e arquivos organizada para facilitar a navegação e o desenvolvimento. A versão em Inglês do site está localizada na raiz do projeto, enquanto a versão em Português é mantida no diretório `pt/`.
+## Project Structure
 
-```text
-.  
-├── assets/  
-│   ├── css/  
-│   │   └── main.css           # Estilos principais da página
-│   ├── data/  
-│   │   └── projects.json      # Dados dos projetos (para carregamento dinâmico)
-│   ├── docs/  
-│   │   └── JordaoFernandes_PT_Resume_DataScience.pdf # Currículo em Português
-│   │   └── JordaoFernandes_EN_Resume_DataScience.pdf # Currículo em Inglês
-│   ├── img/  
-│   │   ├── perfil_github.webp # Foto de perfil
-│   │   └── ...                # Outras imagens e ícones (favicons, bandeiras)
-│   └── js/  
-│       ├── main.js            # Lógica principal do site
-│       └── components/  
-│           ├── header.html    # Componente do cabeçalho
-│           ├── footer.html    # Componente do rodapé
-│           └── favicon.html   # Componente do favicon
-├── pt/ # Versão em Português do site
-│   ├── about.html
-│   ├── contact.html
+```
+.
+├── index.html              # Home page (EN)
+├── about.html              # About page (EN)
+├── projects.html           # Projects listing (EN)
+├── resume.html             # Resume/CV (EN)
+├── contact.html            # Contact form (EN)
+├── pt/                     # Portuguese versions
 │   ├── index.html
+│   ├── about.html
 │   ├── projects.html
 │   ├── resume.html
-│   └── projects/  
-│       └── projeto-de-classificacao.html # Exemplo de página de projeto em Português
-├── index.html                 # Página inicial (versão em Inglês)
-├── about.html                 # Página "Sobre Mim" (versão em Inglês)
-├── contact.html               # Página de contato (versão em Inglês)
-├── projects.html              # Página de listagem de projetos (versão em Inglês)
-├── resume.html                # Página de currículo (versão em Inglês)
-└── README.md                  # Este arquivo
+│   └── contact.html
+├── assets/
+│   ├── css/
+│   │   ├── main.css        # Custom styles & design tokens
+│   │   └── styles.css      # Generated Tailwind CSS
+│   ├── js/
+│   │   ├── main.js         # Core JavaScript logic
+│   │   └── components/     # Reusable HTML components
+│   ├── img/                # Images and favicons
+│   └── data/
+│       └── projects.json   # Project data
+├── src/
+│   └── input.css           # Tailwind input file
+├── tailwind.config.js      # Tailwind configuration
+└── package.json            # Node dependencies
 ```
 
-## Como Executar Localmente
+## Local Development
 
-Este projeto é um site estático e pode ser facilmente visualizado em seu ambiente local. Siga os passos abaixo:
+### Prerequisites
 
-1.  **Clone o Repositório:**
-    ```bash
-    git clone https://github.com/JF-Andrade/JF-Andrade.github.io.git
-    ```
-2.  **Navegue até o Diretório:**
-    ```bash
-    cd JF-Andrade.github.io
-    ```
-3.  **Abra o `index.html`:**
-    Simplesmente abra o arquivo `index.html` em seu navegador web preferido (por exemplo, Chrome, Firefox, Edge). Você pode fazer isso clicando duas vezes no arquivo ou arrastando-o para a janela do navegador.
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- npm (comes with Node.js)
 
-## Licença
+### Setup
 
-Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/JF-Andrade/JF-Andrade.github.io.git
+   cd JF-Andrade.github.io
+   ```
 
-## Como Contribuir
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request. Por favor, siga as diretrizes de código existentes e mantenha o padrão de qualidade.
+3. **Build CSS** (optional, styles.css is already built)
+   ```bash
+   npm run build:css
+   ```
 
-## Contato
+4. **Start development**
+   - Open `index.html` in your browser, or
+   - Use a local server like [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-Conecte-se comigo e vamos conversar sobre ciência de dados, machine learning ou oportunidades de colaboração!
+### Available Scripts
 
-*   **LinkedIn:** [https://www.linkedin.com/in/jordaofernandes/](https://www.linkedin.com/in/jordaofernandes/)  
-*   **E-mail:** [jordaoandrade@gmail.com](mailto:jordaoandrade@gmail.com)
+- `npm run build:css` - Build Tailwind CSS (production)
+- `npm run watch:css` - Watch mode for CSS development
+
+## Design System
+
+The site uses an **Executive Minimalist Design System** with:
+
+- **Colors**: Custom CSS variables integrated with Tailwind theme
+- **Typography**: Inter font family (Google Fonts)
+- **Spacing**: Consistent scale following Tailwind conventions
+- **Shadows**: Subtle, medium, and large elevation levels
+- **Dark Mode**: Automatic theme switching with localStorage persistence
+
+### CSS Variables (Light Mode)
+
+```css
+--color-primary: #1e293b;        /* Slate 900 - Main text */
+--color-secondary: #475569;      /* Slate 600 - Secondary text */
+--color-accent: #3b82f6;         /* Blue - Links and highlights */
+--color-accent-dark: #2563eb;    /* Blue 600 - Hover states */
+--color-background-light: #f1f5f9; /* Slate 100 - Page background */
+--color-background-card: #ffffff;  /* White - Card backgrounds */
+--color-border: #cbd5e1;         /* Slate 300 - Borders */
+```
+
+### Dark Mode
+
+The site features an optimized dark mode with enhanced contrast:
+- Text colors use `slate-300` instead of `slate-400` for better readability
+- Background uses `slate-900` with subtle transparency for glassmorphism
+- All interactive elements maintain WCAG AAA contrast ratios
+- Theme preference is saved in localStorage
+
+## Internationalization (i18n)
+
+The site supports English (default) and Portuguese through:
+
+- **Directory-based routing**: `/` for English, `/pt/` for Portuguese
+- **Dynamic content**: `projects.json` contains bilingual data
+- **Language switcher**: Header component with automatic URL resolution
+
+## Adding New Projects
+
+Edit `assets/data/projects.json`:
+
+```json
+{
+  "id": "unique-project-id",
+  "title": {
+    "en": "Project Title",
+    "pt": "Título do Projeto"
+  },
+  "description": {
+    "en": "Project description",
+    "pt": "Descrição do projeto"
+  },
+  "image": "https://example.com/image.webp",
+  "technologies": ["Python", "TensorFlow", "Docker"],
+  "link": "projects/project-detail.html"
+}
+```
+
+## Contact Form
+
+The contact form uses [Formspree](https://formspree.io/) with endpoint:
+```
+https://formspree.io/f/xgvlwpba
+```
+
+To use your own Formspree endpoint, update the `action` attribute in both `contact.html` and `pt/contact.html`.
+
+## Deployment
+
+The site is automatically deployed to **GitHub Pages** from the `main` branch.
+
+### Manual Deployment
+
+1. Commit your changes
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   ```
+
+2. Push to GitHub
+   ```bash
+   git push origin main
+   ```
+
+3. GitHub Pages will automatically rebuild and deploy
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## Contact
+
+Interested in collaborating or discussing data science projects? Feel free to reach out!
+
+**Jordão Fernandes de Andrade**
+
+- Website: [jf-andrade.github.io](https://jf-andrade.github.io/)
+- LinkedIn: [linkedin.com/in/jordaofernandes](https://www.linkedin.com/in/jordaofernandes/)
+- GitHub: [github.com/JF-Andrade](https://github.com/JF-Andrade)
+- Email: jordaoandrade@gmail.com
+
+---
+
+Built with modern web technologies
