@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2025-11-23
+
+### Changed
+- **Navigation links font size**: Increased from `text-sm` to `text-base` for better readability
+- **Hero section name**: Reduced from `text-5xl` to `text-4xl` across all breakpoints to prevent line breaks
+- **Profile photo shape**: Changed from circular (`rounded-full`) to rounded-square (`rounded-xl`) for modern aesthetic
+- **Photo shadow**: Reduced from `shadow-xl` to `shadow-lg` for subtler effect
+
+### Fixed
+- **Dark Mode configuration**: Added `darkMode: 'class'` to `tailwind.config.js` to properly enable class-based dark mode
+- **Navigation colors**: Restored proper color scheme (`text-slate-500/400` for inactive, `text-slate-900/100` for active)
+
+### Technical
+- Updated all 4 HTML files (EN/PT versions of index.html and about.html) with new photo styling
+- Rebuilt CSS multiple times to include new Tailwind classes
+
 ## [2.1.0] - 2025-11-23
 
 ### Changed - Header & Footer Redesign

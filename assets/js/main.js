@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const isActive = (link.href === currentFilename) || (currentFilename === '' && link.href === 'index.html');
 
             // Estilos Executive Minimalist
-            const baseClasses = 'text-sm font-medium transition-colors duration-200';
-            const inactiveClasses = 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100';
+            const baseClasses = 'text-base font-medium transition-colors duration-200';
+            const inactiveClasses = 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100';
             const activeClasses = 'text-slate-900 dark:text-slate-100 font-semibold';
 
             const finalClasses = `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
