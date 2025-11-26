@@ -134,7 +134,9 @@ The site supports English (default) and Portuguese through:
 
 ## Adding New Projects
 
-Edit `assets/data/projects.json`:
+### Quick Steps
+
+1. **Add project data** to `assets/data/projects.json`:
 
 ```json
 {
@@ -144,14 +146,39 @@ Edit `assets/data/projects.json`:
     "pt": "Título do Projeto"
   },
   "description": {
-    "en": "Project description",
-    "pt": "Descrição do projeto"
+    "en": "Brief project description (max 2 lines)",
+    "pt": "Breve descrição do projeto (máx 2 linhas)"
   },
-  "image": "https://example.com/image.webp",
+  "image": "assets/img/projects/project-image.webp",
+  "alt": {
+    "en": "Image description for accessibility",
+    "pt": "Descrição da imagem para acessibilidade"
+  },
   "technologies": ["Python", "TensorFlow", "Docker"],
   "link": "projects/project-detail.html"
 }
 ```
+
+2. **Add project image** (recommended: 400×250px WebP format):
+   - Save to: `assets/img/projects/`
+   - Or use external URL: `https://example.com/image.webp`
+
+3. **Create detail page** (optional):
+   - English: `projects/project-name.html`
+   - Portuguese: `pt/projects/project-name.html`
+   - Or use `"link": "projects.html"` to redirect to project listing
+
+4. **Deploy**:
+   ```bash
+   git add assets/data/projects.json
+   git commit -m "Add project: [Project Name]"
+   git push origin main
+   ```
+
+The site automatically displays:
+- First 3 projects on homepage (featured)
+- All projects on `/projects.html` and `/pt/projects.html`
+- Bilingual content based on URL path
 
 ## Contact Form
 

@@ -1,5 +1,31 @@
 [
   {
+    "id": "two-tower-recommendation-mlops",
+    "title": {
+      "en": "Two-Tower Recommendation System",
+      "pt": "Sistema de Recomendação Two-Tower"
+    },
+    "description": {
+      "en": "Production-grade dual encoder neural network for personalized fashion recommendations with end-to-end MLOps pipeline, experiment tracking, and efficient retrieval architecture.",
+      "pt": "Rede neural dual encoder de nível profissional para recomendações de moda personalizadas com pipeline MLOps completo, rastreamento de experimentos e arquitetura de recuperação eficiente."
+    },
+    "image": "assets/img/projects/2tower_img.webp",
+    "alt": {
+      "en": "Two-Tower Recommendation Architecture: dual neural network towers (Query Tower for users and Candidate Tower for items) connected through a shared embedding space for efficient similarity matching",
+      "pt": "Arquitetura de Recomendação Two-Tower: torres de rede neural duplas (Torre de Consulta para usuários e Torre de Candidatos para itens) conectadas através de um espaço de embeddings compartilhado para correspondência eficiente de similaridade"
+    },
+    "technologies": [
+      "Python",
+      "TensorFlow",
+      "TensorFlow Recommenders",
+      "MLflow",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy"
+    ],
+    "link": "projects.html"
+  },
+  {
     "id": "classificador-de-flores",
     "title": {
       "pt": "Classificador de Imagens de Flores",
@@ -14,7 +40,11 @@
       "pt": "Miniatura do Projeto de Classificação de Flores",
       "en": "Thumbnail of Flower Image Classifier Project"
     },
-    "technologies": ["Python", "TensorFlow", "Keras"],
+    "technologies": [
+      "Python",
+      "TensorFlow",
+      "Keras"
+    ],
     "link": "projects/projeto-de-classificacao.html"
   },
   {
@@ -32,7 +62,11 @@
       "pt": "Miniatura do Projeto de Previsão de Vendas",
       "en": "Thumbnail of Sales Forecasting Project"
     },
-    "technologies": ["Python", "Pandas", "Scikit-learn"],
+    "technologies": [
+      "Python",
+      "Pandas",
+      "Scikit-learn"
+    ],
     "link": "projects.html"
   },
   {
@@ -50,7 +84,11 @@
       "pt": "Miniatura do Projeto de Análise de Sentimento",
       "en": "Thumbnail of Sentiment Analysis Project"
     },
-    "technologies": ["Python", "NLTK", "Spacy"],
+    "technologies": [
+      "Python",
+      "NLTK",
+      "Spacy"
+    ],
     "link": "projects.html"
   }
 ]
