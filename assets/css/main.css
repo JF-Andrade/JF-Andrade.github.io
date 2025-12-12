@@ -1,4 +1,4 @@
-/*
+/* 
  * Arquivo de Estilo Principal para Portfólio de Machine Learning
  * -------------------------------------------------------------
  * Estilo geral e classes de componentes, com foco em uma estética executiva e limpa.
@@ -6,87 +6,82 @@
 
 /* 1. Variáveis de Cor para Manutenção Fácil */
 :root {
-    --color-primary: #1e293b;
-    --color-secondary: #475569;
-    --color-accent: #3b82f6;
-    --color-accent-dark: #2563eb;
-    --color-background-light: #f1f5f9;
-    --color-background-card: #ffffff;
-    --color-border: #cbd5e1;
-    --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.1), 2px 4px -2px rgb(0 0 0 / 0.1);
+  --color-primary: #1e293b;
+  --color-secondary: #475569;
+  --color-accent: #3b82f6;
+  --color-accent-dark: #2563eb;
+  --color-background-light: #f1f5f9;
+  --color-background-card: #ffffff;
+  --color-border: #cbd5e1;
+  --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.1), 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 /* 1.1. Variáveis de Cor para o Tema Escuro */
 [data-theme="dark"] {
-    --color-primary: #e2e8f0;
-    --color-secondary: #94a3b8;
-    --color-accent: #60a5fa;
-    --color-accent-dark: #3b82f6;
-    --color-background-light: #0f172a;
-    --color-background-card: #1e293b;
-    --color-border: #334155;
-    --shadow-subtle: 0 1px 3px 0 rgb(255 255 255 / 0.05), 0 1px 2px -1px rgb(255 255 255 / 0.05);
-    --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --color-primary: #e2e8f0;
+  --color-secondary: #94a3b8;
+  --color-accent: #60a5fa;
+  --color-accent-dark: #3b82f6;
+  --color-background-light: #0f172a;
+  --color-background-card: #1e293b;
+  --color-border: #334155;
+  --shadow-subtle: 0 1px 3px 0 rgb(255 255 255 / 0.05),
+    0 1px 2px -1px rgb(255 255 255 / 0.05);
+  --shadow-md: 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
 }
 
 /* 1.2. Ajustes de Estilo para o Tema Escuro */
 [data-theme="dark"] header {
-    background-color: var(--color-background-card);
-    border-bottom-color: var(--color-border);
-}
-
-[data-theme="dark"] .text-gray-600 {
-    color: var(--color-secondary);
-}
-
-[data-theme="dark"] .text-gray-700 {
-    color: var(--color-secondary);
-}
-
-[data-theme="dark"] .text-gray-900 {
-    color: var(--color-primary);
+  background-color: var(--color-background-card);
+  border-bottom-color: var(--color-border);
 }
 
 [data-theme="dark"] .bg-white {
-    background-color: var(--color-background-card);
+  background-color: var(--color-background-card);
 }
 
 footer {
-    border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 [data-theme="dark"] footer {
-    background-color: var(--color-background-card);
-    border-top: 1px solid var(--color-border);
+  background-color: var(--color-background-card);
+  border-top: 1px solid var(--color-border);
 }
 
 /* 2. Estilos de Tipografia e Reset Básico */
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--color-primary);
-    background-color: var(--color-background-light);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding-top: 5rem;
+  font-family: "Inter", sans-serif;
+  color: var(--color-primary);
+  background-color: var(--color-background-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: 5rem;
+}
+
+/* Estabilização do Header para evitar CLS */
+#main-header {
+  height: 5rem; /* 80px - Garante espaço reservado */
+  width: 100%;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1.2;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
 }
 
 /* 3. Estilos de Componentes e Utilidades */
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Transições suaves para elementos interativos */
@@ -95,119 +90,120 @@ button,
 .project-card,
 .form-input,
 .form-textarea {
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Estilo para cartões de projeto */
 .project-card {
-    background-color: var(--color-background-card);
-    border-radius: 0.5rem;
-    box-shadow: var(--shadow-md);
-    transform: translateY(0);
+  background-color: var(--color-background-card);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-md);
+  transform: translateY(0);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 /* Estilo de botão primário */
 .btn-primary {
-    background-color: var(--color-accent);
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-accent-dark);
+  background-color: var(--color-accent-dark);
 }
 
 /* Estilo de botão secundário */
 .btn-secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-border);
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-background-light);
+  background-color: var(--color-background-light);
 }
 
 /* Estilo para links de navegação e rodapé */
 a {
-    color: var(--color-secondary);
-    text-decoration: none;
+  color: var(--color-secondary);
+  text-decoration: none;
 }
 
 a:hover {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* Estilo para ícones no rodapé */
 .footer-icon {
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 .footer-icon:hover {
-    color: var(--color-accent);
-    transform: scale(1.15);
+  color: var(--color-accent);
+  transform: scale(1.15);
 }
 
 /* Classes para os "badges" de tecnologia */
 .badge {
-    background-color: #e2e8f0;
-    color: #64748b;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.25rem 0.5rem;
-    border-radius: 9999px;
+  background-color: #e2e8f0;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
 }
 
 [data-theme="dark"] .badge {
-    background-color: var(--color-border);
-    color: var(--color-primary);
+  background-color: var(--color-border);
+  color: var(--color-primary);
 }
 
 /* Estilos para o formulário de contato */
 .form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--color-border);
-    background-color: var(--color-background-card);
-    color: var(--color-primary);
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background-card);
+  color: var(--color-primary);
 }
 
 .form-textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--color-border);
-    background-color: var(--color-background-card);
-    color: var(--color-primary);
-    resize: vertical;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background-card);
+  color: var(--color-primary);
+  resize: vertical;
 }
 
 .form-input:focus,
 .form-textarea:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
 /* Estilo para o botão de Dark Mode */
 #theme-toggle {
-    transition: background-color 0.2s;
+  transition: background-color 0.2s;
 }
 
 [data-theme="dark"] #theme-toggle {
-    background-color: var(--color-background-card);
-    color: var(--color-primary);
+  background-color: var(--color-background-card);
+  color: var(--color-primary);
 }

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Study: H&M Recommendation System</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+
+    <!-- MathJax for Formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Mermaid for Diagrams -->
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ 
+        startOnLoad: true, 
+        theme: "base",
+        themeVariables: {
+          fontFamily: "Inter, sans-serif",
+          primaryColor: "#eff6ff",      // blue-50
+          primaryBorderColor: "#3b82f6", // blue-500
+          lineColor: "#64748b",         // slate-500
+          secondaryColor: "#f8fafc",    // slate-50
+          tertiaryColor: "#fdf4ff"      // purple-50
+        }
+      });
+    </script>
+  </head>
+
+  <body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-7xl">
+      <!-- Project Header -->
+      <section class="py-12 md:py-16 text-center">
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-slate-900 dark:text-white tracking-tight leading-tight"
+        >
+          H&M Personalized<br />Fashion Recommendations
+        </h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+          A production-grade Two-Stage Recommender System (Retrieval + Ranking)
+          serving 1.37 million customers.
+        </p>
+      </section>
+
+      <!-- Summary & Key Metrics -->
+      <section class="max-w-3xl mx-auto mb-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+          <!-- Metric 1 -->
+          <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Kaggle Metric (MAP@12)</h3>
+            <p class="text-3xl font-bold text-slate-900 dark:text-white font-mono">0.0130</p>
+          </div>
+          <!-- Metric 2 -->
+           <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Lift vs. Baseline</h3>
+            <p class="text-3xl font-bold text-green-600 dark:text-green-400">+389%</p>
+          </div>
+          <!-- Metric 3 -->
+           <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Recall Model</h3>
+            <p class="text-2xl font-bold text-slate-900 dark:text-white">Two-Tower <span class="text-xs block font-normal text-slate-400 mt-1">TensorFlow Recommenders</span></p>
+          </div>
+          <!-- Metric 4 -->
+           <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Ranking Model</h3>
+            <p class="text-2xl font-bold text-slate-900 dark:text-white">CatBoost <span class="text-xs block font-normal text-slate-400 mt-1">Gradient Boosting</span></p>
+          </div>
+      </section>
+
+      <!-- Case Study Body -->
+      <div class="max-w-3xl mx-auto space-y-20">
+        <!-- Executive Summary (Moved Up) -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            Summary
+          </h2>
+          <div
+            class="prose prose-lg dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed"
+          >
+            <p>
+              This project demonstrates the end-to-end engineering of a
+              <strong>Production-Grade Recommender System</strong> capable of
+              serving personalized content from a catalog of
+              <strong>105k+ items</strong>.
+            </p>
+            <p>
+              Moving beyond typical "competition notebooks," this solution
+              treats Machine Learning as a Software Engineering discipline. It
+              implements a robust
+              <strong>Two-Stage Funnel Architecture</strong>, orchestrated by a
+              reproducible MLOps pipeline with strict prevention of data
+              leakage, hardware-accelerated training, and modern experiment
+              tracking.
+            </p>
+          </div>
+        </section>
+
+        <!-- Technologies -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            Technologies Used
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Python</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >TensorFlow</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >TensorFlow Recommenders (TFRS)</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >CatBoost</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >MLflow</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Pandas</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >NumPy</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Scikit-Learn</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Optuna</span
+            >
+          </div>
+        </section>
+
+        <img
+          src="../assets/img/projects/2tower_img.webp"
+          alt="Two-Tower Architecture Diagram"
+          width="1200"
+          height="600"
+          class="w-full mb-20 object-cover rounded-md shadow-sm border border-slate-100 dark:border-slate-800"
+        />
+
+        <!-- The Business Challenge -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            The Business Challenge
+          </h2>
+          <div
+            class="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-lg"
+          >
+            <p class="text-lg mb-6 text-slate-700 dark:text-slate-300">
+              The goal was to predict exactly which 12 items a customer would
+              buy in the next 7 days, maximizing <strong>MAP@12</strong>. This
+              presents the "Trinity of Complexity":
+            </p>
+            <ul class="space-y-4">
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-10 h-10 text-3xl font-light text-slate-300 dark:text-slate-600 flex items-center justify-center">01</span>
+                <div>
+                  <strong class="block text-slate-900 dark:text-white">Extreme Cold Start</strong>
+                  <span class="text-slate-600 dark:text-slate-400 text-sm">Hundreds of new items appear weekly with zero history.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-10 h-10 text-3xl font-light text-slate-300 dark:text-slate-600 flex items-center justify-center">02</span>
+                <div>
+                  <strong class="block text-slate-900 dark:text-white">High Seasonality</strong>
+                  <span class="text-slate-600 dark:text-slate-400 text-sm">Fashion preferences rotate rapidly.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-10 h-10 text-3xl font-light text-slate-300 dark:text-slate-600 flex items-center justify-center">03</span>
+                <div>
+                  <strong class="block text-slate-900 dark:text-white">Massive Scale</strong>
+                  <span class="text-slate-600 dark:text-slate-400 text-sm">\(1.37M \text{ users} \times 105k \text{ items} \approx 144 \text{ Billion pairs}\).</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Solution Architecture -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            Solution Architecture
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-10 leading-relaxed">
+            To solve the scale problem ($144B$ pairs), a "Funnel" strategy was
+            implemented, inspired by architectures used at YouTube and LinkedIn.
+          </p>
+
+          <div class="mermaid flex justify-center mb-12 bg-white dark:bg-white p-6 rounded border border-slate-200 overflow-x-auto">
+            graph LR
+                Universe[105,000 Items Universe] -->|Fast Screening| Retrieval
+                subgraph "Stage 1: RETRIEVAL (Recall)"
+                    Retrieval[Two-Tower Model TFRS]
+                    Retrieval --> Candidates[100 Candidates per User]
+                end
+                Candidates -->|Deep Analysis| Ranking
+                subgraph "Stage 2: RANKING (Precision)"
+                    Ranking[CatBoost Ranker]
+                    Ranking --> Top12[Top 12 Recommendations]
+                end
+                style Universe fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
+                style Retrieval fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+                style Ranking fill:#fdf4ff,stroke:#a855f7,stroke-width:2px
+                style Candidates fill:#fff,stroke:#333,stroke-dasharray: 5 5
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3
+                class="text-lg font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-2"
+              >
+                <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+                Stage 1: Retrieval (Recall)
+              </h3>
+              <ul class="space-y-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Model:</strong> Two-Tower Neural Network (TFRS)
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Mechanism:</strong> Maps Users and Items into a
+                  shared 32-dim embedding space.
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Key Feature:</strong> Visual Embeddings (ResNet50)
+                  to "see" product similarity.
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Output:</strong> Reduces 105k items to top 100
+                  candidates via BruteForce Indexing.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-lg font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-2"
+              >
+                <span class="w-2 h-2 bg-purple-600 rounded-full"></span>
+                Stage 2: Ranking (Precision)
+              </h3>
+              <ul class="space-y-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                <li><strong class="text-slate-900 dark:text-slate-200">Model:</strong> CatBoost Classifier</li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Why:</strong> Superior handling of categorical
+                  features.
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Context:</strong> Uses interaction history, retrieve
+                  scores, and user metadata.
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Output:</strong> Re-orders candidates to generate
+                  the final Top 12.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Visual Intelligence -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Visual Intelligence
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            To address the cold-start problem for new items, visual features are extracted from product images using a pre-trained CNN backbone.
+          </p>
+          
+          <!-- Image Feature Extraction Pipeline -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <!-- Step 1 -->
+            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
+              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">01</div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Input</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">High-Res JPEG</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
+              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">02</div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Backbone</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">ResNet50</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
+              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">03</div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Pooling</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Global Avg Pool</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
+              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">04</div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Output</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">2048-dim Vector</p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="p-4 bg-slate-50 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center">
+              <div class="mb-3 text-2xl font-light text-slate-400 dark:text-slate-500">05</div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Projection</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">32-dim Embedding</p>
+            </div>
+          </div>
+          <p class="mt-6 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-l-2 border-slate-200 dark:border-slate-700 pl-4">
+            This enables recommending new inventory based on visual similarity to past best-sellers, bridging the gap until behavioral data accumulates.
+          </p>
+        </section>
+
+
+        <!-- MLOps & Engineering -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Engineering & MLOps
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            The system is a Directed Acyclic Graph (DAG) of processing steps,
+            ensuring reproducibility and scalability.
+          </p>
+          <div class="relative">
+            <!-- Connecting Line (Desktop) -->
+            <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 dark:bg-slate-700 -z-10"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <!-- Step 1 -->
+              <div class="bg-white dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center relative">
+                <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
+                  <span class="text-xs font-mono font-bold text-slate-500">01</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white mb-1">uv</h4>
+                <p class="text-xs text-slate-500">Deterministic Env</p>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="bg-white dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center relative">
+                 <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
+                  <span class="text-xs font-mono font-bold text-slate-500">02</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white mb-1">Config</h4>
+                <p class="text-xs text-slate-500">Hydra-style Params</p>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="bg-white dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center relative">
+                 <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
+                  <span class="text-xs font-mono font-bold text-slate-500">03</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white mb-1">Leakage</h4>
+                <p class="text-xs text-slate-500">Strict Time Split</p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="bg-white dark:bg-slate-800 p-6 rounded border-slate-200 dark:border-slate-700 text-center relative shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
+                 <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
+                   <span class="text-xs font-mono font-bold text-slate-500">04</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white mb-1">MLflow</h4>
+                <p class="text-xs text-slate-500">Full Traceability</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Results -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Results & Impact
+          </h2>
+          <div class="overflow-hidden">
+            <table
+              class="w-full text-left text-sm text-slate-600 dark:text-slate-400"
+            >
+              <thead
+                class="text-xs text-slate-900 uppercase border-b border-slate-200 dark:border-slate-700 dark:text-slate-200"
+              >
+                <tr>
+                  <th scope="col" class="py-4 font-bold tracking-wider">Architecture</th>
+                  <th scope="col" class="py-4 font-bold tracking-wider">Setup</th>
+                  <th scope="col" class="py-4 font-bold tracking-wider">MAP@12</th>
+                  <th scope="col" class="py-4 text-right font-bold tracking-wider">Lift</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <tr
+                  class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                >
+                  <td
+                    class="py-4 font-medium text-slate-900 dark:text-white"
+                  >
+                    Baseline
+                  </td>
+                  <td class="py-4">Naïve "Most Popular"</td>
+                  <td class="py-4 font-mono">0.0026</td>
+                  <td class="py-4 text-right opacity-50">-</td>
+                </tr>
+                <tr
+                  class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                >
+                  <td
+                    class="py-4 font-medium text-slate-900 dark:text-white"
+                  >
+                    Retrieval Only
+                  </td>
+                  <td class="py-4">Two-Tower (User + Item + Image)</td>
+                  <td class="py-4 font-mono">0.0032</td>
+                  <td class="py-4 text-right">
+                    <div class="flex items-center justify-end gap-3">
+                      <span class="text-slate-700 dark:text-slate-300 font-medium">+19.7%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-slate-400 rounded-full w-[5%]"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-slate-50/50 dark:bg-slate-800/20 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors"
+                >
+                  <td class="pt-4 pb-4 pl-2 font-bold text-slate-900 dark:text-white">
+                    2-Stage Funnel
+                  </td>
+                  <td class="py-4 font-bold text-slate-900 dark:text-white">
+                    Two-Tower + CatBoost Ranker
+                  </td>
+                  <td class="py-4 font-bold text-slate-900 dark:text-white font-mono">0.0130</td>
+                  <td class="py-4 pr-2 text-right">
+                    <div class="flex items-center justify-end gap-3">
+                      <span class="font-bold text-slate-900 dark:text-white">+389%</span>
+                       <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-slate-800 dark:bg-slate-200 rounded-full w-full"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+
+        <!-- Kaggle Gap Analysis (New) -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+            Benchmark: Production vs. Kaggle Gold
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            Kaggle Gold winners achieved superior performance by leveraging massive <strong>Ensembles</strong> (combining 6-10 distinct retrieval models) and aggressively retrieving <strong>10x more candidates</strong> per user. While computationally expensive, this "accuracy-at-all-costs" approach sets the theoretical performance ceiling.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8 md:gap-12 mb-20 border-t border-b border-slate-100 dark:border-slate-800 py-12">
+            <!-- Production Column -->
+            <div class="pr-0 md:pr-8">
+              <h3 class="font-mono text-sm uppercase tracking-widest text-slate-400 mb-6">Production Strategy</h3>
+              <p class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Two-Stage Architecture</p>
+              <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-4">
+                <p>
+                  The developed solution implements a robust <strong>Two-Stage Architecture</strong>, combining a <strong>Two-Tower Retrieval model (Dual Encoder)</strong> built on TensorFlow Recommenders for candidate generation, with a high-performance <strong>CatBoost regressor</strong> for precise re-ranking. This design balances recall and precision, leveraging the Dual Encoder for efficient large-scale retrieval (using In-batch Negative Sampling) and Gradient Boosting for capturing non-linear interactions in the final ranking.
+                </p>
+                <p>
+                  Pipeline orchestration is rigorously managed by a custom Python framework (<code>run_pipeline.py</code>) that enforces strict <strong>temporal partitioning integrity</strong> to prevent data leakage. It integrates seamless artifact management and experiment tracking via <strong>MLflow</strong>, prioritizing end-to-end local reproducibility and serving-readiness over theoretical complexity.
+                </p>
+              </div>
+            </div>
+
+            <!-- Kaggle Column -->
+            <div class="pl-0 md:pl-8 md:border-l border-slate-100 dark:border-slate-800 mt-8 md:mt-0">
+               <h3 class="font-mono text-sm uppercase tracking-widest text-amber-600 dark:text-amber-500 mb-6">Kaggle Gold Strategy</h3>
+              <p class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Multi-Source Ensemble</p>
+              <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-4">
+                <p>
+                  Leading solutions outperform this architecture primarily by adopting <strong>Multi-Source Recall strategies</strong> and <strong>Model Ensembles</strong>. While this project relies on a single candidate source (Two-Tower), winners aggregate candidates from dozens of complementary heuristics—such as Item-Item Collaborative Filtering, Co-occurrence Matrices, and Trend Algorithms—capturing signals that deep neural networks might miss.
+                </p>
+                <p>
+                  Furthermore, the use of dozens of Gradient Boosting models together (<strong>Stacking/Blending</strong>) reduces prediction variance, and feature engineering is significantly more granular, exploring direct comparisons between the candidate item and the user's immediate interaction history.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+        <!-- Strategic Roadmap (Table Layout) -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Strategic Roadmap to SOTA
+          </h2>
+          
+          <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 mb-12">
+            <table class="w-full text-left text-sm text-slate-600 dark:text-slate-400">
+              <thead class="bg-slate-50 dark:bg-slate-800 text-xs uppercase tracking-widest text-slate-500 font-semibold border-b border-slate-200 dark:border-slate-700">
+                <tr>
+                  <th scope="col" class="py-4 px-4">Initiative</th>
+                  <th scope="col" class="py-4 px-4">Type</th>
+                  <th scope="col" class="py-4 px-4">Impact</th>
+                  <th scope="col" class="py-4 px-4">Effort</th>
+                  <th scope="col" class="py-4 px-4 text-right">Priority</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900">
+                
+                <!-- Item 1 -->
+                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-4 px-4">
+                    <div class="font-bold text-slate-900 dark:text-white mb-3 text-base">Advanced Ranking Objectives</div>
+                    <div class="text-xs text-slate-500 leading-loose max-w-md">
+                      Transition to listwise optimization (e.g., YetiRank) to maximize MAP@12 directly.
+                    </div>
+                  </td>
+                  <td class="py-4 px-4 font-medium text-slate-700 dark:text-slate-300">
+                    Algorithmic
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
+                      High
+                    </span>
+                  </td>
+                   <td class="py-4 px-4 text-slate-500">
+                    Medium
+                  </td>
+                  <td class="py-4 px-4 text-right">
+                    <span class="font-bold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider">Immediate</span>
+                  </td>
+                </tr>
+
+                <!-- Item 2 -->
+                 <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-4 px-4">
+                    <div class="font-bold text-slate-900 dark:text-white mb-3 text-base">Expanded Candidate Pool</div>
+                    <div class="text-xs text-slate-500 leading-loose max-w-md">
+                      Increase retrieval depth (K=100 &rarr; 1000) to raise theoretical recall ceiling.
+                    </div>
+                  </td>
+                  <td class="py-4 px-4 font-medium text-slate-700 dark:text-slate-300">
+                    Architecture
+                  </td>
+                  <td class="py-4 px-4">
+                     <span class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
+                      High
+                    </span>
+                  </td>
+                   <td class="py-4 px-4 text-emerald-600 dark:text-emerald-400 font-medium">
+                    Low
+                  </td>
+                  <td class="py-4 px-4 text-right">
+                    <span class="font-bold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider">Immediate</span>
+                  </td>
+                </tr>
+
+                 <!-- Item 3 -->
+                 <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-4 px-4">
+                    <div class="font-bold text-slate-900 dark:text-white mb-3 text-base">Hybrid Negative Sampling</div>
+                    <div class="text-xs text-slate-500 leading-loose max-w-md">
+                       Mix In-batch + Uniform Random negatives to mitigate popularity bias.
+                    </div>
+                  </td>
+                  <td class="py-4 px-4 font-medium text-slate-700 dark:text-slate-300">
+                    Data Strat.
+                  </td>
+                  <td class="py-4 px-4">
+                     <span class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
+                      High
+                    </span>
+                  </td>
+                   <td class="py-4 px-4 text-amber-600 dark:text-amber-400 font-medium">
+                    High
+                  </td>
+                  <td class="py-4 px-4 text-right">
+                    <span class="font-bold text-blue-600 dark:text-blue-400 text-xs uppercase tracking-wider">Planned</span>
+                  </td>
+                </tr>
+
+                 <!-- Item 4 -->
+                 <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-4 px-4">
+                    <div class="font-bold text-slate-900 dark:text-white mb-3 text-base">Real-time Behavioral Signals</div>
+                    <div class="text-xs text-slate-500 leading-loose max-w-md">
+                       Integrate user session history (last 5 items) directly into ranking inference.
+                    </div>
+                  </td>
+                  <td class="py-4 px-4 font-medium text-slate-700 dark:text-slate-300">
+                    Feature Eng.
+                  </td>
+                  <td class="py-4 px-4">
+                     <span class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border border-purple-100 dark:border-purple-800">
+                      Very High
+                    </span>
+                  </td>
+                   <td class="py-4 px-4 text-rose-600 dark:text-rose-400 font-medium">
+                    Very High
+                  </td>
+                  <td class="py-4 px-4 text-right">
+                    <span class="font-bold text-blue-600 dark:text-blue-400 text-xs uppercase tracking-wider">Planned</span>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="text-center py-12 border-t border-slate-100 dark:border-slate-800">
+          <a
+            href="https://github.com/JF-Andrade/two-tower_recommendation"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-github"
+          >
+            <svg
+              class="w-5 h-5 mr-3"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            View Code on GitHub
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
 [![GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-blue)](https://jf-andrade.github.io/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Personal portfolio website showcasing my work as a Data Scientist and Machine Learning Engineer.
+Personal portfolio website showcasing my experience as Market Intelligence Manager and my work as a Data Scientist.
 
 ## Live Site
 
@@ -12,14 +12,16 @@ Personal portfolio website showcasing my work as a Data Scientist and Machine Le
 
 ## Features
 
+- **Contact Form**: Formspree integration for handling contact submissions
+- **Projects**: Dynamic loading of project cards with bilingual support
+- **Resume**: Interactive resume/CV with bilingual support
 - **Bilingual Support**: Full content in English and Portuguese with seamless language switching
-- **Executive Minimalist Design**: Clean, professional aesthetic with optimized spacing and typography
+- **Language Switcher**: Header component with automatic URL resolution
+- **Theme Switcher**: Automatic theme switching with localStorage persistence
 - **Enhanced Dark Mode**: WCAG AAA compliant contrast ratios for excellent readability
-- **Glassmorphism UI**: Modern backdrop-blur effects on header for depth and sophistication
-- **SEO Optimized**: Open Graph and Twitter Cards meta tags for rich social media previews
+- **Executive Minimalist Design**: Clean, professional aesthetic with optimized spacing and typography
 - **Accessibility**: Semantic HTML, proper ARIA labels, and keyboard navigation support
-- **Performance**: Optimized Tailwind CSS build (~100 KB vs 3+ MB CDN)
-- **Responsive**: Desktop-first design with smooth transitions
+- **Performance**: Optimized Tailwind CSS build (~100 KB)
 
 ## Tech Stack
 
@@ -60,40 +62,6 @@ Personal portfolio website showcasing my work as a Data Scientist and Machine Le
 └── package.json            # Node dependencies
 ```
 
-## Local Development
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- npm (comes with Node.js)
-
-### Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/JF-Andrade/JF-Andrade.github.io.git
-   cd JF-Andrade.github.io
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Build CSS** (optional, styles.css is already built)
-   ```bash
-   npm run build:css
-   ```
-
-4. **Start development**
-   - Open `index.html` in your browser, or
-   - Use a local server like [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-
-### Available Scripts
-
-- `npm run build:css` - Build Tailwind CSS (production)
-- `npm run watch:css` - Watch mode for CSS development
-
 ## Design System
 
 The site uses an **Executive Minimalist Design System** with:
@@ -107,18 +75,19 @@ The site uses an **Executive Minimalist Design System** with:
 ### CSS Variables (Light Mode)
 
 ```css
---color-primary: #1e293b;        /* Slate 900 - Main text */
---color-secondary: #475569;      /* Slate 600 - Secondary text */
---color-accent: #3b82f6;         /* Blue - Links and highlights */
---color-accent-dark: #2563eb;    /* Blue 600 - Hover states */
+--color-primary: #1e293b; /* Slate 900 - Main text */
+--color-secondary: #475569; /* Slate 600 - Secondary text */
+--color-accent: #3b82f6; /* Blue - Links and highlights */
+--color-accent-dark: #2563eb; /* Blue 600 - Hover states */
 --color-background-light: #f1f5f9; /* Slate 100 - Page background */
---color-background-card: #ffffff;  /* White - Card backgrounds */
---color-border: #cbd5e1;         /* Slate 300 - Borders */
+--color-background-card: #ffffff; /* White - Card backgrounds */
+--color-border: #cbd5e1; /* Slate 300 - Borders */
 ```
 
 ### Dark Mode
 
 The site features an optimized dark mode with enhanced contrast:
+
 - Text colors use `slate-300` instead of `slate-400` for better readability
 - Background uses `slate-900` with subtle transparency for glassmorphism
 - All interactive elements maintain WCAG AAA contrast ratios
@@ -160,10 +129,12 @@ The site supports English (default) and Portuguese through:
 ```
 
 2. **Add project image** (recommended: 400×250px WebP format):
+
    - Save to: `assets/img/projects/`
    - Or use external URL: `https://example.com/image.webp`
 
 3. **Create detail page** (optional):
+
    - English: `projects/project-name.html`
    - Portuguese: `pt/projects/project-name.html`
    - Or use `"link": "projects.html"` to redirect to project listing
@@ -176,6 +147,7 @@ The site supports English (default) and Portuguese through:
    ```
 
 The site automatically displays:
+
 - First 3 projects on homepage (featured)
 - All projects on `/projects.html` and `/pt/projects.html`
 - Bilingual content based on URL path
@@ -183,30 +155,14 @@ The site automatically displays:
 ## Contact Form
 
 The contact form uses [Formspree](https://formspree.io/) with endpoint:
+
 ```
 https://formspree.io/f/xgvlwpba
 ```
 
-To use your own Formspree endpoint, update the `action` attribute in both `contact.html` and `pt/contact.html`.
-
 ## Deployment
 
 The site is automatically deployed to **GitHub Pages** from the `main` branch.
-
-### Manual Deployment
-
-1. Commit your changes
-   ```bash
-   git add .
-   git commit -m "Your commit message"
-   ```
-
-2. Push to GitHub
-   ```bash
-   git push origin main
-   ```
-
-3. GitHub Pages will automatically rebuild and deploy
 
 This project is open source and available under the [MIT License](LICENSE).
 
@@ -214,7 +170,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-Interested in collaborating or discussing data science projects? Feel free to reach out!
+I am open to job opportunities, collaborations, or discussing data science projects. Feel free to reach out!
 
 **Jordão Fernandes de Andrade**
 
@@ -222,7 +178,3 @@ Interested in collaborating or discussing data science projects? Feel free to re
 - LinkedIn: [linkedin.com/in/jordaofernandes](https://www.linkedin.com/in/jordaofernandes/)
 - GitHub: [github.com/JF-Andrade](https://github.com/JF-Andrade)
 - Email: jordaoandrade@gmail.com
-
----
-
-Built with modern web technologies

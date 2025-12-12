@@ -2,4 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Styles from main.css will be migrated here later or imported */
+@layer components {
+  .btn-github {
+    @apply inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 rounded-lg hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900;
+  }
+
+  .badge-tech {
+    @apply px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default;
+  }
+}
