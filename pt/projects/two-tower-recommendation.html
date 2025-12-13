@@ -190,6 +190,72 @@
           </div>
         </section>
 
+        <!-- Results -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            Resultados & Impacto
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            A arquitetura Two-Stage Funnel entregou um <strong>ganho de +389%</strong> sobre o baseline ingênuo, demonstrando que combinar retrieval neural rápido com ranking de gradient boosting preciso melhora significativamente a qualidade das recomendações.
+          </p>
+          <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+            <table
+              class="w-full text-left text-sm text-slate-600 dark:text-slate-400"
+            >
+              <thead
+                class="text-xs text-slate-900 uppercase border-b border-slate-200 dark:border-slate-700 dark:text-slate-200"
+              >
+                <tr>
+                  <th scope="col" class="py-4 px-2 font-bold tracking-wider">Arquitetura</th>
+                  <th scope="col" class="py-4 font-bold tracking-wider">Configuração</th>
+                  <th scope="col" class="py-4 font-bold tracking-wider">MAP@12</th>
+                  <th scope="col" class="py-4 text-center font-bold tracking-wider">Ganho (Lift)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <tr
+                  class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
+                >
+                  <td class="py-4 px-2 font-medium text-slate-900 dark:text-white">Baseline</td>
+                  <td class="py-4">Ingênuo "Mais Populares"</td>
+                  <td class="py-4 font-mono">0.0026</td>
+                  <td class="py-4 text-center  opacity-50">-</td>
+                </tr>
+                <tr
+                  class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
+                >
+                  <td class="py-4 px-2 font-medium text-slate-900 dark:text-white">Apenas Retrieval</td>
+                  <td class="py-4">Two-Tower (User + Item + Imagem)</td>
+                  <td class="py-4 font-mono">0.0032</td>
+                  <td class="py-4 text-right">
+                    <div class="flex items-center justify-center gap-3">
+                      <span class="font-medium text-green-600">+19.7%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full w-[5%]"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-slate-50/50 dark:bg-slate-800/20 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors"
+                >
+                  <td class="py-4 px-2 font-bold text-slate-900 dark:text-white">Funil 2-Estágios</td>
+                  <td class="py-4 font-bold text-slate-900 dark:text-white">Two-Tower + CatBoost Ranker</td>
+                  <td class="py-4 font-bold text-blue-600 font-mono">0.0130</td>
+                  <td class="py-4 pr-2 text-right">
+                    <div class="flex items-center justify-center gap-3">
+                      <span class="font-bold text-green-600">+389%</span>
+                       <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full w-full"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <!-- Solution Architecture -->
         <section>
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
@@ -199,22 +265,60 @@
             Para resolver a intensidade computacional de ranquear 105.000 itens por usuário, foi implementada uma estratégia de "Funil". Isso divide o problema em uma fase de triagem rápida e grossa (Retrieval) e uma fase de pontuação lenta e precisa (Ranking).
           </p>
 
-          <div class="mermaid flex justify-center mb-12 bg-white dark:bg-white p-6 rounded border border-slate-200 overflow-x-auto">
-            graph LR
-                Universe[Universo 105.000 Itens] -->|Triagem Rápida| Retrieval
-                subgraph "Estágio 1: RETRIEVAL (Recall)"
-                    Retrieval[Modelo Two-Tower TFRS]
-                    Retrieval --> Candidates[100 Candidatos por Usuário]
-                end
-                Candidates -->|Análise Profunda| Ranking
-                subgraph "Estágio 2: RANKING (Precisão)"
-                    Ranking[Rankeador CatBoost]
-                    Ranking --> Top12[Top 12 Recomendações]
-                end
-                style Universe fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
-                style Retrieval fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-                style Ranking fill:#fdf4ff,stroke:#a855f7,stroke-width:2px
-                style Candidates fill:#fff,stroke:#333,stroke-dasharray: 5 5
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6 mb-12">
+            <div class="flex flex-wrap items-stretch justify-center md:gap-2">
+              <!-- Universe -->
+              <div class="flex flex-col items-center">
+                <div class="mt-6 px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded border border-slate-300 dark:border-slate-600 text-center min-w-[120px]">
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Entrada</p>
+                  <p class="font-bold text-slate-800 dark:text-slate-100 text-sm">105.000 Itens</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Catálogo Completo</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Stage 1: Retrieval -->
+              <div class="flex flex-col items-center">
+                <p class="text-xs text-center text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-widest font-bold">Estágio 1:<br> Retrieval</p>
+                <div class="px-2 py-1 bg-blue-100 dark:bg-blue-700 rounded border border-blue-300 dark:border-blue-600 text-center min-w-[140px]">
+                  <p class="font-bold text-blue-800 dark:text-blue-100 text-sm">Two-Tower</p>
+                  <p class="text-xs text-blue-600 dark:text-blue-300 mt-1">Modelo TFRS</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Candidates -->
+              <div class="flex flex-col items-center">
+                <div class="mt-6 px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded border border-slate-300 dark:border-slate-600 border-dashed text-center min-w-[120px]">
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Filtrados</p>
+                  <p class="font-bold text-slate-700 dark:text-slate-100 text-sm">100 Candidatos</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">por usuário</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Stage 2: Ranking -->
+              <div class="flex flex-col items-center">
+                <p class="text-center text-xs text-purple-600 dark:text-purple-400 mb-2 uppercase tracking-widest font-bold">Estágio 2:<br>Ranking</p>
+                <div class="px-2 py-1 bg-purple-100 dark:bg-purple-700 rounded border border-purple-300 dark:border-purple-600 text-center min-w-[140px]">
+                  <p class="font-bold text-purple-800 dark:text-purple-100 text-sm">CatBoost</p>
+                  <p class="text-xs text-purple-600 dark:text-purple-300 mt-1">Rankeador</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Output -->
+              <div class="flex flex-col items-center">
+                <div class="mt-6 px-2 py-1 bg-green-100 dark:bg-green-700 rounded border border-green-300 dark:border-green-600 text-center min-w-[120px]">
+                  <p class="text-xs text-green-600 dark:text-green-300 mb-1 uppercase tracking-wider">Saída</p>
+                  <p class="font-bold text-green-800 dark:text-green-100 text-sm">Top 12</p>
+                  <p class="text-xs text-green-600 dark:text-green-300 mt-1">Recomendações</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8 italic">
+              Funil de 2 Estágios: 105k itens → 100 candidatos → 12 recomendações por usuário
+            </p>
           </div>
 
           <div class="grid md:grid-cols-2 gap-12">
@@ -275,52 +379,154 @@
 
         <!-- Visual Intelligence -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
-            Inteligência Visual
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            Inteligência Visual: Enfrentando o Cold-Start
           </h2>
-          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
-            Para resolver o problema de cold-start para novos itens, features visuais são extraídas das imagens dos produtos usando um backbone CNN pré-treinado.
-          </p>
           
-          <!-- Image Feature Extraction Pipeline -->
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
-            <!-- Step 1 -->
-            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
-              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">01</div>
-              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Entrada</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">JPEG Alta Res</p>
+          <!-- Problem/Solution Grid -->
+          <div class="grid md:grid-cols-2 gap-8 mb-10">
+            <!-- The Problem -->
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-rose-600 dark:text-rose-400 mb-4">O Desafio</h3>
+              <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                Um vestido novo chega ao catálogo com <strong>zero histórico de compras</strong>. Filtragem colaborativa tradicional não consegue recomendá-lo—o modelo é cego para produtos sem sinais comportamentais.
+              </p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 italic">
+                Em fast-fashion, centenas de novos itens entram no catálogo semanalmente. Esperar por dados de compra significa oportunidades de vendas perdidas.
+              </p>
             </div>
 
-            <!-- Step 2 -->
-            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
-              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">02</div>
-              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Backbone</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">ResNet50</p>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
-              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">03</div>
-              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Pooling</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Global Avg Pool</p>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center hover:border-slate-400 transition-colors">
-              <div class="mb-3 text-2xl font-light text-slate-300 dark:text-slate-600">04</div>
-              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Saída</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Vetor 2048-dim</p>
-            </div>
-
-            <!-- Step 5 -->
-            <div class="p-4 bg-slate-50 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center">
-              <div class="mb-3 text-2xl font-light text-slate-400 dark:text-slate-500">05</div>
-              <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Projeção</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Embedding 32-dim</p>
+            <!-- The Solution -->
+            <div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4">A Abordagem</h3>
+              <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                <strong>Deixar o modelo "ver" o produto.</strong> Embeddings visuais extraídos das imagens (ResNet50) são fundidos com features categóricas dentro da Item Tower.
+              </p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 italic">
+                A hipótese: um novo vestido vermelho de gala pode ser posicionado próximo a itens visualmente similares que usuários já compraram—habilitando recomendações desde o primeiro dia.
+              </p>
             </div>
           </div>
-          <p class="mt-6 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-l-2 border-slate-200 dark:border-slate-700 pl-4">
-            Isso permite recomendar novos estoques com base na similaridade visual com best-sellers passados, preenchendo a lacuna até que dados comportamentais sejam acumulados.
+
+          <!-- Feature Extraction Pipeline -->
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest">Pipeline de Extração de Features Visuais</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
+            Cada imagem de produto é transformada em um vetor numérico denso que captura similaridade visual—permitindo que o modelo entenda que um "vestido vermelho de verão" se parece com outros vestidos vermelhos, mesmo sem histórico de compras.
+          </p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6 mb-8">
+            <div class="flex flex-wrap items-stretch justify-center gap-2 md:gap-4">
+              <!-- Step 1 -->
+              <div class="flex flex-col items-center">
+                <div class="px-2 py-1 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[100px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 1</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Imagem Raw</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">224×224 JPEG</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-600 font-mono text-2xl self-center mt-6">→</span>
+              <!-- Step 2 -->
+              <div class="flex flex-col items-center">
+                <div class="px-2 py-1 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[100px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 2</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">ResNet50</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">CNN Pré-treinada</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-600 font-mono text-2xl self-center mt-6">→</span>
+              <!-- Step 3 -->
+              <div class="flex flex-col items-center">
+                <div class="px-2 py-1 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[100px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 3</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Pooling</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Global Average</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-600 font-mono text-2xl self-center mt-6">→</span>
+              <!-- Step 4 -->
+              <div class="flex flex-col items-center">
+                <div class="px-2 py-1 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[100px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 4</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Vetor de Features</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">2.048 dimensões</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-600 font-mono text-2xl mt-6 self-center">→</span>
+              <!-- Step 5 -->
+              <div class="flex flex-col items-center">
+                <div class="px-2 py-1 bg-slate-100 dark:bg-slate-600 rounded border border-slate-300 dark:border-slate-500 text-center min-w-[100px]">
+                  <p class="text-xs text-slate-500 dark:text-base dark:text-bold mb-1 uppercase tracking-wider">Saída</p>
+                  <p class="font-bold text-slate-900 dark:text-slate-900 text-sm">Embed Visual</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-600 mt-1">32 dimensões</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8 italic">
+              Redução de dimensionalidade: 150.528 pixels → 2.048 features → embedding 32-dim
+            </p>
+          </div>
+
+          <!-- Fusion Architecture Diagram -->
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest">Item Tower: Fusão Multimodal</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
+            A Item Tower combina <strong>dois tipos de sinal</strong>: metadados categóricos (o que o produto <em>é</em>) e features visuais (como ele <em>se parece</em>). Essa fusão cria uma representação mais rica do item.
+          </p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6 mb-6">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+              <!-- Categorical Branch -->
+              <div class="flex flex-col items-center gap-2 text-center">
+                <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Sinal A</p>
+                <div class="px-2 py-4 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 min-w-[160px]">
+                  <p class="font-bold text-slate-900 dark:text-white text-sm mb-2">Features Categóricas</p>
+                  <p class="font-mono text-xs text-slate-600 dark:text-slate-400">article_id</p>
+                  <p class="font-mono text-xs text-slate-600 dark:text-slate-400">product_type</p>
+                  <p class="font-mono text-xs text-slate-600 dark:text-slate-400">color, section</p>
+                </div>
+                <span class="text-slate-400 dark:text-slate-500 font-mono">↓</span>
+                <div class="px-4 py-2 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600">
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Lookup Tables</p>
+                </div>
+              </div>
+              
+              <!-- Plus Sign -->
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center bg-white dark:bg-slate-700">
+                  <span class="text-2xl text-slate-500 dark:text-slate-400 font-bold">+</span>
+                </div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Concat</p>
+              </div>
+              
+              <!-- Visual Branch -->
+              <div class="flex flex-col items-center gap-2 text-center">
+                <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Sinal B</p>
+                <div class="px-2 py-4 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 min-w-[160px]">
+                  <p class="font-bold text-slate-900 dark:text-white text-sm mb-2">Features Visuais</p>
+                  <p class="font-mono text-xs text-slate-600 dark:text-slate-400">ResNet50 backbone</p>
+                  <p class="font-mono text-xs text-slate-600 dark:text-slate-400">vetor 2.048-dim</p>
+                  <p class="font-mono text-xs text-slate-600 dark:text-slate-400">pré-computado offline</p>
+                </div>
+                <span class="text-slate-400 dark:text-slate-500 font-mono">↓</span>
+                <div class="px-4 py-2 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600">
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Dense Projection</p>
+                </div>
+              </div>
+              
+              <!-- Arrow to Result -->
+              <span class="text-2xl text-slate-300 dark:text-slate-400 font-mono">→</span>
+              
+              <!-- Result -->
+              <div class="flex flex-col items-center text-center">
+                <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">SAÍDA</p>
+                <div class="px-6 py-12 bg-slate-100 dark:bg-slate-600 rounded border border-slate-200 dark:border-slate-500">
+                  <p class="font-bold text-slate-900 dark:text-slate-600 text-sm">Item Embedding</p>
+                  <p class="font-mono text-lg font-bold text-slate-700 dark:text-slate-400 my-1">32-dim</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-600">espaço latente compartilhado</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-l-2 border-amber-500 pl-4">
+            <strong>Status:</strong> Esta fusão multimodal representa um <strong>experimento arquitetural</strong>. Embora o pipeline esteja pronto para produção, isolar a contribuição do sinal visual para a performance de cold-start requer infraestrutura de A/B testing fora do escopo deste projeto. A implementação demonstra proficiência em integração de visão computacional e embeddings multimodais.
           </p>
         </section>
 
@@ -333,125 +539,52 @@
           <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
             O sistema é construído como um Grafo Acíclico Dirigido (DAG), garantindo reprodutibilidade.
           </p>
-          <div class="relative">
-            <!-- Connecting Line (Desktop) -->
-            <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 dark:bg-slate-700 -z-10"></div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <!-- Step 1 -->
-              <div class="bg-white dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center relative">
-                <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
-                  <span class="text-xs font-mono font-bold text-slate-500">01</span>
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+            <div class="flex flex-wrap items-stretch justify-center gap-2 md:gap-4">
+              <!-- Etapa 1: uv -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 1</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">uv</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Env Determinístico</p>
                 </div>
-                <h4 class="font-bold text-slate-900 dark:text-white mb-1">uv</h4>
-                <p class="text-xs text-slate-500">Env Determinístico</p>
               </div>
-
-              <!-- Step 2 -->
-              <div class="bg-white dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center relative">
-                 <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
-                  <span class="text-xs font-mono font-bold text-slate-500">02</span>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <!-- Etapa 2: Config -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 2</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Config</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Params Desacoplados</p>
                 </div>
-                <h4 class="font-bold text-slate-900 dark:text-white mb-1">Config</h4>
-                <p class="text-xs text-slate-500">Params Desacoplados</p>
               </div>
-
-              <!-- Step 3 -->
-              <div class="bg-white dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center relative">
-                 <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
-                  <span class="text-xs font-mono font-bold text-slate-500">03</span>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <!-- Etapa 3: Leakage -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Etapa 3</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Leakage</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Split Temporal Rígido</p>
                 </div>
-                <h4 class="font-bold text-slate-900 dark:text-white mb-1">Leakage</h4>
-                <p class="text-xs text-slate-500">Split Temporal Rígido</p>
               </div>
-
-              <!-- Step 4 -->
-              <div class="bg-white dark:bg-slate-800 p-6 rounded border-slate-200 dark:border-slate-700 text-center relative shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
-                 <div class="w-10 h-10 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-600">
-                   <span class="text-xs font-mono font-bold text-slate-500">04</span>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <!-- Etapa 4: MLflow -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-slate-100 dark:bg-slate-600 rounded border border-slate-300 dark:border-slate-500 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Etapa 4</p>
+                  <p class="font-bold text-slate-900 dark:text-slate-600 text-sm">MLflow</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Rastreabilidade Total</p>
                 </div>
-                <h4 class="font-bold text-slate-900 dark:text-white mb-1">MLflow</h4>
-                <p class="text-xs text-slate-500">Rastreabilidade Total</p>
               </div>
             </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8 italic">
+              Pipeline DAG: Ambiente → Config → Split de Dados → Tracking de Experimentos
+            </p>
           </div>
         </section>
-
-        <!-- Results -->
-        <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
-            Resultados & Impacto
-          </h2>
-          <div class="overflow-hidden">
-            <table
-              class="w-full text-left text-sm text-slate-600 dark:text-slate-400"
-            >
-              <thead
-                class="text-xs text-slate-900 uppercase border-b border-slate-200 dark:border-slate-700 dark:text-slate-200"
-              >
-                <tr>
-                  <th scope="col" class="py-4 font-bold tracking-wider">Arquitetura</th>
-                  <th scope="col" class="py-4 font-bold tracking-wider">Configuração</th>
-                  <th scope="col" class="py-4 font-bold tracking-wider">MAP@12</th>
-                  <th scope="col" class="py-4 text-right font-bold tracking-wider">Ganho (Lift)</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                <tr
-                  class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-                >
-                  <td
-                    class="py-4 font-medium text-slate-900 dark:text-white"
-                  >
-                    Baseline
-                  </td>
-                  <td class="py-4">Ingênuo "Mais Populares"</td>
-                  <td class="py-4 font-mono">0.0026</td>
-                  <td class="py-4 text-right opacity-50">-</td>
-                </tr>
-                <tr
-                  class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-                >
-                  <td
-                    class="py-4 font-medium text-slate-900 dark:text-white"
-                  >
-                    Apenas Retrieval
-                  </td>
-                  <td class="py-4">Two-Tower (User + Item + Imagem)</td>
-                  <td class="py-4 font-mono">0.0032</td>
-                  <td class="py-4 text-right">
-                    <div class="flex items-center justify-end gap-3">
-                      <span class="text-green-600 font-medium">+19.7%</span>
-                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-green-500 rounded-full w-[5%]"></div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr
-                  class="bg-slate-50/50 dark:bg-slate-800/20 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors"
-                >
-                  <td class="pt-4 pb-4 pl-2 font-bold text-slate-900 dark:text-white">
-                    Funil 2-Estágios
-                  </td>
-                  <td class="py-4 font-bold text-slate-900 dark:text-white">
-                    Two-Tower + CatBoost Ranker
-                  </td>
-                  <td class="py-4 font-bold text-blue-600 font-mono">0.0130</td>
-                  <td class="py-4 pr-2 text-right">
-                    <div class="flex items-center justify-end gap-3">
-                      <span class="font-bold text-green-600">+389%</span>
-                       <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-green-500 rounded-full w-full"></div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
 
 
         <!-- Kaggle Gap Analysis (Novo) -->

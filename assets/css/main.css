@@ -76,6 +76,30 @@ h4 {
   line-height: 1.2;
 }
 
+/* 2.1. Dark Mode Text Color Overrides */
+/* Fixes contrast for Tailwind text-gray-* classes in dark mode */
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-gray-600 {
+  color: #94a3b8; /* slate-400 */
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: #cbd5e1; /* slate-300 */
+}
+
+[data-theme="dark"] .text-gray-900 {
+  color: #f1f5f9; /* slate-100 */
+}
+
+/* Project Card Text in Dark Mode */
+[data-theme="dark"] .project-title {
+  color: #f1f5f9; /* slate-100 */
+}
+
+[data-theme="dark"] .project-description {
+  color: #94a3b8; /* slate-400 */
+}
+
 /* 3. Estilos de Componentes e Utilidades */
 
 .container {
@@ -110,30 +134,52 @@ button,
 }
 
 /* Estilo de botão primário */
+/* Estilo de botão primário - Updated to match "GitHub" style (Executive) */
 .btn-primary {
-  background-color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(17 24 39); /* Slate-900 */
   color: #ffffff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem; /* rounded-lg */
+  font-weight: 700;
+  font-size: 1.125rem; /* text-lg */
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent-dark);
+  background-color: rgb(55 65 81); /* Slate-700 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Dark Mode for Primary Button - Inverted */
+[data-theme="dark"] .btn-primary {
+  background-color: #ffffff;
+  color: rgb(17 24 39); /* Slate-900 */
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: #f1f5f9; /* Slate-100 */
 }
 
 /* Estilo de botão secundário */
 .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
   color: var(--color-primary);
   border: 2px solid var(--color-border);
   padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
+  border-radius: 0.5rem; /* Match primary radius */
   font-weight: 600;
 }
 
 .btn-secondary:hover {
   background-color: var(--color-background-light);
+  border-color: var(--color-primary);
 }
 
 /* Estilo para links de navegação e rodapé */
@@ -206,4 +252,12 @@ a:hover {
 [data-theme="dark"] #theme-toggle {
   background-color: var(--color-background-card);
   color: var(--color-primary);
+}
+
+/* Language Switcher - Active Button in Dark Mode */
+[data-theme="dark"] #lang-en.bg-white,
+[data-theme="dark"] #lang-pt.bg-white {
+  background-color: #3b82f6 !important; /* blue-600 */
+  color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
 }

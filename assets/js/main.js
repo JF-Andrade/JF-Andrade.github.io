@@ -114,13 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!btnEn || !btnPt) return;
 
-    // Estilos de estado
     const activeClass = [
       "bg-white",
-      "dark:bg-slate-700",
+      "dark:bg-blue-600",
       "shadow-sm",
       "text-slate-900",
-      "dark:text-slate-100",
+      "dark:text-white",
     ];
     const inactiveClass = [
       "text-slate-600",
@@ -150,15 +149,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lógica de redirecionamento (Mantida igual)
     // Logic for URL redirection (Language Switch)
     const currentPathname = window.location.pathname;
-    
+
     // Normalize path to remove leading slash for easier processing, but keep it for logic
     let cleanPath = currentPathname;
-    
+
     // Remove '/pt/' prefix if present to get the "canonical" English path
     if (cleanPath.startsWith("/pt/")) {
-        cleanPath = cleanPath.substring(3); // Remove '/pt'
+      cleanPath = cleanPath.substring(3); // Remove '/pt'
     } else if (cleanPath === "/pt") {
-        cleanPath = "/";
+      cleanPath = "/";
     }
 
     btnEn.addEventListener("click", () => {
@@ -385,18 +384,21 @@ document.addEventListener("DOMContentLoaded", () => {
           document.documentElement.classList.remove("dark");
           localStorage.removeItem("theme");
           updateIcons("light");
-          themeToggle.setAttribute('aria-pressed', 'false');
+          themeToggle.setAttribute("aria-pressed", "false");
         } else {
           document.documentElement.setAttribute("data-theme", "dark");
           document.documentElement.classList.add("dark");
           localStorage.setItem("theme", "dark");
           updateIcons("dark");
-          themeToggle.setAttribute('aria-pressed', 'true');
+          themeToggle.setAttribute("aria-pressed", "true");
         }
       });
-      
+
       // Define estado inicial do aria-pressed
-      themeToggle.setAttribute('aria-pressed', currentTheme === 'dark' ? 'true' : 'false');
+      themeToggle.setAttribute(
+        "aria-pressed",
+        currentTheme === "dark" ? "true" : "false"
+      );
     }
   }
 });
