@@ -85,12 +85,10 @@
       <div class="max-w-3xl mx-auto space-y-20">
         <!-- Executive Summary (Moved Up) -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Resumo
           </h2>
-          <div
-            class="prose prose-lg dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed"
-          >
+          <div class="space-y-6 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             <p>
               Originado da rigorosa competição <strong>H&M Personalized Fashion Recommendations</strong> do Kaggle, este projeto evolui uma solução competitiva para uma disciplina robusta de Engenharia de Software e MLOps.
             </p>
@@ -102,7 +100,7 @@
 
         <!-- Technologies -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Tecnologias Utilizadas
           </h2>
           <div class="flex flex-wrap gap-2">
@@ -155,7 +153,7 @@
 
         <!-- The Business Challenge -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             O Desafio de Negócio
           </h2>
           <div
@@ -258,10 +256,10 @@
 
         <!-- Solution Architecture -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Arquitetura da Solução
           </h2>
-          <p class="text-lg text-slate-700 dark:text-slate-300 mb-10 leading-relaxed">
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
             Para resolver a intensidade computacional de ranquear 105.000 itens por usuário, foi implementada uma estratégia de "Funil". Isso divide o problema em uma fase de triagem rápida e grossa (Retrieval) e uma fase de pontuação lenta e precisa (Ranking).
           </p>
 
@@ -379,7 +377,7 @@
 
         <!-- Visual Intelligence -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Inteligência Visual: Enfrentando o Cold-Start
           </h2>
           
@@ -537,7 +535,7 @@
             Engenharia & MLOps
           </h2>
           <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
-            O sistema é construído como um Grafo Acíclico Dirigido (DAG), garantindo reprodutibilidade.
+            A arquitetura segue princípios rigorosos de MLOps para garantir um ciclo de vida de produção robusto. O <strong>Gerenciamento de Dependências</strong> via <code>uv</code> assegura um ambiente determinístico em todas as etapas. O <strong>Desacoplamento de Configuração</strong> permite o ajuste de hiperparâmetros sem alteração de código. A integridade dos dados é preservada por um <strong>Split Temporal Rígido</strong>, prevenindo o vazamento de sinais futuros nos dados de treino. Finalmente, o <strong>MLflow</strong> orquestra todo o DAG, fornecendo rastreabilidade total desde os dados brutos até os artefatos do modelo.
           </p>
           <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
             <div class="flex flex-wrap items-stretch justify-center gap-2 md:gap-4">
@@ -589,7 +587,7 @@
 
         <!-- Kaggle Gap Analysis (Novo) -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Benchmark: Produção vs. Vencedores Kaggle
           </h2>
           <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">

@@ -84,12 +84,10 @@
       <div class="max-w-3xl mx-auto space-y-20">
         <!-- Executive Summary (Moved Up) -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Summary
           </h2>
-          <div
-            class="prose prose-lg dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed"
-          >
+          <div class="space-y-6 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             <p>
               This project demonstrates the end-to-end engineering of a
               <strong>Production-Grade Recommender System</strong> capable of
@@ -110,7 +108,7 @@
 
         <!-- Technologies -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Technologies Used
           </h2>
           <div class="flex flex-wrap gap-2">
@@ -163,7 +161,7 @@
 
         <!-- The Business Challenge -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             The Business Challenge
           </h2>
           <div
@@ -268,10 +266,10 @@
 
         <!-- Solution Architecture -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Solution Architecture
           </h2>
-          <p class="text-lg text-slate-700 dark:text-slate-300 mb-10 leading-relaxed">
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
             To solve the scale problem ($144B$ pairs), a "Funnel" strategy was
             implemented, inspired by architectures used at YouTube and LinkedIn.
           </p>
@@ -386,7 +384,7 @@
 
         <!-- Visual Intelligence -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Visual Intelligence: Tackling Cold-Start
           </h2>
           
@@ -544,8 +542,7 @@
             Engineering & MLOps
           </h2>
           <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
-            The system is a Directed Acyclic Graph (DAG) of processing steps,
-            ensuring reproducibility and scalability.
+            The architecture follows strict MLOps principles to ensure a robust production lifecycle. <strong>Dependency Management</strong> via <code>uv</code> guarantees a deterministic environment across all stages. <strong>Configuration Decoupling</strong> allows hyperparameter tuning without code changes. Data integrity is preserved by a <strong>Strict Time Split</strong>, preventing future signal leakage into training data. Finally, <strong>MLflow</strong> orchestrates the entire DAG, providing full traceability from raw data to model artifacts.
           </p>
           <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
             <div class="flex flex-wrap items-stretch justify-center gap-2 md:gap-4">
@@ -597,7 +594,7 @@
 
         <!-- Kaggle Gap Analysis (New) -->
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Benchmark: Production vs. Kaggle Gold
           </h2>
           <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
