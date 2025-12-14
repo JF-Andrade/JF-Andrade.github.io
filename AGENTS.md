@@ -88,6 +88,17 @@ The project uses a specific pattern to load shared components (`header.html`, `f
 - **DON'T** use `alert()` for debugging. Use `console.log` or UI feedback.
 - **DON'T** commit `node_modules`.
 
+### 6.1 Git Best Practices (Atomic Commits)
+
+- **Rule:** Perform **Atomic Commits**. A commit should represent a single logical change (a unit of work), not a chronological period (e.g., "end of day").
+- **Definition:** You should be able to revert the commit without side effects on unrelated features.
+- **Workflow:**
+  1.  Make a specific change (e.g., "Fix button color").
+  2.  Verify/Test.
+  3.  **Commit immediately.**
+  4.  Repeat.
+- **Pushing:** Push to remote when a feature is complete or at the end of the session, but keep the commit history granular.
+
 ## 7. Verification Checklist
 
 Before finishing a task, verify:
