@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Study: Marketing Mix Modeling - eCommerce ROI</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+
+    <!-- MathJax for Formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+
+  <body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-7xl">
+      <!-- Project Header -->
+      <section class="py-12 md:py-16 text-center">
+        <a 
+          href="https://figshare.com/articles/dataset/Multi-Region_Marketing_Mix_Modeling_MMM_Dataset_for_Several_eCommerce_Brands/25314841" 
+          target="_blank" 
+          class="text-sm font-mono text-blue-600 dark:text-blue-400 mb-4 uppercase tracking-widest hover:underline hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+        >
+          Multi-Region eCommerce Dataset
+        </a>
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-slate-900 dark:text-white tracking-tight leading-tight"
+        >
+          Marketing Mix Modeling:<br />eCommerce Digital Channels
+        </h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+          Bayesian Media Mix Model to quantify ROI of digital advertising across
+          Google, Meta, and TikTok, with multi-region hierarchical analysis.
+        </p>
+      </section>
+
+      <!-- Summary & Key Metrics -->
+      <section class="max-w-3xl mx-auto mb-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+          <!-- Metric 1 -->
+          <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Model Fit (R² Test)</h3>
+            <p class="text-3xl font-bold text-slate-900 dark:text-white font-mono">0.42</p>
+          </div>
+          <!-- Metric 2 -->
+           <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Prediction Error</h3>
+            <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">21.3%</p>
+          </div>
+          <!-- Metric 3 -->
+           <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Regional Coverage</h3>
+            <p class="text-2xl font-bold text-slate-900 dark:text-white">18 <span class="text-xs block font-normal text-slate-400 mt-1">Territories</span></p>
+          </div>
+          <!-- Metric 4 -->
+           <div class="p-6 text-center group hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Top Channel</h3>
+            <p class="text-2xl font-bold text-green-600 dark:text-green-400">64% <span class="text-xs block font-normal text-slate-400 mt-1">Google Shopping</span></p>
+          </div>
+      </section>
+
+      <!-- Case Study Body -->
+      <div class="max-w-3xl mx-auto space-y-20">
+        <!-- Executive Summary -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Summary
+          </h2>
+          <div class="space-y-6 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            <p>
+              Digital marketing teams allocate millions in advertising spend across multiple platforms, but often lack rigorous methods to measure true ROI. Traditional <strong>last-click attribution</strong> fails to capture carryover effects (adstock), saturation, and cross-channel interactions.
+            </p>
+            <p>
+              This project applies <strong>Bayesian Media Mix Modeling</strong> using PyMC-Marketing to provide statistically rigorous ROI estimates with uncertainty quantification, optimal budget allocation recommendations, and multi-region analysis with <strong>hierarchical modeling</strong> across 18 territories and 8 currencies.
+            </p>
+            <p>
+              The project delivers a complete <strong>decision-support system</strong>: an interactive 6-page Streamlit dashboard featuring <strong>Budget Optimization</strong> for spend reallocation scenarios and <strong>Regional Analysis</strong> across 18 territories, plus 5 publication-ready visualizations with 94% HDI uncertainty bands and a fully reproducible ML pipeline tracked with MLflow.
+            </p>
+          </div>
+        </section>
+
+        <!-- What You Get - Deliverables Hero -->
+        <section class="mb-20">
+          <h2 class="text-center text-sm font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">
+            Key Deliverables
+          </h2>
+          <p class="text-center text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+            Beyond the Bayesian model, this project delivers tangible artifacts ready for business use:
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Card 1: Dashboard -->
+            <div class="p-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl text-white text-center shadow-lg hover:shadow-xl transition-shadow">
+              <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
+              </svg>
+              <p class="text-3xl font-bold">6</p>
+              <p class="text-sm opacity-90">Dashboard Pages</p>
+            </div>
+            <!-- Card 2: Charts -->
+            <div class="p-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl text-white text-center shadow-lg hover:shadow-xl transition-shadow">
+              <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+              </svg>
+              <p class="text-3xl font-bold">5</p>
+              <p class="text-sm opacity-90">Export Charts</p>
+            </div>
+            <!-- Card 3: Artifacts -->
+            <div class="p-6 bg-gradient-to-br from-green-500 to-green-600 rounded-xl text-white text-center shadow-lg hover:shadow-xl transition-shadow">
+              <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+              </svg>
+              <p class="text-3xl font-bold">3</p>
+              <p class="text-sm opacity-90">Data Exports</p>
+            </div>
+            <!-- Card 4: Pipeline -->
+            <div class="p-6 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl text-white text-center shadow-lg hover:shadow-xl transition-shadow">
+              <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <p class="text-3xl font-bold">CLI</p>
+              <p class="text-sm opacity-90">+ MLflow</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technologies -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Technologies Used
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Python</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >PyMC-Marketing</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >PyMC</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >ArviZ</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >MLflow</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Streamlit</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Pandas</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >NumPy</span
+            >
+            <span
+              class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium hover:border-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default"
+              >Scikit-learn</span
+            >
+          </div>
+        </section>
+
+        <!-- The Business Challenge -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            The Business Challenge
+          </h2>
+          <div
+            class="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-lg"
+          >
+            <p class="text-lg mb-6 text-slate-700 dark:text-slate-300">
+              Measuring the true impact of digital advertising requires solving three interconnected challenges that traditional attribution models ignore:
+            </p>
+            <ul class="space-y-4">
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-10 h-10 text-3xl font-light text-slate-300 dark:text-slate-600 flex items-center justify-center">01</span>
+                <div>
+                  <strong class="block text-slate-900 dark:text-white">Carryover Effects (Adstock)</strong>
+                  <span class="text-slate-600 dark:text-slate-400 text-sm">Ads continue influencing conversions days or weeks after exposure. A customer who saw an ad today may purchase next month.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-10 h-10 text-3xl font-light text-slate-300 dark:text-slate-600 flex items-center justify-center">02</span>
+                <div>
+                  <strong class="block text-slate-900 dark:text-white">Saturation Effects</strong>
+                  <span class="text-slate-600 dark:text-slate-400 text-sm">Doubling spend does not double returns. Each channel has diminishing marginal returns at higher investment levels.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-10 h-10 text-3xl font-light text-slate-300 dark:text-slate-600 flex items-center justify-center">03</span>
+                <div>
+                  <strong class="block text-slate-900 dark:text-white">Cross-Channel Interactions</strong>
+                  <span class="text-slate-600 dark:text-slate-400 text-sm">Channels work synergistically. Google Search may convert customers who were first exposed via Meta awareness campaigns.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Results -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            Results & Impact
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            The <strong>Hierarchical Bayesian</strong> model achieved significant improvements over the Ridge Regression baseline, while providing full uncertainty quantification via posterior distributions.
+          </p>
+
+          <!-- Model Comparison Table -->
+          <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 mb-8">
+            <table
+              class="w-full text-left text-sm text-slate-600 dark:text-slate-400"
+            >
+              <thead
+                class="text-xs text-slate-900 uppercase border-b border-slate-200 dark:border-slate-700 dark:text-slate-200"
+              >
+                <tr>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">Model</th>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">Setup</th>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">R² Train</th>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">R² Test</th>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">MAPE</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <tr
+                  class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
+                >
+                  <td class="py-4 px-4 font-medium text-slate-900 dark:text-white">Ridge Baseline</td>
+                  <td class="py-4 px-4">UK Only (GBP)</td>
+                  <td class="py-4 px-4 font-mono">0.60</td>
+                  <td class="py-4 px-4 font-mono">0.13</td>
+                  <td class="py-4 px-4 font-mono">14.7%</td>
+                </tr>
+                <tr
+                  class="bg-slate-50/50 dark:bg-slate-800/20 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors"
+                >
+                  <td class="py-4 px-4 font-bold text-slate-900 dark:text-white">Hierarchical Bayesian</td>
+                  <td class="py-4 px-4 font-bold text-slate-900 dark:text-white">18 Territories, Nested</td>
+                  <td class="py-4 px-4 font-bold text-blue-600 font-mono">0.85</td>
+                  <td class="py-4 px-4 font-bold text-blue-600 font-mono">0.42</td>
+                  <td class="py-4 px-4 font-bold font-mono">21.3%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Channel ROI Table -->
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Channel ROI Estimates (UK Territory)</h3>
+          <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+            <table
+              class="w-full text-left text-sm text-slate-600 dark:text-slate-400"
+            >
+              <thead
+                class="text-xs text-slate-900 uppercase border-b border-slate-200 dark:border-slate-700 dark:text-slate-200"
+              >
+                <tr>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">Channel</th>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">ROI</th>
+                  <th scope="col" class="py-4 px-4 font-bold tracking-wider">Contribution</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <tr class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">GOOGLE_SHOPPING</td>
+                  <td class="py-3 px-4 font-mono">0.0126</td>
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <span class="font-bold text-green-600">64.0%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full" style="width: 64%"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">GOOGLE_PMAX</td>
+                  <td class="py-3 px-4 font-mono">0.0092</td>
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <span class="font-medium text-green-600">17.3%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full" style="width: 17.3%"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">META_FACEBOOK</td>
+                  <td class="py-3 px-4 font-mono">0.0039</td>
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <span class="font-medium text-green-600">15.3%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full" style="width: 15.3%"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">OTHER_SPEND</td>
+                  <td class="py-3 px-4 font-mono">0.0032</td>
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <span class="font-medium text-slate-500">2.0%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-slate-400 rounded-full" style="width: 2%"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">META_INSTAGRAM</td>
+                  <td class="py-3 px-4 font-mono">0.0009</td>
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <span class="font-medium text-slate-500">1.0%</span>
+                      <div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-slate-400 rounded-full" style="width: 1%"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Solution Architecture -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Solution Architecture
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            The pipeline processes raw advertising data through feature engineering and Bayesian inference to produce actionable ROI estimates and budget optimization recommendations.
+          </p>
+
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6 mb-12">
+            <div class="flex flex-wrap items-stretch justify-center md:gap-2">
+              <!-- Input -->
+              <div class="flex flex-col items-center">
+                <div class="mt-6 px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded border border-slate-300 dark:border-slate-600 text-center min-w-[120px]">
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Input</p>
+                  <p class="font-bold text-slate-800 dark:text-slate-100 text-sm">132k Rows</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Daily Data</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Aggregation -->
+              <div class="flex flex-col items-center">
+                <p class="text-xs text-center text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-widest font-bold">Preprocessing</p>
+                <div class="px-2 py-1 bg-white dark:bg-slate-700 rounded border border-slate-300 dark:border-slate-600 text-center min-w-[120px]">
+                  <p class="font-bold text-slate-800 dark:text-slate-100 text-sm">Aggregation</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">253 Weeks</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Feature Engineering -->
+              <div class="flex flex-col items-center">
+                <p class="text-xs text-center text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-widest font-bold">Transforms</p>
+                <div class="px-2 py-1 bg-blue-100 dark:bg-blue-700 rounded border border-blue-300 dark:border-blue-600 text-center min-w-[140px]">
+                  <p class="font-bold text-blue-800 dark:text-blue-100 text-sm">Adstock + Saturation</p>
+                  <p class="text-xs text-blue-600 dark:text-blue-300 mt-1">Learned Parameters</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- MCMC -->
+              <div class="flex flex-col items-center">
+                <p class="text-xs text-center text-purple-600 dark:text-purple-400 mb-2 uppercase tracking-widest font-bold">Inference</p>
+                <div class="px-2 py-1 bg-purple-100 dark:bg-purple-700 rounded border border-purple-300 dark:border-purple-600 text-center min-w-[140px]">
+                  <p class="font-bold text-purple-800 dark:text-purple-100 text-sm">MCMC Sampling</p>
+                  <p class="text-xs text-purple-600 dark:text-purple-300 mt-1">4 × 2000 Draws</p>
+                </div>
+              </div>
+              <span class="text-slate-400 dark:text-slate-500 font-mono text-2xl self-center p-1 mt-8">→</span>
+              
+              <!-- Output -->
+              <div class="flex flex-col items-center">
+                <div class="mt-6 px-2 py-1 bg-green-100 dark:bg-green-700 rounded border border-green-300 dark:border-green-600 text-center min-w-[120px]">
+                  <p class="text-xs text-green-600 dark:text-green-300 mb-1 uppercase tracking-wider">Output</p>
+                  <p class="font-bold text-green-800 dark:text-green-100 text-sm">ROI + Budget</p>
+                  <p class="text-xs text-green-600 dark:text-green-300 mt-1">Optimization</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8 italic">
+              Pipeline: Raw Data → Weekly Aggregation → Bayesian Transforms → MCMC → ROI Estimates
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3
+                class="text-lg font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-2"
+              >
+                <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+                Ridge Baseline
+              </h3>
+              <ul class="space-y-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Approach:</strong> Frequentist linear regression with L2 regularization.
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Scope:</strong> Single region (UK only, GBP currency).
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Runtime:</strong> ~15 minutes on CPU.
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Limitation:</strong> No uncertainty quantification.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-lg font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-2"
+              >
+                <span class="w-2 h-2 bg-purple-600 rounded-full"></span>
+                Hierarchical Bayesian
+              </h3>
+              <ul class="space-y-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                <li><strong class="text-slate-900 dark:text-slate-200">Approach:</strong> Full probabilistic model with PyMC.</li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Hierarchy:</strong> Currency → Territory → Channel (nested structure).
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Runtime:</strong> 4-8 hours on CPU (Numba backend).
+                </li>
+                <li>
+                  <strong class="text-slate-900 dark:text-slate-200">Advantage:</strong> Full posterior distributions for all parameters.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Methodology -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Methodology: Bayesian Media Mix Model
+          </h2>
+          
+          <!-- Revenue Decomposition -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg border border-slate-200 dark:border-slate-700 mb-8">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest">Revenue Decomposition</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
+              The model decomposes total revenue into attributable components:
+            </p>
+            <div class="bg-white dark:bg-slate-700 p-4 rounded border border-slate-200 dark:border-slate-600 font-mono text-center text-slate-800 dark:text-slate-200">
+              Revenue = Base + Σ(Channel Effects) + Controls + Seasonality + ε
+            </div>
+          </div>
+
+          <!-- Transforms -->
+          <div class="grid md:grid-cols-2 gap-8 mb-10">
+            <!-- Adstock -->
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4">Adstock (Carryover)</h3>
+              <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                <strong>GeometricAdstock</strong> with learned decay rate (α). Captures how ads continue to influence conversions over time.
+              </p>
+              <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                <li><strong>α ~ Beta(2, 2)</strong> — Decay rate centered at 0.5</li>
+                <li><strong>l_max = 12</strong> — Maximum lag of 12 weeks</li>
+              </ul>
+            </div>
+
+            <!-- Saturation -->
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-4">Saturation (Diminishing Returns)</h3>
+              <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                <strong>LogisticSaturation</strong> models decreasing marginal returns. Hill curve with learned parameters.
+              </p>
+              <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                <li><strong>L ~ HalfNormal(1.0)</strong> — Half-saturation point</li>
+                <li><strong>k ~ Gamma(2, 1)</strong> — Curve steepness</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Hierarchical Structure -->
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest">Hierarchical Structure</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
+            The model shares information across regions via a nested hierarchy, allowing territories with less data to borrow strength from the global distribution.
+          </p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6 mb-8">
+            <div class="flex flex-wrap items-stretch justify-center gap-2 md:gap-4">
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Level 1</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Global</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">μ, σ priors</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Level 2</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Currency</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">8 groups (GBP, USD...)</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Level 3</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Territory</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">18 regions</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-slate-100 dark:bg-slate-600 rounded border border-slate-300 dark:border-slate-500 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Level 4</p>
+                  <p class="font-bold text-slate-900 dark:text-slate-600 text-sm">Channel</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">5 active channels</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8 italic">
+              Nested Hierarchy: Global → Currency → Territory → Channel
+            </p>
+          </div>
+
+          <!-- MCMC Config -->
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest">MCMC Sampling Configuration</h3>
+          <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+            <table class="w-full text-left text-sm text-slate-600 dark:text-slate-400">
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">Sampler</td>
+                  <td class="py-3 px-4">PyMC with Numba Backend</td>
+                </tr>
+                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">Chains</td>
+                  <td class="py-3 px-4 font-mono">4</td>
+                </tr>
+                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">Draws / Tune</td>
+                  <td class="py-3 px-4 font-mono">2,000 / 1,500</td>
+                </tr>
+                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">Target Accept</td>
+                  <td class="py-3 px-4 font-mono">0.99</td>
+                </tr>
+                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td class="py-3 px-4 font-medium text-slate-900 dark:text-white">Convergence</td>
+                  <td class="py-3 px-4">R-hat < 1.01, ESS > 400, Zero divergences</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Project Deliverables -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Project Deliverables
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            Beyond the model itself, this project delivers a complete <strong>decision-support system</strong> with interactive dashboards, visualizations, and reproducible pipelines.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-10">
+            <!-- Dashboard -->
+            <div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4">Interactive Dashboard</h3>
+              <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                <strong>Streamlit application</strong> with 6 pages for stakeholder interaction and scenario simulation.
+              </p>
+              <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                <li>• Executive Summary — High-level KPIs</li>
+                <li>• Budget Optimization — Reallocation scenarios</li>
+                <li>• Regional Analysis — Territory breakdowns</li>
+                <li>• Model Details — MCMC diagnostics</li>
+                <li>• Model Comparison — Baseline vs Hierarchical</li>
+                <li>• Project Value — Business impact ROI</li>
+              </ul>
+            </div>
+
+            <!-- Visualizations -->
+            <div class="p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-4">Export Visualizations</h3>
+              <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                <strong>Publication-ready charts</strong> saved to the <code>models/</code> directory.
+              </p>
+              <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                <li>• Channel contributions over time</li>
+                <li>• Channel share with 94% HDI bands</li>
+                <li>• Waterfall revenue decomposition</li>
+                <li>• Saturation curves per channel</li>
+                <li>• Model fit diagnostics</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Data Artifacts -->
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-4">Data Artifacts</h3>
+              <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                <li><code>roi_baseline.csv</code> — ROI rankings by channel</li>
+                <li><code>metrics_baseline.json</code> — R², MAPE, MAE</li>
+                <li><code>mmm_baseline_trace.nc</code> — MCMC trace (ArviZ)</li>
+              </ul>
+            </div>
+
+            <!-- Pipeline -->
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+              <h3 class="font-mono text-xs uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-4">Reproducible Pipeline</h3>
+              <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                <li><code>run_pipeline.py</code> — CLI with --baseline-only, --dry-run</li>
+                <li><code>environment.yml</code> — Conda + Intel MKL</li>
+                <li>MLflow tracking — Full experiment lineage</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Engineering & MLOps -->
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Engineering & MLOps
+          </h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+            The architecture follows strict MLOps principles: <strong>deterministic environments</strong>, <strong>centralized configuration</strong>, <strong>temporal data integrity</strong>, and <strong>full experiment traceability</strong>.
+          </p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+            <div class="flex flex-wrap items-stretch justify-center gap-2 md:gap-4">
+              <!-- Step 1: uv -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Step 1</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Environment</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Conda + MKL</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <!-- Step 2: Config -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Step 2</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Config</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">src/config.py</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <!-- Step 3: Validation -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-white dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Step 3</p>
+                  <p class="font-bold text-slate-900 dark:text-white text-sm">Validation</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pydantic Schemas</p>
+                </div>
+              </div>
+              <span class="text-slate-300 dark:text-slate-500 font-mono text-2xl self-center mt-6">→</span>
+              
+              <!-- Step 4: MLflow -->
+              <div class="flex flex-col items-center">
+                <div class="px-4 py-3 bg-slate-100 dark:bg-slate-600 rounded border border-slate-300 dark:border-slate-500 text-center min-w-[110px]">
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Step 4</p>
+                  <p class="font-bold text-slate-900 dark:text-slate-600 text-sm">MLflow</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Full Traceability</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8 italic">
+              Pipeline: Environment → Config → Schema Validation → Experiment Tracking
+            </p>
+          </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="text-center py-12 border-t border-slate-100 dark:border-slate-800">
+          <a
+            href="https://github.com/JF-Andrade/MMM-Figshare-eCommerce"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-github"
+          >
+            <svg
+              class="w-5 h-5 mr-3"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            View Code on GitHub
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
