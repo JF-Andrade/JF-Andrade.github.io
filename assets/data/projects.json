@@ -1,5 +1,31 @@
 [
   {
+    "id": "mmm-ecommerce-bayesian",
+    "title": {
+      "en": "Marketing Mix Modeling: eCommerce ROI",
+      "pt": "Marketing Mix Modeling: ROI eCommerce"
+    },
+    "description": {
+      "en": "Bayesian Media Mix Model to quantify ROI of digital advertising (Google, Meta, TikTok) and optimize budget allocation across 18 territories with uncertainty quantification.",
+      "pt": "Modelo Bayesiano de Mix de Mídia para quantificar ROI de publicidade digital (Google, Meta, TikTok) e otimizar alocação de budget em 18 territórios com quantificação de incerteza."
+    },
+    "image": "assets/img/projects/mmm_thumbnail.webp",
+    "alt": {
+      "en": "Marketing Mix Modeling dashboard showing channel ROI analysis with saturation curves and budget optimization interface",
+      "pt": "Dashboard de Marketing Mix Modeling mostrando análise de ROI por canal com curvas de saturação e interface de otimização de budget"
+    },
+    "technologies": [
+      "Python",
+      "PyMC-Marketing",
+      "PyMC",
+      "ArviZ",
+      "MLflow",
+      "Streamlit",
+      "Pandas"
+    ],
+    "link": "projects/mmm-ecommerce.html"
+  },
+  {
     "id": "two-tower-recommendation-mlops",
     "title": {
       "en": "H&M Two-Stage Recommender System",
@@ -26,71 +52,5 @@
       "TensorFlow Recommenders"
     ],
     "link": "projects/two-tower-recommendation.html"
-  },
-  {
-    "id": "classificador-de-flores",
-    "title": {
-      "pt": "Classificador de Imagens de Flores",
-      "en": "Flower Image Classifier"
-    },
-    "description": {
-      "pt": "Desenvolvimento de um modelo de Deep Learning (CNN) para classificar imagens de flores com alta precisão.",
-      "en": "Development of a Deep Learning (CNN) model to classify flower images with high accuracy."
-    },
-    "image": "https://picsum.photos/seed/classificador/400/250.webp",
-    "alt": {
-      "pt": "Miniatura do Projeto de Classificação de Flores",
-      "en": "Thumbnail of Flower Image Classifier Project"
-    },
-    "technologies": [
-      "Python",
-      "TensorFlow",
-      "Keras"
-    ],
-    "link": "projects/projeto-de-classificacao.html"
-  },
-  {
-    "id": "previsao-de-vendas",
-    "title": {
-      "pt": "Previsão de Vendas com Séries Temporais",
-      "en": "Sales Forecasting with Time Series"
-    },
-    "description": {
-      "pt": "Aplicação de modelos de séries temporais (ARIMA e Prophet) para prever vendas futuras e otimizar estoque.",
-      "en": "Application of time series models (ARIMA and Prophet) to forecast future sales and optimize inventory."
-    },
-    "image": "https://picsum.photos/seed/previsao/400/250.webp",
-    "alt": {
-      "pt": "Miniatura do Projeto de Previsão de Vendas",
-      "en": "Thumbnail of Sales Forecasting Project"
-    },
-    "technologies": [
-      "Python",
-      "Pandas",
-      "Scikit-learn"
-    ],
-    "link": "projects.html"
-  },
-  {
-    "id": "analise-de-sentimento",
-    "title": {
-      "pt": "Análise de Sentimento de Reviews",
-      "en": "Sentiment Analysis of Reviews"
-    },
-    "description": {
-      "pt": "Processamento de Linguagem Natural (NLP) para classificar o sentimento de reviews de clientes e gerar insights.",
-      "en": "Natural Language Processing (NLP) to classify customer review sentiment and generate insights."
-    },
-    "image": "https://picsum.photos/seed/sentimento/400/250.webp",
-    "alt": {
-      "pt": "Miniatura do Projeto de Análise de Sentimento",
-      "en": "Thumbnail of Sentiment Analysis Project"
-    },
-    "technologies": [
-      "Python",
-      "NLTK",
-      "Spacy"
-    ],
-    "link": "projects.html"
   }
 ]
