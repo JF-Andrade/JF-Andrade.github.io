@@ -7,21 +7,23 @@ Personal portfolio website showcasing my experience as Market Intelligence Manag
 
 ## Live Site
 
-**English:** [https://jf-andrade.github.io/](https://jf-andrade.github.io/)  
+**English:** [https://jf-andrade.github.io/](https://jf-andrade.github.io/)
+
 **Português:** [https://jf-andrade.github.io/pt/](https://jf-andrade.github.io/pt/)
 
 ## Features
 
-- **Contact Form**: Formspree integration for handling contact submissions
+- **Contact Form**: Formspree integration with hidden honeypot spam protection
+- **PWA Ready**: Web app manifest and mobile-optimized theme integration
 - **Projects**: Dynamic loading of project cards with bilingual support
 - **Resume**: Interactive resume/CV with bilingual support
 - **Bilingual Support**: Full content in English and Portuguese with seamless language switching
 - **Language Switcher**: Header component with automatic URL resolution
-- **Theme Switcher**: Automatic theme switching with localStorage persistence
-- **Enhanced Dark Mode**: WCAG AAA compliant contrast ratios for excellent readability
-- **Executive Minimalist Design**: Clean, professional aesthetic with optimized spacing and typography
+- **Theme Switcher**: Automatic theme switcher (Light/Dark) with localStorage persistence
+- **Responsive Navigation**: Clean mobile hamburger menu with optimized contrast
+- **Executive Minimalist Design**: High-contrast, professional aesthetic with optimized spacing
 - **Accessibility**: Semantic HTML, proper ARIA labels, and keyboard navigation support
-- **Performance**: Optimized Tailwind CSS build (~100 KB)
+- **Performance**: Zero-animation policy for instant loading (~100 KB CSS build)
 
 ## Tech Stack
 
@@ -33,8 +35,12 @@ Personal portfolio website showcasing my experience as Market Intelligence Manag
 
 ## Project Structure
 
-```
+```bash
 .
+├── README.md               # Main project documentation
+├── GEMINI.md               # AI coding assistant guide
+├── CHANGELOG.md            # History of changes
+├── manifest.json           # Web app manifest for mobile/PWA
 ├── index.html              # Home page (EN)
 ├── about.html              # About page (EN)
 ├── projects.html           # Projects listing (EN)
@@ -56,6 +62,7 @@ Personal portfolio website showcasing my experience as Market Intelligence Manag
 │   ├── img/                # Images and favicons
 │   └── data/
 │       └── projects.json   # Project data
+├── profile-readme/         # Special GitHub profile content
 ├── src/
 │   └── input.css           # Tailwind input file
 ├── tailwind.config.js      # Tailwind configuration
@@ -89,7 +96,7 @@ The site uses an **Executive Minimalist Design System** with:
 The site features an optimized dark mode with enhanced contrast:
 
 - Text colors use `slate-300` instead of `slate-400` for better readability
-- Background uses `slate-900` with subtle transparency for glassmorphism
+- Background uses `slate-900` with solid layouts for maximum clarity
 - All interactive elements maintain WCAG AAA contrast ratios
 - Theme preference is saved in localStorage
 
@@ -140,10 +147,11 @@ The site supports English (default) and Portuguese through:
    - Or use `"link": "projects.html"` to redirect to project listing
 
 4. **Deploy**:
+
    ```bash
    git add assets/data/projects.json
    git commit -m "Add project: [Project Name]"
-   git push origin main
+   git push origin master
    ```
 
 The site automatically displays:
@@ -156,13 +164,13 @@ The site automatically displays:
 
 The contact form uses [Formspree](https://formspree.io/) with endpoint:
 
-```
+```text
 https://formspree.io/f/xgvlwpba
 ```
 
 ## Deployment
 
-The site is automatically deployed to **GitHub Pages** from the `main` branch.
+The site is automatically deployed to **GitHub Pages** from the `master` branch.
 
 This project is open source and available under the [MIT License](LICENSE).
 

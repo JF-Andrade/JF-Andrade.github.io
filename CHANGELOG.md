@@ -5,25 +5,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-03-15
+
+### Added
+
+- **Mobile Integration (PWA)**: Added `manifest.json` and meta `theme-color` for better mobile experience and home-screen installability.
+- **Form Security**: Implemented invisible honeypot on contact forms to prevent bot spam without visual friction.
+- **AI Governance**: Created `GEMINI.md` to establish architectural standards and coding guides for AI assistants.
+
+### Changed
+
+- **Performance Optimization**: Removed heavy parallax/scroll animations to ensure immediate page load and smoother UX.
+- **Mobile Navigation**: Redesigned hamburger menu with a solid background and improved contrast to eliminate layer-mixing issues.
+- **Executive Minimalist Refinement**: Shifted from glassmorphism towards solid, high-contrast UI elements for better legibility.
+- **Technical Descriptions**: Refined project descriptions in `profile-readme` to emphasize senior technical depth (MLOps, Two-Stage recommenders).
+
+### Fixed
+
+- **Asset Resolution**: Fixed 404 errors on favicons and assets by implementing relative path resolution in `main.js`.
+- **Contrast Ratios**: Verified and adjusted dark mode colors for WCAG AAA compliance.
+
 ## [2.1.1] - 2025-11-23
 
 ### Changed
+
 - **Navigation links font size**: Increased from `text-sm` to `text-base` for better readability
 - **Hero section name**: Reduced from `text-5xl` to `text-4xl` across all breakpoints to prevent line breaks
 - **Profile photo shape**: Changed from circular (`rounded-full`) to rounded-square (`rounded-xl`) for modern aesthetic
 - **Photo shadow**: Reduced from `shadow-xl` to `shadow-lg` for subtler effect
 
 ### Fixed
+
 - **Dark Mode configuration**: Added `darkMode: 'class'` to `tailwind.config.js` to properly enable class-based dark mode
 - **Navigation colors**: Restored proper color scheme (`text-slate-500/400` for inactive, `text-slate-900/100` for active)
 
 ### Technical
+
 - Updated all 4 HTML files (EN/PT versions of index.html and about.html) with new photo styling
 - Rebuilt CSS multiple times to include new Tailwind classes
 
 ## [2.1.0] - 2025-11-23
 
 ### Changed - Header & Footer Redesign
+
 - **Complete header reconstruction** with Executive Minimalist design
   - Removed logo text for cleaner, more professional appearance
   - Navigation links now left-aligned for better visual hierarchy
@@ -44,12 +68,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Improved Dark Mode contrast for footer text
 
 ### Technical Improvements
+
 - Cleaned up `main.css` by removing unused legacy code (`.lang-switcher`)
 - Optimized JavaScript color classes for better Dark Mode support
 - Added proper accessibility attributes (`aria-label`, focus states)
 - Reduced header height from `h-24` to `h-20` for more screen real estate
 
 ### Documentation
+
 - Created comprehensive implementation plan for header rebuild
 - Updated `WALKTHROUGH.md` with detailed verification checklist
 - Added `PHASE_1_ANALYSIS.md`, `PHASE_2_EVALUATION.md`, `PHASE_3_RECOMMENDATIONS.md`
@@ -58,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0] - 2025-11-22
 
 ### Added
+
 - Local Tailwind CSS build replacing CDN for improved performance
 - SEO meta tags (Open Graph, Twitter Cards) for rich social media previews
 - Unified design system integrating CSS variables with Tailwind theme
@@ -68,16 +95,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This `CHANGELOG.md` file
 
 ### Changed
+
 - Migrated from Tailwind CDN (3+ MB) to local build (~100 KB optimized CSS)
 - Updated all 14 HTML files to use local CSS instead of CDN script
 - Enhanced `tailwind.config.js` with custom color and shadow tokens
 - Improved accessibility (WCAG AA compliant color contrast)
 
 ### Fixed
+
 - Missing contact form in English version (`contact.html`)
 - Inconsistent styling between CDN and custom CSS
 
 ### Performance
+
 - **90% reduction** in CSS download size (3+ MB → ~100 KB)
 - Eliminated render-blocking CDN script
 - Improved Largest Contentful Paint (LCP) metrics
@@ -85,6 +115,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - Initial Release
 
 ### Added
+
 - Bilingual portfolio website (English and Portuguese)
 - Home, About, Projects, Resume, and Contact pages
 - Dynamic project loading from JSON
