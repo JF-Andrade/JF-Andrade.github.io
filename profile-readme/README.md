@@ -8,7 +8,7 @@
 
 ## Bio
 
-> Data Scientist and Master in Economics with over four years of experience leading strategic machine learning and market intelligence projects. I specialize in bridging the gap between advanced **Econometrics** and scalable **Machine Learning** to unlock business value through uncertainty quantification and causal discovery.
+> I am a Senior Data Scientist and Economist specializing in causal inference and uncertainty quantification. I architect decision-support systems that bridge advanced Econometrics and scalable Machine Learning, enabling stakeholders to optimize budget allocation and strategy under strict real-world constraints.
 
 <br>
 
@@ -42,7 +42,7 @@
 
 **Impact:** `Uncertainty Quantification (94% HDI)` for multi-region budget optimization.
 
-Decision-support system estimating channel ROI across 18 territories to maximize advertising efficiency. Delivered as an interactive **Budget Optimization Engine (Streamlit)** with executive reporting and a reproducible MLflow pipeline. Uses Geometric Adstock and Logistic Saturation to isolate true media effects.
+Multi-region Bayesian Marketing Mix Model (MMM) estimating channel ROI across 18 territories to optimize strategic ad spend. I implemented non-linear state-space representations using PyMC to handle sparse regional data and isolate true incremental media effects from baseline organic demand. I modeled Geometric Adstock and Logistic Saturation to enforce realistic diminishing returns, resolving parameter identifiability issues common in frequentist MMMs. To ensure adoption, I wrapped the inference engine in a Streamlit application, delivering localized 94% HDI bounds for safe budget reallocation.
 
 - **Stack:** `PyMC-Marketing` `ArviZ` `Streamlit`
 
@@ -52,7 +52,7 @@ Decision-support system estimating channel ROI across 18 territories to maximize
 
 **Impact:** `+389% Lift` in purchase conversion vs. naive baselines.
 
-Large-scale retrieval & ranking funnel serving 1.37M customers. Delivered as a **production-grade Two-Stage pipeline** with MLOps tracking and visual embeddings (ResNet50), built to handle seasonal catalog rotations and cold-start products.
+Production-grade Two-Stage Recommendation pipeline (Retrieval + Ranking) serving daily personalized feeds to 1.37M customers. I designed a Two-Tower retrieval architecture (TensorFlow Recommenders) to rapidly filter the item space while meeting strict SLA latency constraints for the web client. To address the cold-start problem inherent in high-turnover fashion catalogs, I engineered visual embeddings using ResNet50. The candidate subset is then passed to a CatBoost ranker, mitigating heavy computational costs while maximizing precision, resulting in a robust system capable of handling aggressive seasonal rotations.
 
 - **Stack:** `TensorFlow Recommenders` `CatBoost` `Optuna`
 
