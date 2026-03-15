@@ -1,4 +1,4 @@
-# AGENTS.md - AI Coding Assistant Guide
+# GEMINI.md - AI Coding Assistant Guide
 
 This document serves as the **authoritative instruction manual** for AI agents working on the **Jordão Fernandes Portfolio**. It defines the architectural constraints, coding standards, and operational workflows required to maintain the project's "Executive Minimalist" quality and functional stability.
 
