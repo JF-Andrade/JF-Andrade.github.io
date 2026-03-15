@@ -278,8 +278,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const head = document.head;
       head.insertAdjacentHTML("beforeend", faviconHtml);
 
-      // Prefix favicon paths
-      const faviconLinks = head.querySelectorAll('link[href*="assets/img/"]');
+      // Prefix favicon paths and manifest
+      const faviconLinks = head.querySelectorAll('link[href*="assets/img/"], link[rel="manifest"]');
       faviconLinks.forEach(link => {
         const currentHref = link.getAttribute('href');
         if (!currentHref.startsWith('http') && !currentHref.startsWith(pathToRoot)) {
