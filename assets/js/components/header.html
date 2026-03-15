@@ -7,6 +7,16 @@
             <!-- Navigation links will be dynamically injected here by main.js -->
         </div>
 
+        <!-- Mobile Menu Toggle Button (Visible only on Mobile) -->
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400" aria-label="Toggle Menu" aria-expanded="false">
+            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+            </svg>
+            <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x hidden">
+                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+            </svg>
+        </button>
+
         <!-- Controls: Language Switcher + Theme Toggle (Right) -->
         <div class="flex items-center gap-6">
 
@@ -51,4 +61,11 @@
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Menu (Hidden by default) -->
+    <div id="mobile-nav-menu" class="hidden md:hidden bg-white dark:bg-slate-900 shadow-lg border-b border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 ease-in-out max-h-0 relative z-50">
+        <div id="mobile-nav-links-container" class="container mx-auto px-6 py-6 flex flex-col space-y-4">
+            <!-- Mobile navigation links will be dynamically injected here by main.js -->
+        </div>
+    </div>
 </header>

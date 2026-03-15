@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       loadLanguageSwitcher();
       loadThemeSwitcher();
+      loadMobileMenu();
 
       // Adiciona efeito de scroll no header
       const header = document.getElementById("main-header");
@@ -56,8 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Função para injetar e destacar os links de navegação
   function injectNavLinks() {
-    const navContainer = document.getElementById("nav-links-container");
-    if (!navContainer) return;
+    const desktopContainer = document.getElementById("nav-links-container");
+    const mobileContainer = document.getElementById("mobile-nav-links-container");
+    if (!desktopContainer && !mobileContainer) return;
 
     const navLinksData = {
       pt: [
@@ -79,32 +81,96 @@ document.addEventListener("DOMContentLoaded", () => {
     const linksToUse = navLinksData[currentLang] || navLinksData.en;
     const currentFilename = window.location.pathname.split("/").pop();
 
-    const linksHtml = linksToUse
-      .map((link) => {
-        // Lógica de Active Link
-        const isActive =
-          link.href === currentFilename ||
-          (currentFilename === "" && link.href === "index.html");
+    const generateLinksHtml = (isMobile = false) => {
+      return linksToUse
+        .map((link) => {
+          // Lógica de Active Link
+          const isActive =
+            link.href === currentFilename ||
+            (currentFilename === "" && link.href === "index.html");
 
-        // Estilos Executive Minimalist
-        const baseClasses =
-          "text-base font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded-md px-2 py-1";
-        const inactiveClasses =
-          "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100";
-        const activeClasses =
-          "text-slate-900 dark:text-slate-100 font-semibold";
+          // Estilos Executive Minimalist
+          let baseClasses =
+            "text-base font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded-md";
+          
+          if (isMobile) {
+            baseClasses += " block px-4 py-2 border-l-2";
+          } else {
+            baseClasses += " px-2 py-1";
+          }
 
-        const finalClasses = `${baseClasses} ${
-          isActive ? activeClasses : inactiveClasses
-        }`;
+          const inactiveClasses = isMobile
+            ? "text-slate-500 border-transparent hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800"
+            : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100";
+          
+          const activeClasses = isMobile
+            ? "text-slate-900 border-blue-600 bg-blue-50/50 dark:text-slate-100 dark:bg-blue-900/20 font-semibold"
+            : "text-slate-900 dark:text-slate-100 font-semibold";
 
-        return `<a href="${pathToRoot}${currentLang === "pt" ? "pt/" : ""}${
-          link.href
-        }" class="${finalClasses}">${link.text}</a>`;
-      })
-      .join("");
+          const finalClasses = `${baseClasses} ${
+            isActive ? activeClasses : inactiveClasses
+          }`;
 
-    navContainer.innerHTML = linksHtml;
+          return `<a href="${pathToRoot}${currentLang === "pt" ? "pt/" : ""}${
+            link.href
+          }" class="${finalClasses}">${link.text}</a>`;
+        })
+        .join("");
+    };
+
+    if (desktopContainer) desktopContainer.innerHTML = generateLinksHtml(false);
+    if (mobileContainer) mobileContainer.innerHTML = generateLinksHtml(true);
+  }
+
+  // Função para carregar a lógica do menu mobile
+  function loadMobileMenu() {
+    const toggleBtn = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-nav-menu");
+    const iconOpen = document.getElementById("menu-icon-open");
+    const iconClose = document.getElementById("menu-icon-close");
+
+    if (!toggleBtn || !mobileMenu) return;
+
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.contains("hidden");
+
+      if (isOpen) {
+        // Abrir
+        mobileMenu.classList.remove("hidden");
+        // Forçar reflow para animação
+        mobileMenu.offsetHeight;
+        mobileMenu.style.maxHeight = "400px";
+        iconOpen.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+        toggleBtn.setAttribute("aria-expanded", "true");
+      } else {
+        // Fechar
+        mobileMenu.style.maxHeight = "0";
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        
+        // Esperar animação terminar antes de esconder
+        setTimeout(() => {
+          if (mobileMenu.style.maxHeight === "0px") {
+            mobileMenu.classList.add("hidden");
+          }
+        }, 300);
+      }
+    });
+
+    // Fechar ao clicar em um link (opcional, mas bom para UX)
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        mobileMenu.style.maxHeight = "0";
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        setTimeout(() => {
+          mobileMenu.classList.add("hidden");
+        }, 300);
+      }
+    });
   }
 
   // Função para adicionar a lógica de troca de idioma (Rounded Toggle)
@@ -146,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setLangState(btnPt, btnEn);
     }
 
-    // Lógica de redirecionamento (Mantida igual)
     // Logic for URL redirection (Language Switch)
     const currentPathname = window.location.pathname;
 
@@ -212,6 +277,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const head = document.head;
       head.insertAdjacentHTML("beforeend", faviconHtml);
+
+      // Prefix favicon paths
+      const faviconLinks = head.querySelectorAll('link[href*="assets/img/"]');
+      faviconLinks.forEach(link => {
+        const currentHref = link.getAttribute('href');
+        if (!currentHref.startsWith('http') && !currentHref.startsWith(pathToRoot)) {
+          link.setAttribute('href', pathToRoot + currentHref);
+        }
+      });
     } catch (e) {
       console.error("Erro ao carregar o favicon:", e);
     }
